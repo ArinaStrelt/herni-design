@@ -21,4 +21,6 @@ Kdyžtak můžete checknout mou godot hru [Scrap Reaper](https://github.com/Rion
 
 Taky doporučuju používat GDScript a ne C#, je na to víc návodů a dokumentace, navíc je dost podobnej Pythonu.
 
+[Tohle](https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/importing_3d_scenes/node_type_customization.html) doporučuju pro Blender, urychlí to váš export a import do Godotu. Nejlíp se pracuje s GLB formátem.
+
 Good luck! :)
