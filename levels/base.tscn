@@ -1,34 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://2uptjxq0xja2"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pn2tq"]
-sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
-
-[sub_resource type="Sky" id="Sky_ck4x4"]
-sky_material = SubResource("ProceduralSkyMaterial_pn2tq")
+[gd_scene load_steps=2 format=3 uid="uid://w0ntym617oic"]
 
 [sub_resource type="Environment" id="Environment_shhy1"]
 background_mode = 2
-sky = SubResource("Sky_ck4x4")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="BoxMesh" id="BoxMesh_pn2tq"]
 
 [node name="Base" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, 0, 0, 0)
+light_color = Color(0.666667, 0.823529, 1, 1)
+light_energy = 0.2
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_shhy1")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 3.44819, 5, 3.61278)
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 1.44321, 5, -3.11922)
 projection = 1
 current = true
-size = 2.0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_pn2tq")
+size = 7.0
