@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = jump_velocity
 
-	# Rotace hráče směrem k pozici kurzoru myši
+	# Rotate player towards mouse cursor position
 	rotate_player_towards_mouse()
 
 	move_and_slide()
@@ -43,17 +43,17 @@ func rotate_player_towards_mouse() -> void:
 	var mouse_position = get_viewport().get_mouse_position()
 	var camera = get_viewport().get_camera_3d()
 
-	# Vytvoření paprsku z kamery skrze pozici kurzoru myši
+	# Create a ray from the camera through the mouse cursor position
 	var ray_origin = camera.project_ray_origin(mouse_position)
 	var ray_direction = camera.project_ray_normal(mouse_position)
 
-	# Definování roviny XZ na úrovni hráče
+	# Define the XZ plane at the player's level
 	var player_position = global_transform.origin
 	var plane = Plane(Vector3.UP, player_position.y)
 
-	# Výpočet průsečíku paprsku s rovinou
+	# Calculate the intersection of the ray with the plane
 	var intersection = plane.intersects_ray(ray_origin, ray_direction)
 	if intersection:
 		var look_at_position = intersection
-		look_at_position.y = player_position.y  # Udržení aktuální výšky hráče
+		look_at_position.y = player_position.y  # Maintain the player's current height
 		look_at(look_at_position)
