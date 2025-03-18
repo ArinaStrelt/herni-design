@@ -1,0 +1,76 @@
+[gd_scene load_steps=14 format=3 uid="uid://bs5mag2nh1ltg"]
+
+[ext_resource type="Script" uid="uid://bu0aq7254rgjg" path="res://scripts/player.gd" id="1_6a2qg"]
+[ext_resource type="Texture2D" uid="uid://boyrpsgnktixy" path="res://textures/missing_textures.1-1785952419.png" id="2_bpm8j"]
+[ext_resource type="Texture2D" uid="uid://cqdctj0bpn3xe" path="res://textures/seamless_tileable_grass_texture_by_mushin3d-d8jpn9c-4159706809.jpg" id="2_vl4st"]
+[ext_resource type="Script" uid="uid://c3qj01kk2jxy" path="res://scripts/camera_rig.gd" id="4_y5os3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6a2qg"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_vl4st"]
+sky_material = SubResource("ProceduralSkyMaterial_6a2qg")
+
+[sub_resource type="Environment" id="Environment_bpm8j"]
+background_mode = 2
+sky = SubResource("Sky_vl4st")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kpjcp"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kne1u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y5os3"]
+albedo_texture = ExtResource("2_bpm8j")
+uv1_scale = Vector3(0.18, 0.18, 0.18)
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_e80uo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bpm8j"]
+albedo_texture = ExtResource("2_vl4st")
+uv1_scale = Vector3(10, 10, 10)
+texture_filter = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cxr5p"]
+size = Vector3(50, 0.2, 50)
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bpm8j")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.76466, 0)
+script = ExtResource("1_6a2qg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("BoxShape3D_kpjcp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_kne1u")
+surface_material_override/0 = SubResource("StandardMaterial3D_y5os3")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(50, 0, 0, 0, 0.2, 0, 0, 0, 50, 0, 0, 0)
+mesh = SubResource("BoxMesh_e80uo")
+surface_material_override/0 = SubResource("StandardMaterial3D_bpm8j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_cxr5p")
+
+[node name="CameraRig" type="Node3D" parent="."]
+script = ExtResource("4_y5os3")
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig"]
+transform = Transform3D(0.707107, -0.241845, 0.664463, 0, 0.939693, 0.34202, -0.707107, -0.241845, 0.664463, 10, 8.76466, 10)
