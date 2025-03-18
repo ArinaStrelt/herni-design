@@ -29,14 +29,15 @@ uv1_scale = Vector3(0.18, 0.18, 0.18)
 texture_filter = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_e80uo"]
+size = Vector3(100, 0.2, 100)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bpm8j"]
 albedo_texture = ExtResource("2_vl4st")
-uv1_scale = Vector3(10, 10, 10)
+uv1_scale = Vector3(20, 20, 20)
 texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cxr5p"]
-size = Vector3(50, 0.2, 50)
+size = Vector3(100, 0.2, 100)
 
 [node name="Main" type="Node3D"]
 
@@ -62,15 +63,15 @@ surface_material_override/0 = SubResource("StandardMaterial3D_y5os3")
 [node name="Floor" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
-transform = Transform3D(50, 0, 0, 0, 0.2, 0, 0, 0, 50, 0, 0, 0)
 mesh = SubResource("BoxMesh_e80uo")
 surface_material_override/0 = SubResource("StandardMaterial3D_bpm8j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("BoxShape3D_cxr5p")
 
-[node name="CameraRig" type="Node3D" parent="."]
+[node name="CameraRig" type="Node3D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("4_y5os3")
+player = NodePath("../Player")
 
 [node name="Camera3D" type="Camera3D" parent="CameraRig"]
-transform = Transform3D(0.707107, -0.241845, 0.664463, 0, 0.939693, 0.34202, -0.707107, -0.241845, 0.664463, 10, 8.76466, 10)
+transform = Transform3D(0.707107, -0.541675, 0.454519, 0, 0.642788, 0.766044, -0.707107, -0.541675, 0.454519, 4, 8, 4)
