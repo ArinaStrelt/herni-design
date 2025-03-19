@@ -1,0 +1,118 @@
+[gd_scene load_steps=4 format=3 uid="uid://w0ntym617oic"]
+
+[ext_resource type="PackedScene" uid="uid://rnhgp7lia1nx" path="res://levels/Base_model/base.glb" id="1_ck4x4"]
+[ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_vp66m"]
+
+[sub_resource type="Environment" id="Environment_shhy1"]
+background_mode = 2
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Base" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, -4.73188, 0, -9.83818)
+light_color = Color(0.521726, 0.861361, 0.993322, 1)
+light_energy = 0.1
+light_indirect_energy = 2.816
+light_volumetric_fog_energy = 0.149
+light_specular = 0.943
+shadow_enabled = true
+shadow_bias = 0.027
+shadow_normal_bias = 1.377
+shadow_transmittance_bias = -0.09
+shadow_blur = 0.618
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_shhy1")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 1.34664, 4.37048, -4.2891)
+projection = 1
+current = true
+size = 6.841
+near = 0.019
+far = 3326.76
+
+[node name="base" parent="." instance=ExtResource("1_ck4x4")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="base"]
+transform = Transform3D(0.289486, 0.910477, 0.295348, -0.947099, 0.31713, -0.0493238, -0.138572, -0.265445, 0.954116, -3.06432, 1.33801, -7.27741)
+light_color = Color(0.77, 0.663098, 0.3927, 1)
+light_energy = 1.371
+light_indirect_energy = 4.048
+light_volumetric_fog_energy = 1.74
+light_size = 0.02
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 0.89
+shadow_transmittance_bias = 0.085
+shadow_opacity = 0.65
+shadow_blur = 4.963
+omni_range = 2.15412
+omni_attenuation = 1.305
+
+[node name="OmniLight3D" type="OmniLight3D" parent="base/OmniLight3D"]
+transform = Transform3D(0.295651, 0.908935, 0.293985, -0.945392, 0.322585, -0.046611, -0.137202, -0.264151, 0.954673, 1.53557, 3.77465, -3.46113)
+light_color = Color(0.77, 0.663098, 0.3927, 1)
+light_energy = 1.201
+light_indirect_energy = 4.502
+light_volumetric_fog_energy = 2.251
+light_size = 0.006
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 0.89
+shadow_transmittance_bias = 0.085
+shadow_opacity = 0.65
+shadow_blur = 4.963
+omni_range = 2.61118
+omni_attenuation = 1.305
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="base/OmniLight3D"]
+transform = Transform3D(0.295651, 0.908935, 0.293985, -0.945392, 0.322585, -0.046611, -0.137202, -0.264151, 0.954673, 2.07239, 5.60904, -1.81532)
+light_color = Color(0.77, 0.663098, 0.3927, 1)
+light_energy = 0.34
+light_indirect_energy = 4.502
+light_volumetric_fog_energy = 2.251
+light_size = 0.006
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 0.89
+shadow_transmittance_bias = 0.085
+shadow_opacity = 0.65
+shadow_blur = 4.963
+omni_range = 2.61118
+omni_attenuation = 1.305
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2958, 0.534883, -5.94305)
+light_color = Color(0.869398, 0.573788, 0.0274711, 1)
+light_energy = 0.057
+light_indirect_energy = 1.614
+light_volumetric_fog_energy = 0.376
+light_size = 0.063
+
+[node name="OmniLight3D" type="OmniLight3D" parent="base/OmniLight3D2"]
+transform = Transform3D(0.999224, -0.0393993, 0, 0.0393993, 0.999224, 0, 0, 0, 1, 1.3978, -0.280676, -4.94162)
+light_color = Color(0.840714, 0.558705, 0.113354, 1)
+omni_range = 0.467
+omni_attenuation = 0.291
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="base"]
+transform = Transform3D(0.295651, 0.908935, 0.293985, -0.945392, 0.322585, -0.046611, -0.137202, -0.264151, 0.954673, 1.73589, 0.595232, -7.79533)
+light_color = Color(0.77, 0.663098, 0.3927, 1)
+light_energy = 0.123
+light_indirect_energy = 4.502
+light_volumetric_fog_energy = 2.251
+light_size = 0.006
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 0.89
+shadow_transmittance_bias = 0.085
+shadow_opacity = 0.65
+shadow_blur = 4.963
+omni_range = 2.61118
+omni_attenuation = 1.305
+
+[node name="Fire" parent="base" instance=ExtResource("2_vp66m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.34201, 0.108906, -4.49484)
