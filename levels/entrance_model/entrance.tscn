@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmxtnall3w373"]
+
+[ext_resource type="PackedScene" uid="uid://drlwwyrv1egom" path="res://levels/entrance_model/entrance.glb" id="1_riyce"]
+[ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_wydwa"]
+[ext_resource type="PackedScene" uid="uid://cynbgx4n5kd63" path="res://levels/entrance_model/doors.gltf" id="3_wfn6q"]
+
+[sub_resource type="Environment" id="Environment_wfn6q"]
+background_mode = 2
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Entrance" type="Node3D"]
+
+[node name="entrance" parent="." instance=ExtResource("1_riyce")]
+
+[node name="Fire" parent="entrance" instance=ExtResource("2_wydwa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.36759, 0.591064, -10.4199)
+
+[node name="Fire2" parent="entrance" instance=ExtResource("2_wydwa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62439, 0.555538, -10.3463)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="entrance"]
+transform = Transform3D(0.295651, 0.908935, 0.293986, -0.945392, 0.322585, -0.0466112, -0.137202, -0.264151, 0.954673, -0.598115, 1.21697, -0.80574)
+light_color = Color(0.77, 0.663098, 0.3927, 1)
+light_energy = 1.201
+light_indirect_energy = 4.502
+light_volumetric_fog_energy = 2.251
+light_size = 0.006
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 0.89
+shadow_transmittance_bias = 0.085
+shadow_opacity = 0.65
+shadow_blur = 4.963
+omni_range = 2.61118
+omni_attenuation = 1.305
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="entrance"]
+transform = Transform3D(0.815196, -0.543946, -0.198942, -0.57808, -0.742927, -0.337466, 0.0357638, 0.390106, -0.920075, -3.40911, 1.25714, -1.92868)
+light_color = Color(0.77, 0.663098, 0.3927, 1)
+light_energy = 1.201
+light_indirect_energy = 4.502
+light_volumetric_fog_energy = 2.251
+light_size = 0.006
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 0.89
+shadow_transmittance_bias = 0.085
+shadow_opacity = 0.65
+shadow_blur = 4.963
+omni_range = 2.61118
+omni_attenuation = 1.305
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, -4.73188, 0, -9.83818)
+light_color = Color(0.572877, 0.753923, 0.949828, 1)
+light_energy = 0.31
+light_indirect_energy = 3.027
+light_volumetric_fog_energy = 0.0
+light_specular = 0.943
+shadow_enabled = true
+shadow_bias = 0.027
+shadow_normal_bias = 1.377
+shadow_transmittance_bias = -0.09
+shadow_blur = 0.618
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wfn6q")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 1.35408, 4.37048, -3.19409)
+projection = 1
+current = true
+size = 7.263
+near = 0.019
+far = 3326.76
+
+[node name="doors" parent="." instance=ExtResource("3_wfn6q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0130148, 0.0433437, 0.232332)
+
+[node name="Door_R_Door_0-col" parent="doors/Armature/Skeleton3D" index="0"]
+transform = Transform3D(-0.0439931, -2.24597e-16, -5.30831e-09, 5.38763e-18, 0.06072, -2.65415e-09, 3.846e-09, -2.65415e-09, -0.06072, -0.0358278, 0.373743, -0.0167563)
+
+[node name="Door_L_Door_0-col" parent="doors/Armature/Skeleton3D" index="1"]
+transform = Transform3D(-0.0439931, 0, -9.16846e-09, 0, 0.06072, 0, 6.64277e-09, 0, -0.06072, 0.716613, 0.384366, -0.0167572)
+
+[editable path="doors"]

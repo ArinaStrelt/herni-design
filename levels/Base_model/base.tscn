@@ -12,10 +12,10 @@ glow_enabled = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, -4.73188, 0, -9.83818)
-light_color = Color(0.521726, 0.861361, 0.993322, 1)
-light_energy = 0.1
-light_indirect_energy = 2.816
-light_volumetric_fog_energy = 0.149
+light_color = Color(0.494161, 0.711339, 0.956092, 1)
+light_energy = 0.31
+light_indirect_energy = 3.027
+light_volumetric_fog_energy = 0.0
 light_specular = 0.943
 shadow_enabled = true
 shadow_bias = 0.027
