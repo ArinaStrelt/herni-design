@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://w0ntym617oic"]
+[gd_scene load_steps=6 format=3 uid="uid://w0ntym617oic"]
 
 [ext_resource type="PackedScene" uid="uid://rnhgp7lia1nx" path="res://levels/Base_model/base.glb" id="1_ck4x4"]
 [ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_vp66m"]
+[ext_resource type="PackedScene" uid="uid://y3igs2apyv0g" path="res://scenes/player/player.tscn" id="3_xau63"]
+[ext_resource type="PackedScene" uid="uid://byk7wrccha6w" path="res://scenes/enemies/testing_enemy_cube.tscn" id="4_scqal"]
 
 [sub_resource type="Environment" id="Environment_shhy1"]
 background_mode = 2
@@ -116,3 +118,12 @@ omni_attenuation = 1.305
 
 [node name="Fire" parent="base" instance=ExtResource("2_vp66m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.34201, 0.108906, -4.49484)
+
+[node name="Player" parent="." instance=ExtResource("3_xau63")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.84512)
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("4_scqal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527488, -9.71048)
+
+[node name="enemy_cube" parent="." instance=ExtResource("4_scqal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02752, 0.511969, -9.74576)
