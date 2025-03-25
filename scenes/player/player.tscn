@@ -6,7 +6,7 @@
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dovo2"]
 radius = 0.777832
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_dovo2")
 
 [node name="player_knight_model" parent="." instance=ExtResource("1_8afob")]
