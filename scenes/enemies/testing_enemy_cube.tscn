@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://byk7wrccha6w"]
+
+[ext_resource type="Script" uid="uid://btoworx81scng" path="res://scripts/enemies/enemy_basics.gd" id="1_hwjj7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aea76"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hwjj7"]
+
+[node name="enemy_cube" type="CharacterBody3D" groups=["enemies"]]
+script = ExtResource("1_hwjj7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_aea76")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_hwjj7")
