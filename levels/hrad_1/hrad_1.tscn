@@ -1,0 +1,116 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtqbaty641r47"]
+
+[ext_resource type="PackedScene" uid="uid://cnk3trug1fxfm" path="res://levels/hrad_1/hrad_1.glb" id="1_c8twu"]
+[ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_v3ddc"]
+[ext_resource type="PackedScene" uid="uid://d150g1cwpq5ew" path="res://scenes/enemy_cage_spider/enemy_cage_spider.tscn" id="3_0830o"]
+[ext_resource type="PackedScene" uid="uid://y3igs2apyv0g" path="res://scenes/player/player.tscn" id="4_v3ddc"]
+
+[sub_resource type="Environment" id="Environment_v3ddc"]
+background_mode = 2
+sky_custom_fov = 7.0
+ambient_light_color = Color(0.151481, 0.291334, 0.368809, 1)
+ambient_light_sky_contribution = 0.76
+ambient_light_energy = 1.72
+tonemap_mode = 2
+glow_enabled = true
+fog_light_color = Color(0.513974, 0.561287, 0.563139, 1)
+fog_light_energy = 0.02
+fog_density = 0.0
+fog_height = 0.25
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0791
+volumetric_fog_emission_energy = 17.25
+volumetric_fog_gi_inject = 1.58
+
+[node name="Hrad1" type="Node3D"]
+
+[node name="hrad_1" parent="." instance=ExtResource("1_c8twu")]
+
+[node name="Fire" parent="hrad_1" instance=ExtResource("2_v3ddc")]
+transform = Transform3D(0.997717, 0, -0.0675277, 0, 1, 0, 0.0675277, 0, 0.997717, 1.32233, 1.20159, -10.6327)
+
+[node name="Fire2" parent="hrad_1" instance=ExtResource("2_v3ddc")]
+transform = Transform3D(0.997329, 0.0398004, 0.0612439, -0.0397256, 0.999208, -0.00243947, -0.0612924, 0, 0.99812, -2.59397, 1.20757, -9.915)
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="hrad_1"]
+transform = Transform3D(1, 0, 0, 0, 0.988215, 0.153072, 0, -0.153072, 0.988215, -4.54882, 2.29062, -7.48215)
+light_color = Color(0.741561, 0.498381, 0.142898, 1)
+light_energy = 1.074
+light_indirect_energy = 0.16
+light_volumetric_fog_energy = 0.789
+light_size = 0.28
+omni_range = 3.586
+omni_attenuation = 1.877
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="hrad_1"]
+transform = Transform3D(1, 0, 0, 0, 0.994757, 0.102272, 0, -0.102272, 0.994757, -4.53207, 2.27375, -4.53552)
+light_color = Color(0.741561, 0.498381, 0.142898, 1)
+light_energy = 1.074
+light_indirect_energy = 0.16
+light_volumetric_fog_energy = 0.789
+light_size = 0.28
+omni_range = 3.586
+omni_attenuation = 1.877
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="hrad_1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5595, 2.24376, -1.47173)
+light_color = Color(0.741561, 0.498381, 0.142898, 1)
+light_energy = 1.074
+light_indirect_energy = 0.16
+light_volumetric_fog_energy = 0.789
+light_size = 0.28
+omni_range = 3.586
+omni_attenuation = 1.877
+
+[node name="OmniLight3D" type="OmniLight3D" parent="hrad_1"]
+transform = Transform3D(1.00263, 0, 0, 0, 0.990811, 0.153474, 0, -0.153474, 0.990811, 0.10794, 12.8449, -4.1818)
+light_color = Color(0.844048, 0.811751, 0.67807, 1)
+light_energy = 6.162
+light_indirect_energy = 3.115
+light_specular = 0.0
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 0.0
+omni_range = 18.8995
+omni_attenuation = 1.287
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="hrad_1"]
+transform = Transform3D(1, 0, 0, 0, 0.998688, 0.051203, 0, -0.051203, 0.998688, -4.51531, 2.29874, 1.48039)
+light_color = Color(0.741561, 0.498381, 0.142898, 1)
+light_energy = 1.074
+light_indirect_energy = 0.16
+light_volumetric_fog_energy = 0.789
+light_size = 0.28
+omni_range = 3.586
+omni_attenuation = 1.877
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.458132, 0.362824, -0.811464, -0.876688, -0.0337286, 0.479875, 0.146741, 0.931247, 0.333535, -10.1385, 5.7299, -4.02098)
+light_color = Color(0.572877, 0.753923, 0.949828, 1)
+light_energy = 3.873
+light_indirect_energy = 5.035
+light_volumetric_fog_energy = 0.045
+light_angular_distance = 6.71
+light_specular = 0.483
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 7.731
+shadow_transmittance_bias = -2.142
+shadow_blur = 0.618
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v3ddc")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 2.199, 5.254, -2.065)
+projection = 1
+current = true
+size = 8.648
+near = 0.019
+far = 3326.76
+
+[node name="Player" parent="." instance=ExtResource("4_v3ddc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55538, 0.0420627, -0.319236)
+
+[node name="enemy_cage_spider" parent="." instance=ExtResource("3_0830o")]
+transform = Transform3D(0.46, 0, 0, 0, 0.46, 0, 0, 0, 0.46, 3.65787, 0.757123, -5.9777)
