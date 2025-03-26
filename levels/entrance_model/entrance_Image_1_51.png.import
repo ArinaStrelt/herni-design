@@ -2,14 +2,14 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjlaigq4j34n8"
+uid="uid://d0ib4omf0ek8d"
 path.s3tc="res://.godot/imported/entrance_Image_1_51.png-07cf0fd438cc7c02dce907c180dc46dd.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "d55df1832b5333c778f31bfaf0cbe8f6"
+"md5": "7ce47a23fcf3ddc578f90a9557da57e5"
 }
 
 [deps]
@@ -23,12 +23,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=8
-roughness/src_normal="res://levels/entrance_model/entrance_Image_2_50.png"
+roughness/mode=1
+roughness/src_normal="res://levels/entrance_model/entrance_Image_1_51.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
