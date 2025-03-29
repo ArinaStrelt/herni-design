@@ -121,9 +121,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.34201, 0.108906, -4.49484)
 
 [node name="Player" parent="." instance=ExtResource("3_xau63")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.84512)
+visible = false
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("4_scqal")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527488, -9.71048)
+visible = false
 
 [node name="enemy_cube" parent="." instance=ExtResource("4_scqal")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02752, 0.511969, -9.74576)
+visible = false
