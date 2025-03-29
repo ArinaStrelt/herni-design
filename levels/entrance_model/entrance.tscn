@@ -20,7 +20,7 @@ radius = 1.83252
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, -4.25741e-08, -0.486991, 0.873407, 7.63557e-08, 0.873407, 0.486991, -14.8361, 5.68989, -9.83818)
 light_color = Color(0.572877, 0.753923, 0.949828, 1)
-light_energy = 0.31
+light_energy = 0.959
 light_indirect_energy = 3.027
 light_volumetric_fog_energy = 0.0
 light_specular = 0.943
@@ -43,9 +43,11 @@ far = 3326.76
 
 [node name="enemy_cage_spider" parent="." instance=ExtResource("4_6e1lf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1588, 0.0261819, -6.85342)
+visible = false
 
 [node name="Player" parent="." instance=ExtResource("5_e7nie")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.899843, 0.0573132, 0.118341)
+visible = false
 
 [node name="entrance" parent="." instance=ExtResource("1_6e1lf")]
 

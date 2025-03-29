@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtqbaty641r47"]
+[gd_scene load_steps=5 format=3 uid="uid://dtqbaty641r47"]
 
 [ext_resource type="PackedScene" uid="uid://cnk3trug1fxfm" path="res://levels/hrad_1/hrad_1.glb" id="1_c8twu"]
 [ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_v3ddc"]
-[ext_resource type="PackedScene" uid="uid://d150g1cwpq5ew" path="res://scenes/enemy_cage_spider/enemy_cage_spider.tscn" id="3_0830o"]
 [ext_resource type="PackedScene" uid="uid://y3igs2apyv0g" path="res://scenes/player/player.tscn" id="4_v3ddc"]
 
 [sub_resource type="Environment" id="Environment_v3ddc"]
@@ -65,7 +64,7 @@ omni_attenuation = 1.877
 [node name="OmniLight3D" type="OmniLight3D" parent="hrad_1"]
 transform = Transform3D(1.00263, 0, 0, 0, 0.990811, 0.153474, 0, -0.153474, 0.990811, 0.10794, 12.8449, -4.1818)
 light_color = Color(0.844048, 0.811751, 0.67807, 1)
-light_energy = 6.162
+light_energy = 4.108
 light_indirect_energy = 3.115
 light_specular = 0.0
 shadow_enabled = true
@@ -89,9 +88,9 @@ transform = Transform3D(-0.458132, 0.362824, -0.811464, -0.876688, -0.0337286, 0
 light_color = Color(0.572877, 0.753923, 0.949828, 1)
 light_energy = 3.873
 light_indirect_energy = 5.035
-light_volumetric_fog_energy = 0.045
+light_volumetric_fog_energy = 0.0
 light_angular_distance = 6.71
-light_specular = 0.483
+light_specular = 0.158
 shadow_enabled = true
 shadow_bias = 0.0
 shadow_normal_bias = 7.731
@@ -110,7 +109,4 @@ near = 0.019
 far = 3326.76
 
 [node name="Player" parent="." instance=ExtResource("4_v3ddc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55538, 0.0420627, -0.319236)
-
-[node name="enemy_cage_spider" parent="." instance=ExtResource("3_0830o")]
-transform = Transform3D(0.46, 0, 0, 0, 0.46, 0, 0, 0, 0.46, 3.65787, 0.757123, -5.9777)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.467166, 0.0420627, -2.41262)
