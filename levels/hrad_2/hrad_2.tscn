@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1kvyjfdw0e3e"]
+[gd_scene load_steps=7 format=3 uid="uid://d1kvyjfdw0e3e"]
 
 [ext_resource type="PackedScene" uid="uid://crt0mlkruq6rf" path="res://levels/hrad_2/hrad_2.glb" id="1_hwuwg"]
-[ext_resource type="PackedScene" uid="uid://y3igs2apyv0g" path="res://scenes/player/player.tscn" id="2_0xmpe"]
 [ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_426s5"]
 [ext_resource type="PackedScene" uid="uid://8np8ds706ft2" path="res://levels/entrance_model/doors.glb" id="3_pua7d"]
 [ext_resource type="Script" uid="uid://bs0jpfy1oclj3" path="res://scripts/doors.gd" id="4_pua7d"]
@@ -96,8 +95,8 @@ light_indirect_energy = 1.614
 light_volumetric_fog_energy = 0.376
 light_size = 0.063
 
-[node name="OmniLight3D" type="OmniLight3D" parent="hrad_2/OmniLight3D6"]
-transform = Transform3D(0.999224, -0.0393993, 0, 0.0393993, 0.999224, 0, 0, 0, 1, 1.3978, -0.280676, -4.94162)
+[node name="OmniLight3D7" type="OmniLight3D" parent="hrad_2"]
+transform = Transform3D(0.999224, -0.0393993, 0, 0.0393993, 0.999224, 0, 0, 0, 1, -1.61103, 0.150556, -13.4645)
 light_color = Color(0.840714, 0.558705, 0.113354, 1)
 omni_range = 0.467
 omni_attenuation = 0.291
@@ -136,9 +135,6 @@ current = true
 size = 8.648
 near = 0.019
 far = 3326.76
-
-[node name="Player" parent="." instance=ExtResource("2_0xmpe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.492086, -0.00111747, -6.10659)
 
 [connection signal="body_entered" from="hrad_2/doors/Area3D" to="hrad_2/doors" method="_on_player_enter"]
 [connection signal="body_exited" from="hrad_2/doors/Area3D" to="hrad_2/doors" method="_on_player_leave"]
