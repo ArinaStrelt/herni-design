@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://dfah6s055xrjs"
+path.s3tc="res://.godot/imported/boss_level_Image_2_48.jpg-2fd026f0628e8ec1ffc707ea81433cd5.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "b2feb11fbd588d5c8774b68b44b047eb"
+}
+
+[deps]
+
+source_file="res://levels/boss_level/boss_level_Image_2_48.jpg"
+dest_files=["res://.godot/imported/boss_level_Image_2_48.jpg-2fd026f0628e8ec1ffc707ea81433cd5.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://levels/boss_level/boss_level_Image_2_48.jpg"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
