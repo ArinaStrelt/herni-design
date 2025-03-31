@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6dwarrnkqhd"]
+
+[ext_resource type="PackedScene" uid="uid://byjm4s65cn21l" path="res://levels/boss_level/boss_level.glb" id="1_scxyc"]
+[ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_ympyq"]
+
+[sub_resource type="Environment" id="Environment_ympyq"]
+background_mode = 2
+sky_custom_fov = 7.0
+ambient_light_color = Color(0.151481, 0.291334, 0.368809, 1)
+ambient_light_sky_contribution = 0.76
+ambient_light_energy = 1.72
+tonemap_mode = 2
+glow_enabled = true
+fog_light_color = Color(0.513974, 0.561287, 0.563139, 1)
+fog_light_energy = 0.02
+fog_density = 0.0
+fog_height = 0.25
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0791
+volumetric_fog_emission_energy = 17.25
+volumetric_fog_gi_inject = 1.58
+
+[node name="BossLevel" type="Node3D"]
+
+[node name="boss_level" parent="." instance=ExtResource("1_scxyc")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="boss_level"]
+transform = Transform3D(0.244195, -0.675978, 0.695286, -0.260736, 0.64482, 0.718487, -0.934016, -0.356737, -0.01879, 3.71184, 15.3961, -4.73444)
+light_color = Color(0.721846, 0.835757, 0.839165, 1)
+light_energy = 4.108
+light_indirect_energy = 3.115
+light_specular = 0.0
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 0.0
+omni_range = 53.6319
+omni_attenuation = 1.287
+
+[node name="Fire2" parent="boss_level" instance=ExtResource("2_ympyq")]
+transform = Transform3D(-0.916964, 0.144729, -0.371794, 0.119927, 0.988774, 0.089124, 0.380519, 0.0371351, -0.924027, 2.77157, 1.19486, -8.20853)
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="boss_level"]
+transform = Transform3D(0.26247, -0.651614, 0.711695, -0.242331, 0.669404, 0.702264, -0.934016, -0.356789, 0.017792, -4.45923, 2.28314, -3.60109)
+light_color = Color(0.690298, 0.522505, 0.268597, 1)
+light_energy = 0.054
+light_indirect_energy = 0.16
+light_volumetric_fog_energy = 0.789
+light_size = 0.28
+omni_range = 3.586
+omni_attenuation = 1.877
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.458132, 0.362824, -0.811464, -0.876688, -0.0337283, 0.479875, 0.146741, 0.931247, 0.333536, -10.1462, 5.7299, -4.02167)
+light_color = Color(0.572877, 0.753923, 0.949828, 1)
+light_energy = 3.873
+light_indirect_energy = 5.035
+light_volumetric_fog_energy = 0.0
+light_angular_distance = 6.71
+light_specular = 0.158
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 7.731
+shadow_transmittance_bias = -2.142
+shadow_blur = 0.618
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ympyq")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 3.84, 7.999, -0.624)
+projection = 1
+current = true
+size = 8.648
+near = 0.019
+far = 3326.76
