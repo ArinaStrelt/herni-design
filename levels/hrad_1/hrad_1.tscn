@@ -24,7 +24,7 @@ volumetric_fog_gi_inject = 1.58
 
 [node name="Hrad1" type="Node3D"]
 
-[node name="enemy_cage_spider" parent="." groups=["enemies"] instance=ExtResource("1_v3ddc")]
+[node name="enemy_cage_spider" parent="." instance=ExtResource("1_v3ddc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.582212, 0, -7.45975)
 
 [node name="hrad_1" parent="." instance=ExtResource("1_c8twu")]

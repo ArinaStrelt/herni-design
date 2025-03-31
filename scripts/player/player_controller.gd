@@ -6,6 +6,9 @@ extends CharacterBody3D
 const SPEED := 2.5
 const GRAVITY := 20.0
 
+@export var max_health := 100
+var current_health := max_health
+
 var attacking = false
 var is_dead = false
 
@@ -67,6 +70,21 @@ func start_attack(anim_name: String):
 		await animation_player.animation_finished
 		attacking = false
 
+func take_damage(amount: int):
+	if is_dead:
+		return
+
+	current_health -= amount
+	print("Player took damage:", amount, " | Remaining HP:", current_health)
+
+	if current_health <= 0:
+		die()
+	else:
+		# Optional: play a hurt animation if available
+		if animation_player.has_animation("Hurt"):
+			animation_player.play("Hurt")
+
+
 func die():
 	if is_dead:
 		return
@@ -74,13 +92,10 @@ func die():
 	is_dead = true
 	print("Hráč zemřel!")
 	animation_player.play("Death")
-	
-	# Můžeš zakázat pohyb i útok
+
+	# Zakázat pohyb a útok
 	velocity = Vector3.ZERO
 	await animation_player.animation_finished
 
-	# Buď odstraníš hráče:
-	# queue_free()
-
-	# Nebo restartneš scénu:
+	# Restart scénu
 	get_tree().reload_current_scene()
