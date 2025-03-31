@@ -95,12 +95,6 @@ light_indirect_energy = 1.614
 light_volumetric_fog_energy = 0.376
 light_size = 0.063
 
-[node name="OmniLight3D7" type="OmniLight3D" parent="hrad_2"]
-transform = Transform3D(0.999224, -0.0393993, 0, 0.0393993, 0.999224, 0, 0, 0, 1, -1.61103, 0.150556, -13.4645)
-light_color = Color(0.840714, 0.558705, 0.113354, 1)
-omni_range = 0.467
-omni_attenuation = 0.291
-
 [node name="doors" parent="hrad_2" instance=ExtResource("3_pua7d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.642154, 0, 1.44106)
 script = ExtResource("4_pua7d")
