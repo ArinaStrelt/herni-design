@@ -18,7 +18,7 @@ size = Vector3(100, 1, 100)
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3, 5.07057)
 
 [node name="Player" parent="." instance=ExtResource("1_e3d47")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.0474)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.850317)
 
 [node name="enemy_cage_spider" parent="." groups=["enemies"] instance=ExtResource("2_5m5qr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.716969)
+transform = Transform3D(1, 0, 0, 0, 0.999563, 0.0295616, 0, -0.0295616, 0.999563, 0, 0, 0.716969)

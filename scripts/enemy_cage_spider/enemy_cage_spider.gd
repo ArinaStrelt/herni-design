@@ -8,6 +8,11 @@ extends CharacterBody3D
 @export var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var rotation_speed = 5.0
 @export var max_health := 100
+var knockback_direction = Vector3.ZERO
+var knockback_timer = 0.0
+@export var knockback_duration = 0.25
+@export var knockback_force = 5.0
+
 
 var current_health := 100
 var is_dead := false
@@ -27,6 +32,12 @@ func _ready():
 
 func _physics_process(delta):
 	if is_dead:
+		return
+		
+	if knockback_timer > 0.0:
+		knockback_timer -= delta
+		velocity = knockback_direction * knockback_force
+		move_and_slide()
 		return
 
 	if not player:
@@ -57,13 +68,21 @@ func _physics_process(delta):
 	move_and_slide()
 
 	# Plynulá rotace bez změny velikosti
-	var horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
-	if horizontal_velocity.length() > 0.1:
-		var target_dir = horizontal_velocity.normalized()
-		var target_angle = atan2(-target_dir.x, -target_dir.z)
+	var look_dir: Vector3
+
+	if velocity.length() > 0.1:
+		# Rotate based on movement
+		look_dir = velocity.normalized()
+	elif player and state == "chase" and global_position.distance_to(player.global_position) <= attack_distance:
+		# Rotate toward player if in attack range
+		look_dir = (player.global_position - global_position).normalized()
+
+	if look_dir:
+		var target_angle = atan2(-look_dir.x, -look_dir.z)
 		var current_angle = model_holder.rotation.y
-		var corrected_target_angle = target_angle + deg_to_rad(90) # uprav podle orientace modelu
+		var corrected_target_angle = target_angle + deg_to_rad(90) # adjust for model orientation
 		model_holder.rotation.y = lerp_angle(current_angle, corrected_target_angle, delta * rotation_speed)
+
 
 func set_new_patrol_point():
 	var random_offset = Vector3(
@@ -104,10 +123,17 @@ func take_damage(amount: int):
 		return
 
 	current_health -= amount
-	print("Enemy HP:", current_health)
+	print("Enemy took damage:", amount)
+
+	if player:
+		var dir = (global_position - player.global_position)
+		dir.y = 0
+		knockback_direction = dir.normalized()
+		knockback_timer = knockback_duration
 
 	if current_health <= 0:
 		die()
+
 
 func die():
 	is_dead = true
