@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt45p04n7o85i"]
+
+[ext_resource type="Script" uid="uid://cetihw2v13it1" path="res://scripts/exit_zone.gd" id="1_2n2ks"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7e737"]
+size = Vector3(4.18066, 1.24634, 1)
+
+[node name="exit_zone" type="Area3D"]
+script = ExtResource("1_2n2ks")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_7e737")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

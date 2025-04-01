@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-var health := 100
+var health := 20
 
 func take_damage(amount: int):
 	health -= amount

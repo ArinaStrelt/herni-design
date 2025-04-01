@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1kvyjfdw0e3e"]
+[gd_scene load_steps=9 format=3 uid="uid://d1kvyjfdw0e3e"]
 
 [ext_resource type="PackedScene" uid="uid://crt0mlkruq6rf" path="res://levels/hrad_2/hrad_2.glb" id="1_hwuwg"]
 [ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_426s5"]
 [ext_resource type="PackedScene" uid="uid://8np8ds706ft2" path="res://levels/entrance_model/doors.glb" id="3_pua7d"]
 [ext_resource type="Script" uid="uid://bs0jpfy1oclj3" path="res://scripts/doors.gd" id="4_pua7d"]
+[ext_resource type="PackedScene" uid="uid://dt45p04n7o85i" path="res://scenes/exit_zone.tscn" id="5_pua7d"]
+[ext_resource type="PackedScene" uid="uid://d150g1cwpq5ew" path="res://scenes/enemy_cage_spider/enemy_cage_spider.tscn" id="6_sh6fr"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_sh6fr"]
 radius = 1.83252
@@ -129,6 +131,16 @@ current = true
 size = 8.648
 near = 0.019
 far = 3326.76
+
+[node name="exit_zone" parent="." instance=ExtResource("5_pua7d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.545617, 0.479679, -9.88804)
+next_level_path = "res://levels/boss_level/boss_level.tscn"
+
+[node name="enemy_cage_spider" parent="." instance=ExtResource("6_sh6fr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.87876, 0, -4.31821)
+
+[node name="enemy_cage_spider2" parent="." instance=ExtResource("6_sh6fr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.34622, 0, -1.27981)
 
 [connection signal="body_entered" from="hrad_2/doors/Area3D" to="hrad_2/doors" method="_on_player_enter"]
 [connection signal="body_exited" from="hrad_2/doors/Area3D" to="hrad_2/doors" method="_on_player_leave"]
