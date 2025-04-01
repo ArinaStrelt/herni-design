@@ -3,7 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cnk3trug1fxfm" path="res://levels/hrad_1/hrad_1.glb" id="1_c8twu"]
 [ext_resource type="PackedScene" uid="uid://d150g1cwpq5ew" path="res://scenes/enemy_cage_spider/enemy_cage_spider.tscn" id="1_v3ddc"]
 [ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_v3ddc"]
-[ext_resource type="PackedScene" uid="uid://y3igs2apyv0g" path="res://scenes/player/player.tscn" id="4_v3ddc"]
+[ext_resource type="PackedScene" uid="uid://dt45p04n7o85i" path="res://scenes/exit_zone.tscn" id="3_0830o"]
+[ext_resource type="PackedScene" uid="uid://d150g1cwpq5ew" path="res://scenes/enemy_cage_spider/enemy_cage_spider.tscn" id="4_v3ddc"]
 
 [sub_resource type="Environment" id="Environment_v3ddc"]
 background_mode = 2
@@ -112,5 +113,12 @@ size = 8.648
 near = 0.019
 far = 3326.76
 
-[node name="Player" parent="." instance=ExtResource("4_v3ddc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.467166, 0.0420627, -2.41262)
+[node name="exit_zone" parent="." instance=ExtResource("3_0830o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.975168, 2.21199, -12.7126)
+next_level_path = "res://levels/hrad_2/hrad_2.tscn"
+
+[node name="enemy_cage_spider" parent="." instance=ExtResource("4_v3ddc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.27801, 0, -5.12252)
+
+[node name="enemy_cage_spider2" parent="." instance=ExtResource("4_v3ddc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.962892, 0, -5.00911)

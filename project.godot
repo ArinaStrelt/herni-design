@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="herni-design"
-run/main_scene="res://levels/Base_model/base.tscn"
+run/main_scene="uid://c3gh1bqx6dxr2"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 

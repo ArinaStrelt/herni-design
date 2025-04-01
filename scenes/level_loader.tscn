@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3gh1bqx6dxr2"]
+
+[ext_resource type="Script" uid="uid://b8ut0oayb1eej" path="res://scripts/level_loader.gd" id="1_hv1n6"]
+[ext_resource type="Script" uid="uid://b4b82mdpevn32" path="res://scripts/fade_layer.gd" id="2_qqu82"]
+[ext_resource type="PackedScene" uid="uid://y3igs2apyv0g" path="res://scenes/player/player.tscn" id="3_qqu82"]
+
+[node name="level_loader" type="Node3D"]
+script = ExtResource("1_hv1n6")
+
+[node name="FadeLayer" type="CanvasLayer" parent="."]
+script = ExtResource("2_qqu82")
+
+[node name="Fader" type="ColorRect" parent="FadeLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="level_root" type="Node3D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("3_qqu82")]
