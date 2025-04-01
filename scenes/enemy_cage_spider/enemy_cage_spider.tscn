@@ -5,14 +5,13 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vasbb"]
 height = 1.0
-radius = 0.98
 
-[node name="enemy_cage_spider" type="CharacterBody3D"]
+[node name="enemy_cage_spider" type="CharacterBody3D" groups=["enemies"]]
 script = ExtResource("1_rh0c5")
 
 [node name="cage_spider" parent="." groups=["enemies"] instance=ExtResource("2_ajug3")]
-transform = Transform3D(0.005, 0, 0, 0, 0.005, 0, 0, 0, 0.005, 0, 0, 0)
+transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, 0, 0.0457785, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50203, 0)
 shape = SubResource("CylinderShape3D_vasbb")

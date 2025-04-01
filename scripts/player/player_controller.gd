@@ -5,6 +5,7 @@ extends CharacterBody3D
 
 var SPEED := 2.5
 var GRAVITY : float = ProjectSettings.get_setting("physics/3d/default_gravity")
+
 var attacking = false
 var is_dead = false
 var max_health = 100
@@ -86,8 +87,8 @@ func die():
 	is_dead = true
 	print("Hráč zemřel!")
 	animation_player.play("Death")
-	
-	# Můžeš zakázat pohyb i útok
+
+	# Zakázat pohyb a útok
 	velocity = Vector3.ZERO
 	await animation_player.animation_finished
 

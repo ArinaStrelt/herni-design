@@ -8,6 +8,10 @@ extends CharacterBody3D
 @export var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var rotation_speed = 5.0
 @export var max_health := 100
+@export var knockback_duration = 0.25
+@export var knockback_force = 5.0
+@export var attack_damage = 5
+@export var attack_cooldown = 1.5
 
 var current_health := 100
 var is_dead := false
@@ -16,6 +20,9 @@ var spawn_position: Vector3
 var target_position: Vector3
 var state = "patrol"
 var wait_time = 0.0
+var knockback_direction = Vector3.ZERO
+var knockback_timer = 0.0
+var attack_timer = 0.0
 
 @onready var model_holder = $cage_spider
 @onready var animation_player: AnimationPlayer = $cage_spider/AnimationPlayer
@@ -27,6 +34,14 @@ func _ready():
 
 func _physics_process(delta):
 	if is_dead:
+		return
+
+	attack_timer -= delta
+
+	if knockback_timer > 0.0:
+		knockback_timer -= delta
+		velocity = knockback_direction * knockback_force
+		move_and_slide()
 		return
 
 	if not player:
@@ -56,13 +71,17 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-	# Plynulá rotace bez změny velikosti
-	var horizontal_velocity = Vector3(velocity.x, 0, velocity.z)
-	if horizontal_velocity.length() > 0.1:
-		var target_dir = horizontal_velocity.normalized()
-		var target_angle = atan2(-target_dir.x, -target_dir.z)
+	# Smooth rotation
+	var look_dir: Vector3
+	if velocity.length() > 0.1:
+		look_dir = velocity.normalized()
+	elif player and state == "chase" and global_position.distance_to(player.global_position) <= attack_distance:
+		look_dir = (player.global_position - global_position).normalized()
+
+	if look_dir:
+		var target_angle = atan2(-look_dir.x, -look_dir.z)
 		var current_angle = model_holder.rotation.y
-		var corrected_target_angle = target_angle + deg_to_rad(90) # uprav podle orientace modelu
+		var corrected_target_angle = target_angle + deg_to_rad(90)
 		model_holder.rotation.y = lerp_angle(current_angle, corrected_target_angle, delta * rotation_speed)
 
 func set_new_patrol_point():
@@ -72,7 +91,7 @@ func set_new_patrol_point():
 		randf_range(-patrol_radius, patrol_radius)
 	)
 	target_position = spawn_position + random_offset
-	wait_time = randf_range(1.0, 3.0) # Náhodné čekání mezi patrolováním
+	wait_time = randf_range(1.0, 3.0)
 
 func patrol_move(delta):
 	if wait_time > 0:
@@ -96,15 +115,35 @@ func chase_player(delta):
 	velocity.z = direction.normalized().z * speed_chase
 
 func attack():
+	if attack_timer > 0.0:
+		return
+
+	attack_timer = attack_cooldown
 	velocity = Vector3.ZERO
-		# Sem přidej vlastní logiku útoku
+
+	if player and global_position.distance_to(player.global_position) <= attack_distance:
+		if "take_damage" in player:
+			player.take_damage(attack_damage)
+			print("Enemy attacked player for", attack_damage)
+		else:
+			print("Player does not have take_damage() method!")
+
+	# Optional attack animation
+	if animation_player.has_animation("Attack"):
+		animation_player.play("Attack")
 
 func take_damage(amount: int):
 	if is_dead:
 		return
 
 	current_health -= amount
-	print("Enemy HP:", current_health)
+	print("Enemy took damage:", amount)
+
+	if player:
+		var dir = (global_position - player.global_position)
+		dir.y = 0
+		knockback_direction = dir.normalized()
+		knockback_timer = knockback_duration
 
 	if current_health <= 0:
 		die()
