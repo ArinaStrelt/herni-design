@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dv5nyo3vgo6ln"
+uid="uid://bx557il537abr"
 path.s3tc="res://.godot/imported/boss_level_ground_diffuse.jpg-8a4e9a37dcaf8fd3c9685e767b0268ae.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "b06cae93cd4979b306006a62b8b3fb68"
 }
 
 [deps]
