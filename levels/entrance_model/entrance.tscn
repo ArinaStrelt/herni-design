@@ -92,10 +92,10 @@ bones/0/rotation = Quaternion(-1.26043e-08, 0.571358, -3.40556e-08, 0.820701)
 bones/2/rotation = Quaternion(-1.26043e-08, -0.571358, 3.40556e-08, 0.820701)
 
 [node name="Door_R_Door_0-col" parent="entrance/doors/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.347099, 9.73947e-08, 0.937828, -7.03021e-08, 1, -7.78318e-08, -0.937828, -3.89159e-08, 0.347099, -0.0821312, 1.03474, 0.0810621)
+transform = Transform3D(0.3471, 9.73947e-08, 0.937828, -7.03021e-08, 1, -7.78318e-08, -0.937828, -3.89158e-08, 0.3471, -0.0821313, 1.03474, 0.081062)
 
 [node name="Door_L_Door_0-col" parent="entrance/doors/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.347099, -9.73947e-08, -0.937828, 7.03021e-08, 1, -7.78318e-08, 0.937828, -3.89159e-08, 0.347099, 2.12232, 1.06573, 0.00356924)
+transform = Transform3D(0.3471, -9.73947e-08, -0.937828, 7.03021e-08, 1, -7.78318e-08, 0.937828, -3.89158e-08, 0.3471, 2.12232, 1.06573, 0.0035692)
 
 [node name="Area3D" type="Area3D" parent="entrance/doors"]
 

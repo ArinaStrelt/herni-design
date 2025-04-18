@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfs76jfbgmbjp"]
+
+[ext_resource type="PackedScene" uid="uid://uvixtx2ekjy4" path="res://scenes/seller/seller.glb" id="1_3kttf"]
+
+[node name="Seller" type="Node3D"]
+
+[node name="seller" parent="." instance=ExtResource("1_3kttf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30249, 0, 13.0034)
