@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dbpxy6wbs3vxm" path="res://levels/entrance_model/entrance.glb" id="1_6e1lf"]
 [ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_wydwa"]
-[ext_resource type="PackedScene" uid="uid://d150g1cwpq5ew" path="res://scenes/enemy_cage_spider/enemy_cage_spider.tscn" id="4_6e1lf"]
 [ext_resource type="PackedScene" uid="uid://8np8ds706ft2" path="res://levels/entrance_model/doors.glb" id="5_6e1lf"]
+[ext_resource type="PackedScene" uid="uid://bl8hue868b2ug" path="res://scenes/enemies/enemy_knight.tscn" id="6_2phd1"]
 [ext_resource type="Script" uid="uid://bs0jpfy1oclj3" path="res://scripts/doors.gd" id="6_e7nie"]
 [ext_resource type="PackedScene" uid="uid://dt45p04n7o85i" path="res://scenes/exit_zone.tscn" id="6_jhwv2"]
 
@@ -40,9 +40,6 @@ current = true
 size = 8.537
 near = 0.019
 far = 3326.76
-
-[node name="enemy_cage_spider" parent="." instance=ExtResource("4_6e1lf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1588, 0.0261819, -6.85342)
 
 [node name="entrance" parent="." instance=ExtResource("1_6e1lf")]
 
@@ -104,8 +101,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.7387)
 shape = SubResource("CylinderShape3D_e7nie")
 
 [node name="exit_zone" parent="." instance=ExtResource("6_jhwv2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.541855, -11.2755)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.541855, -12.9855)
 next_level_path = "res://levels/hrad_1/hrad_1.tscn"
+
+[node name="enemy_knight" parent="." instance=ExtResource("6_2phd1")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2.13524, 0, -7.20358)
+
+[node name="enemy_knight2" parent="." instance=ExtResource("6_2phd1")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.17149, 0, -7.16331)
 
 [connection signal="body_entered" from="entrance/doors/Area3D" to="entrance/doors" method="_on_player_enter"]
 [connection signal="body_exited" from="entrance/doors/Area3D" to="entrance/doors" method="_on_player_leave"]

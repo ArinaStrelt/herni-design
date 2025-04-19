@@ -1,0 +1,37 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://dpr2wjbnly8q3"
+path="res://.godot/imported/enemy_knight_deformed_BD_M_2100_01_r.png-3c66d5c8f1fc512e25787346ff880e20.ctex"
+metadata={
+"vram_texture": false
+}
+generator_parameters={
+"md5": "0b16a02802d6927648a42370b2423372"
+}
+
+[deps]
+
+source_file="res://assets/models/enemy_knight1/enemy_knight_deformed_BD_M_2100_01_r.png"
+dest_files=["res://.godot/imported/enemy_knight_deformed_BD_M_2100_01_r.png-3c66d5c8f1fc512e25787346ff880e20.ctex"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1
