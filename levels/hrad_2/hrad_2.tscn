@@ -133,7 +133,7 @@ near = 0.019
 far = 3326.76
 
 [node name="exit_zone" parent="." instance=ExtResource("5_pua7d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.545617, 0.479679, -9.88804)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.545617, 0.479679, -11.5292)
 next_level_path = "res://levels/boss_level/boss_level.tscn"
 
 [node name="enemy_cage_spider" parent="." instance=ExtResource("6_sh6fr")]

@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export var speed_patrol = 2.0
-@export var speed_chase = 4.5
+@export var speed_chase = 1.5
 @export var aggro_distance = 8.0
 @export var attack_distance = 1.5
 @export var patrol_radius = 5.0
@@ -132,12 +132,32 @@ func attack():
 	if animation_player.has_animation("Attack"):
 		animation_player.play("Attack")
 
+func flash_red():
+	var meshes = find_children("*", "MeshInstance3D", true, false)
+
+	for mesh in meshes:
+		var mat = mesh.get_active_material(0)
+		if mat:
+			var new_mat = mat.duplicate()
+			mesh.set_surface_override_material(0, new_mat)
+			new_mat.albedo_color = Color(1, 0, 0)
+
+	await get_tree().create_timer(0.35).timeout
+
+	for mesh in meshes:
+		var mat = mesh.get_active_material(0)
+		if mat:
+			mat.albedo_color = Color(1, 1, 1)
+
+
 func take_damage(amount: int):
 	if is_dead:
 		return
 
 	current_health -= amount
 	print("Enemy took damage:", amount)
+	$health_bar.update_healthbar(current_health, max_health)
+	flash_red()
 
 	if player:
 		var dir = (global_position - player.global_position)
