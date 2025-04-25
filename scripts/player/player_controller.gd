@@ -3,14 +3,13 @@ extends CharacterBody3D
 @onready var animation_player: AnimationPlayer = $player_knight_model/AnimationPlayer
 @onready var knight_model: Node3D = $player_knight_model/Knight
 
-const SPEED := 2.5
-const GRAVITY := 20.0
-
-@export var max_health := 100
-var current_health := max_health
+var SPEED := 2.5
+var GRAVITY : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var attacking = false
 var is_dead = false
+var max_health = 100
+var current_health = 100
 
 func _physics_process(delta):
 	if is_dead:
@@ -70,13 +69,33 @@ func start_attack(anim_name: String):
 		await animation_player.animation_finished
 		attacking = false
 
+func flash_red():
+	var meshes = find_children("*", "MeshInstance3D", true, false)
+
+	for mesh in meshes:
+		var mat = mesh.get_active_material(0)
+		if mat:
+			# Zkopíruj materiál, aby nebyl sdílený
+			var new_mat = mat.duplicate()
+			mesh.set_surface_override_material(0, new_mat)
+			new_mat.albedo_color = Color(1, 0, 0)
+
+	await get_tree().create_timer(0.35).timeout
+
+	for mesh in meshes:
+		var mat = mesh.get_active_material(0)
+		if mat:
+			mat.albedo_color = Color(1, 1, 1)
+			
 func take_damage(amount: int):
 	if is_dead:
 		return
-
+	
 	current_health -= amount
-	print("Player took damage:", amount, " | Remaining HP:", current_health)
-
+	print("Hráč byl zasažen: ", current_health)
+	$"/root/level_loader/UI".update_health(current_health, max_health)
+	flash_red()
+	
 	if current_health <= 0:
 		die()
 	else:
@@ -84,11 +103,7 @@ func take_damage(amount: int):
 		if animation_player.has_animation("Hurt"):
 			animation_player.play("Hurt")
 
-
 func die():
-	if is_dead:
-		return
-
 	is_dead = true
 	print("Hráč zemřel!")
 	animation_player.play("Death")
@@ -97,5 +112,17 @@ func die():
 	velocity = Vector3.ZERO
 	await animation_player.animation_finished
 
-	# Restart scénu
-	get_tree().reload_current_scene()
+	# Nebo restartneš scénu:
+	var loader = get_node("/root/level_loader")
+	loader.reset_run()
+
+func reset_player():
+	current_health = 100
+	is_dead = false
+
+	# Reset animace
+	animation_player.stop()
+	animation_player.play("Idle")
+
+	# Reset pohybu
+	velocity = Vector3.ZERO
