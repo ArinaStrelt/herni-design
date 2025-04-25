@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv3fu84fytpbj"
-path.s3tc="res://.godot/imported/cage_spider_0.png-52bd1c006d5f6573775a60b67f3d572b.s3tc.ctex"
+uid="uid://dxoyh2cvkcyl4"
+path.s3tc="res://.godot/imported/cage_spider_animated_v2_new_cage_cage_BaseColor.png-e04acce5ea965a22e34d7de8f14b0657.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "ee0bee5eb9c95c79c76679f1eadcadc5"
+"md5": "845ddddadde53eeed1dccb02593e692c"
 }
 
 [deps]
 
-source_file="res://assets/models/enemy_cage_spider/cage_spider_0.png"
-dest_files=["res://.godot/imported/cage_spider_0.png-52bd1c006d5f6573775a60b67f3d572b.s3tc.ctex"]
+source_file="res://assets/models/enemy_cage_spider_animated_2/cage_spider_animated_v2_new_cage_cage_BaseColor.png"
+dest_files=["res://.godot/imported/cage_spider_animated_v2_new_cage_cage_BaseColor.png-e04acce5ea965a22e34d7de8f14b0657.s3tc.ctex"]
 
 [params]
 

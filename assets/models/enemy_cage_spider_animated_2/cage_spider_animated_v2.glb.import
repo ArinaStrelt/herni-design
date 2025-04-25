@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://u7sob6nao5en"
-path="res://.godot/imported/cage_spider.glb-27e8c3cf6f180740390ad1b4b794d86b.scn"
+uid="uid://by1bykw6wq7cn"
+path="res://.godot/imported/cage_spider_animated_v2.glb-3dd5bff2174d13e448354b1fcfb2df9e.scn"
 
 [deps]
 
-source_file="res://assets/models/enemy_cage_spider/cage_spider.glb"
-dest_files=["res://.godot/imported/cage_spider.glb-27e8c3cf6f180740390ad1b4b794d86b.scn"]
+source_file="res://assets/models/enemy_cage_spider_animated_2/cage_spider_animated_v2.glb"
+dest_files=["res://.godot/imported/cage_spider_animated_v2.glb-3dd5bff2174d13e448354b1fcfb2df9e.scn"]
 
 [params]
 

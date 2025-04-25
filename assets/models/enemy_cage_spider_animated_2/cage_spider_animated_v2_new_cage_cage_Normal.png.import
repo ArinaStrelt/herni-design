@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cui7v72g6ideq"
-path.s3tc="res://.godot/imported/cage_spider_2.png-5ba6b726199de97f2c07e9bb4fe6dacc.s3tc.ctex"
+uid="uid://1ye0h5jn2pku"
+path.s3tc="res://.godot/imported/cage_spider_animated_v2_new_cage_cage_Normal.png-85ff917ac4ab6d8255526d2a09538de2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "00b0ff375ccb98ae841521a77ae57e1a"
+"md5": "acc787c674b1ae7ae1c73cb20c87ea05"
 }
 
 [deps]
 
-source_file="res://assets/models/enemy_cage_spider/cage_spider_2.png"
-dest_files=["res://.godot/imported/cage_spider_2.png-5ba6b726199de97f2c07e9bb4fe6dacc.s3tc.ctex"]
+source_file="res://assets/models/enemy_cage_spider_animated_2/cage_spider_animated_v2_new_cage_cage_Normal.png"
+dest_files=["res://.godot/imported/cage_spider_animated_v2_new_cage_cage_Normal.png-85ff917ac4ab6d8255526d2a09538de2.s3tc.ctex"]
 
 [params]
 
@@ -28,7 +28,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://assets/models/enemy_cage_spider/cage_spider_2.png"
+roughness/src_normal="res://assets/models/enemy_cage_spider_animated_2/cage_spider_animated_v2_new_cage_cage_Normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
