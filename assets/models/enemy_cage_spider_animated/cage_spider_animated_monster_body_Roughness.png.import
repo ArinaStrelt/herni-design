@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv3fu84fytpbj"
-path.s3tc="res://.godot/imported/cage_spider_0.png-52bd1c006d5f6573775a60b67f3d572b.s3tc.ctex"
+uid="uid://dswi6u8xtxhpp"
+path.s3tc="res://.godot/imported/cage_spider_animated_monster_body_Roughness.png-f974c66386563973925f96c5e49278b5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "ee0bee5eb9c95c79c76679f1eadcadc5"
+"md5": "870f5b2dbd8b87793acfc32f403e46cb"
 }
 
 [deps]
 
-source_file="res://assets/models/enemy_cage_spider/cage_spider_0.png"
-dest_files=["res://.godot/imported/cage_spider_0.png-52bd1c006d5f6573775a60b67f3d572b.s3tc.ctex"]
+source_file="res://assets/models/enemy_cage_spider_animated/cage_spider_animated_monster_body_Roughness.png"
+dest_files=["res://.godot/imported/cage_spider_animated_monster_body_Roughness.png-f974c66386563973925f96c5e49278b5.s3tc.ctex"]
 
 [params]
 

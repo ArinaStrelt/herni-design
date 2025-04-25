@@ -21,4 +21,4 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.0474)
 
 [node name="enemy_cage_spider" parent="." instance=ExtResource("2_5jbmu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0318303, -0.0535583, -0.0124511)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0318303, 0.0760748, -0.0124511)
