@@ -1,11 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://d150g1cwpq5ew"]
 
 [ext_resource type="Script" uid="uid://b8kope1ygbg0t" path="res://scripts/enemy_cage_spider/enemy_cage_spider.gd" id="1_rh0c5"]
-[ext_resource type="PackedScene" uid="uid://u7sob6nao5en" path="res://assets/models/enemy_cage_spider/cage_spider.glb" id="2_ajug3"]
+
+[ext_resource type="PackedScene" uid="uid://by1bykw6wq7cn" path="res://assets/models/enemy_cage_spider_animated_2/cage_spider_animated_v2.glb" id="3_vasbb"]
 [ext_resource type="PackedScene" uid="uid://dteo6g3s7xu7f" path="res://scenes/health_bar.tscn" id="3_ajug3"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vasbb"]
-height = 1.0
+height = 1.00183
+radius = 0.3
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_vasbb"]
 viewport_path = NodePath("SubViewport")
@@ -13,13 +15,14 @@ viewport_path = NodePath("SubViewport")
 [node name="enemy_cage_spider" type="CharacterBody3D" groups=["enemies"]]
 script = ExtResource("1_rh0c5")
 
-[node name="cage_spider" parent="." groups=["enemies"] instance=ExtResource("2_ajug3")]
-transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, 0, 0.0457785, 0)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50203, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.501114, 0)
 shape = SubResource("CylinderShape3D_vasbb")
+
+[node name="cage_spider_animated_v2" parent="." instance=ExtResource("3_vasbb")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 
 [node name="health_bar" parent="." instance=ExtResource("3_ajug3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.836, 0)
 texture = SubResource("ViewportTexture_vasbb")
+
