@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $player_knight_model/AnimationPlayer
 @onready var knight_model: Node3D = $player_knight_model/Knight
+@onready 	var ui = $"/root/level_loader/UI"
 
 var SPEED := 2.5
 var GRAVITY : float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -10,6 +11,49 @@ var attacking = false
 var is_dead = false
 var max_health = 100
 var current_health = 100
+var interactables = []
+var gold = 0
+
+func _ready():
+	$interact_area.connect("area_entered", _on_area_entered)
+	$interact_area.connect("area_exited", _on_area_exited)
+
+func _process(delta):
+	interactables = interactables.filter(is_instance_valid)
+	if Input.is_action_just_pressed("interact") and interactables.size() > 0:
+		var closest = get_closest_interactable()
+		
+		if closest:
+			var target = closest
+			
+			if target and target.has_method("interact"):
+				target.interact(self)
+				interactables.erase(closest)
+
+func get_closest_interactable():
+	var closest = null
+	var shortest_distance = INF
+
+	for obj in interactables:
+		if not obj or not obj.is_inside_tree():
+			continue
+
+		var distance = global_transform.origin.distance_to(obj.global_transform.origin)
+		if distance < shortest_distance:
+			closest = obj
+			shortest_distance = distance
+
+	return closest
+
+func _on_area_entered(area):
+	if area.is_in_group("interactable") and not interactables.has(area):
+		interactables.append(area)
+		print("penizky")
+
+func _on_area_exited(area):
+	if area.is_in_group("interactable") and interactables.has(area):
+		interactables.erase(area)
+		print("ne penizky")
 
 func _physics_process(delta):
 	if is_dead:
@@ -93,7 +137,7 @@ func take_damage(amount: int):
 	
 	current_health -= amount
 	print("Hráč byl zasažen: ", current_health)
-	$"/root/level_loader/UI".update_health(current_health, max_health)
+	ui.update_health(current_health, max_health)
 	flash_red()
 	
 	if current_health <= 0:
@@ -126,3 +170,10 @@ func reset_player():
 
 	# Reset pohybu
 	velocity = Vector3.ZERO
+
+func add_gold(amount: int):
+	gold += amount
+	print("Získáno", amount, "zlata. Máš celkem:", gold)
+	
+	if ui:
+		ui.update_gold(gold)

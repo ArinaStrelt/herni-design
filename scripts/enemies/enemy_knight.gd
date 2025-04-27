@@ -110,8 +110,23 @@ func take_damage(amount:int):
 		die()
 
 func die():
+	var position = global_transform.origin
 	is_dead   = true
 	velocity  = Vector3.ZERO
 	move_and_slide()
 	anim.play("A-pose")
-	queue_free()          # jednoduchá „smrt“ – klidová póza
+	
+	# Vytvoření mince
+	var coin_scene = preload("res://scenes/coins/coins.tscn").instantiate()
+	var coin = coin_scene.get_node("interact_area")
+
+	# Případně nastav vlastní hodnotu (např. boss dropne 50)
+	coin.value = randi_range(10, 20)  # nebo prostě coin.value = 5
+
+	# Umístění na pozici nepřítele
+	coin_scene.transform.origin = position
+
+	# Přidání do scény
+	get_tree().current_scene.add_child(coin_scene)
+	
+	queue_free()

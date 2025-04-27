@@ -8,6 +8,7 @@ var current_level: Node = null
 
 func _ready():
 	# Načti první level při spuštění
+	randomize()
 	load_level("res://levels/Base_model/base.tscn", Vector3(0, 0,-6.6))
 
 func load_level(path: String, player_position: Vector3):

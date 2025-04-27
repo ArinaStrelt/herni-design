@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://w0ntym617oic"]
+[gd_scene load_steps=9 format=3 uid="uid://w0ntym617oic"]
 
 [ext_resource type="PackedScene" uid="uid://rnhgp7lia1nx" path="res://levels/Base_model/base.glb" id="1_ck4x4"]
 [ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_vp66m"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://uvixtx2ekjy4" path="res://scenes/seller/seller.glb" id="5_44xwv"]
 [ext_resource type="PackedScene" uid="uid://dt45p04n7o85i" path="res://scenes/exit_zone.tscn" id="5_pbrmj"]
 [ext_resource type="Script" uid="uid://y2l1gjjhu1to" path="res://scripts/seller.gd" id="6_44xwv"]
+[ext_resource type="PackedScene" uid="uid://bubwl3ccfklpp" path="res://scenes/coins/coins.tscn" id="7_n03nx"]
 
 [sub_resource type="Environment" id="Environment_shhy1"]
 background_mode = 2
@@ -135,3 +136,6 @@ next_spawn_position = Vector3(-1, 0, -0.5)
 [node name="seller" parent="." instance=ExtResource("5_44xwv")]
 transform = Transform3D(-0.0269995, 0, 0.328894, 0, 0.33, 0, -0.328894, 0, -0.0269995, -3.87423, 0.0204217, -6.07971)
 script = ExtResource("6_44xwv")
+
+[node name="Coins" parent="." instance=ExtResource("7_n03nx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.18126, 0.161691, -11.1289)
