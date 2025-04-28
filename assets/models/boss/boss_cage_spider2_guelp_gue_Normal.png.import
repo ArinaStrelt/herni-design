@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://slo56hh3x0ax"
+path.s3tc="res://.godot/imported/boss_cage_spider2_guelp_gue_Normal.png-1b366983ee4bfb496cf5a4c277abad72.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "482a61c1ade63ecdce9d4394470cf292"
+}
+
+[deps]
+
+source_file="res://assets/models/boss/boss_cage_spider2_guelp_gue_Normal.png"
+dest_files=["res://.godot/imported/boss_cage_spider2_guelp_gue_Normal.png-1b366983ee4bfb496cf5a4c277abad72.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://assets/models/boss/boss_cage_spider2_guelp_gue_Normal.png"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0
