@@ -1,8 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfs76jfbgmbjp"]
+[gd_scene load_steps=4 format=3 uid="uid://dfs76jfbgmbjp"]
 
 [ext_resource type="PackedScene" uid="uid://uvixtx2ekjy4" path="res://scenes/seller/seller.glb" id="1_3kttf"]
+[ext_resource type="Script" uid="uid://y2l1gjjhu1to" path="res://scripts/seller.gd" id="1_jbauy"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3kttf"]
+radius = 2.55566
 
 [node name="Seller" type="Node3D"]
+script = ExtResource("1_jbauy")
 
 [node name="seller" parent="." instance=ExtResource("1_3kttf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.30249, 0, 13.0034)
+
+[node name="interact_area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="interact_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.56959)
+shape = SubResource("CylinderShape3D_3kttf")

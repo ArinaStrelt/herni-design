@@ -8,13 +8,13 @@ extends CharacterBody3D
 @export var patrol_radius = 5.0
 @export var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var rotation_speed = 5.0
-@export var max_health := 100
+@export var max_health := 250
 @export var knockback_duration = 0.25
 @export var knockback_force = 5.0
-@export var attack_damage = 10
+@export var attack_damage = 25
 @export var attack_cooldown = 1
 
-var current_health := 100
+var current_health := max_health
 var is_dead := false
 var player = null
 var spawn_position: Vector3
@@ -161,4 +161,20 @@ func take_damage(amount: int):
 func die():
 	is_dead = true
 	print("Enemy died.")
+	
+	# Vytvoření mince
+	var coin_scene = preload("res://scenes/coins/coins.tscn").instantiate()
+	var coin = coin_scene.get_node("interact_area")
+
+	# Případně nastav vlastní hodnotu (např. boss dropne 50)
+	coin.value = randi_range(20, 30)  # nebo prostě coin.value = 5
+
+	# Umístění na pozici nepřítele
+	coin_scene.transform.origin = position
+
+	# Přidání do scény
+	get_tree().current_scene.add_child(coin_scene)
+	
+	await get_tree().create_timer(2.0).timeout
+
 	queue_free()

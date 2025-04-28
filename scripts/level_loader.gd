@@ -3,6 +3,8 @@ extends Node3D
 @onready var fade := $FadeLayer
 @onready var level_root := $level_root
 @onready var player := $Player
+@onready var ui = $"/root/level_loader/UI"
+@onready var shop_ui = $"/root/level_loader/UI/shop_ui"
 
 var current_level: Node = null
 
@@ -26,6 +28,9 @@ func change_level(path: String, player_spawn_position: Vector3):
 	await tween.finished
 
 	load_level(path, player_spawn_position)
+	for coin in get_tree().get_nodes_in_group("coins"):
+		if coin and coin.is_inside_tree():
+			coin.get_parent().queue_free()
 
 	var fade_in_tween = fade.fade_in()
 	await fade_in_tween.finished
@@ -40,6 +45,12 @@ func reset_run():
 		current_level = null
 
 	player.reset_player()
+	ui.update_health(player.current_health, player.max_health)
+	ui.update_gold(player.gold)
+	shop_ui.update_ui()
+	for coin in get_tree().get_nodes_in_group("coins"):
+		if coin and coin.is_inside_tree():
+			coin.get_parent().queue_free()
 
 	# Přesunout do základny
 	change_level("res://levels/Base_model/base.tscn", Vector3(0, 0, -6.6 ))

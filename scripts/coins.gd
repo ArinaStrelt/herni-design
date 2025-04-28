@@ -5,6 +5,7 @@ extends Area3D
 var value := 0
 
 func _ready():
+	add_to_group("coins")
 	if value <= 0:
 		randomize()
 		value = randi_range(min_value, max_value)

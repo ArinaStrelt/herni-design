@@ -1,12 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://w0ntym617oic"]
+[gd_scene load_steps=8 format=3 uid="uid://w0ntym617oic"]
 
 [ext_resource type="PackedScene" uid="uid://rnhgp7lia1nx" path="res://levels/Base_model/base.glb" id="1_ck4x4"]
 [ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_vp66m"]
 [ext_resource type="PackedScene" uid="uid://byk7wrccha6w" path="res://scenes/enemies/testing_enemy_cube.tscn" id="4_scqal"]
-[ext_resource type="PackedScene" uid="uid://uvixtx2ekjy4" path="res://scenes/seller/seller.glb" id="5_44xwv"]
 [ext_resource type="PackedScene" uid="uid://dt45p04n7o85i" path="res://scenes/exit_zone.tscn" id="5_pbrmj"]
-[ext_resource type="Script" uid="uid://y2l1gjjhu1to" path="res://scripts/seller.gd" id="6_44xwv"]
 [ext_resource type="PackedScene" uid="uid://bubwl3ccfklpp" path="res://scenes/coins/coins.tscn" id="7_n03nx"]
+[ext_resource type="PackedScene" uid="uid://dfs76jfbgmbjp" path="res://scenes/seller/seller.tscn" id="7_p0mht"]
 
 [sub_resource type="Environment" id="Environment_shhy1"]
 background_mode = 2
@@ -133,9 +132,8 @@ transform = Transform3D(0.897019, 0, -0.441991, 0, 1, 0, 0.441991, 0, 0.897019, 
 next_level_path = "res://levels/entrance_model/entrance.tscn"
 next_spawn_position = Vector3(-1, 0, -0.5)
 
-[node name="seller" parent="." instance=ExtResource("5_44xwv")]
-transform = Transform3D(-0.0269995, 0, 0.328894, 0, 0.33, 0, -0.328894, 0, -0.0269995, -3.87423, 0.0204217, -6.07971)
-script = ExtResource("6_44xwv")
-
 [node name="Coins" parent="." instance=ExtResource("7_n03nx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.18126, 0.161691, -11.1289)
+
+[node name="Seller" parent="." instance=ExtResource("7_p0mht")]
+transform = Transform3D(0.015246, 0, 0.329648, 0, 0.33, 0, -0.329648, 0, 0.015246, -3.874, 0.02, -6.08)

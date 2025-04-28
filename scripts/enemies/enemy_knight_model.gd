@@ -2,6 +2,7 @@ extends Node3D
 
 var already_hit := {}
 var current_attack_anim := ""
+var attack_damage := 10
 
 func attack_hitbox_on():
 	if current_attack_anim != "":
@@ -18,4 +19,4 @@ func _on_sword_hitbox_body_entered(body):
 	if body.is_in_group("player") and not already_hit.has(body):
 		already_hit[body] = true
 		print("zásah hráče")
-		body.take_damage(10)
+		body.take_damage(attack_damage)

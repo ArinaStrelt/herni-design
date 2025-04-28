@@ -1,5 +1,6 @@
 extends Node3D
 
+@onready var player = get_node("/root/level_loader/Player")
 var already_hit := {}
 var current_attack_anim := ""
 
@@ -16,4 +17,4 @@ func _on_sword_hitbox_body_entered(body):
 	if body.is_in_group("enemies") and not already_hit.has(body):
 		already_hit[body] = true
 		print("zásah nepřítele")
-		body.take_damage(50)
+		body.take_damage(player.damage)

@@ -129,4 +129,6 @@ func die():
 	# Přidání do scény
 	get_tree().current_scene.add_child(coin_scene)
 	
+	await get_tree().create_timer(2.0).timeout
+	
 	queue_free()
