@@ -192,8 +192,10 @@ func reset_player():
 	is_dead = false
 	animation_player.stop()
 	animation_player.play("Idle")
+  # Reset pohybu
 	velocity = Vector3.ZERO
 
+	
 func add_gold(amount: int):
 	gold += amount
 	print("Získáno ", amount, " zlata. Máš celkem:", gold)
