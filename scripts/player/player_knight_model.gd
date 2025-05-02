@@ -1,20 +1,20 @@
 extends Node3D
 
-var hit_enemies := {}
+@onready var player = get_node("/root/level_loader/Player")
+var already_hit := {}
 var current_attack_anim := ""
 
 func attack_hitbox_on():
 	if current_attack_anim != "":
 		$Knight/Skeleton3D/K30_W01_REF_001/sword_hitbox.monitoring = true
-		hit_enemies.clear()
+		already_hit.clear()
 
 func attack_hitbox_off():
 	$Knight/Skeleton3D/K30_W01_REF_001/sword_hitbox.monitoring = false
 	current_attack_anim = ""
 
-
 func _on_sword_hitbox_body_entered(body):
-	if body.is_in_group("enemies") and not hit_enemies.has(body):
-		hit_enemies[body] = true
+	if body.is_in_group("enemies") and not already_hit.has(body):
+		already_hit[body] = true
 		print("zásah nepřítele")
-		body.take_damage(10)
+		body.take_damage(player.damage)

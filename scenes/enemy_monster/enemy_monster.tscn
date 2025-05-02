@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://dn2cll1sjuaap"]
+
+[ext_resource type="Script" uid="uid://cfol5afm4cvsg" path="res://scripts/enemies/enemy_monster.gd" id="1_27d2k"]
+[ext_resource type="PackedScene" uid="uid://dtw8rvip0h6jo" path="res://scenes/enemy_monster/monster_enemy_model.glb" id="1_bh5fu"]
+[ext_resource type="PackedScene" uid="uid://dteo6g3s7xu7f" path="res://scenes/health_bar.tscn" id="2_fe08f"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_27d2k"]
+height = 1.27222
+radius = 0.397949
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4308b"]
+viewport_path = NodePath("SubViewport")
+
+[node name="enemy_monster" type="CharacterBody3D" groups=["enemies"]]
+script = ExtResource("1_27d2k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00962961, 0.615489, 0)
+shape = SubResource("CylinderShape3D_27d2k")
+
+[node name="monster_enemy" parent="." instance=ExtResource("1_bh5fu")]
+transform = Transform3D(0.63, 0, 0, 0, 0.63, 0, 0, 0, 0.63, 0, 0, 0)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="health_bar" parent="." instance=ExtResource("2_fe08f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00812894, 1.43564, 0.0788991)
+texture = SubResource("ViewportTexture_4308b")

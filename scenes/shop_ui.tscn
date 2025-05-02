@@ -1,0 +1,121 @@
+[gd_scene load_steps=3 format=3 uid="uid://k1nkb3i10t7x"]
+
+[ext_resource type="Script" uid="uid://cgs1f456pnigd" path="res://scripts/shop_ui.gd" id="1_fs6yy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b84dc"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.921569, 0.741176, 0.298039, 1)
+
+[node name="shop_ui" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fs6yy")
+
+[node name="panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -214.0
+offset_top = -168.0
+offset_right = 236.0
+offset_bottom = 182.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_b84dc")
+
+[node name="title" type="Label" parent="panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 26.0
+offset_right = 40.0
+offset_bottom = 61.0
+grow_horizontal = 2
+text = "Shop"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="close_button" type="Button" parent="panel"]
+layout_mode = 0
+offset_left = 185.0
+offset_top = 265.0
+offset_right = 265.0
+offset_bottom = 300.0
+text = "Close"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="panel"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 80.0
+offset_right = 395.0
+offset_bottom = 241.0
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="hp_section" type="VBoxContainer" parent="panel/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="current_hp" type="Label" parent="panel/HBoxContainer/hp_section"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="upgrade_hp_info" type="Label" parent="panel/HBoxContainer/hp_section"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="upgrade_hp_price" type="Label" parent="panel/HBoxContainer/hp_section"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="upgrade_hp_button" type="Button" parent="panel/HBoxContainer/hp_section"]
+layout_mode = 2
+text = "Upgrade HP"
+
+[node name="dmg_section" type="VBoxContainer" parent="panel/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="current_dmg" type="Label" parent="panel/HBoxContainer/dmg_section"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="upgrade_dmg_info" type="Label" parent="panel/HBoxContainer/dmg_section"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="upgrade_dmg_price" type="Label" parent="panel/HBoxContainer/dmg_section"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="upgrade_dmg_button" type="Button" parent="panel/HBoxContainer/dmg_section"]
+layout_mode = 2
+text = "Upgrade Damage"

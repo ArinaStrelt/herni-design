@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://bl8hue868b2ug"]
+
+[ext_resource type="Script" uid="uid://bl3f5ybqgeb1i" path="res://scripts/enemies/enemy_knight.gd" id="2_63k4b"]
+[ext_resource type="PackedScene" uid="uid://w2xr1womxdvi" path="res://scenes/enemies/enemy_knight_model.tscn" id="2_lhjrl"]
+[ext_resource type="PackedScene" uid="uid://dteo6g3s7xu7f" path="res://scenes/health_bar.tscn" id="3_lhjrl"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_63k4b"]
+height = 0.755798
+radius = 0.295898
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lhjrl"]
+viewport_path = NodePath("SubViewport")
+
+[node name="enemy_knight" type="CharacterBody3D" groups=["enemies"]]
+script = ExtResource("2_63k4b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.377899, 0)
+shape = SubResource("CylinderShape3D_63k4b")
+
+[node name="enemy_knight_model" parent="." instance=ExtResource("2_lhjrl")]
+transform = Transform3D(-0.47, 0, -4.10887e-08, 0, 0.47, 0, 4.10887e-08, 0, -0.47, 0, 0, 0)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.1
+debug_enabled = true
+
+[node name="health_bar" parent="." instance=ExtResource("3_lhjrl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.917716, 0)
+texture = SubResource("ViewportTexture_lhjrl")

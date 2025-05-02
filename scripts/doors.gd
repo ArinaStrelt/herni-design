@@ -22,7 +22,8 @@ func _on_enemy_killed():
 func _on_player_enter(body: Node3D):
 	if !body.is_in_group("player"): return
 	_player_close = true
-	if _enemy_killed:
+	if get_tree().get_nodes_in_group("enemies").is_empty():
+		_enemy_killed = true
 		animation_player.play("Open")
 		_opened = true
 		
