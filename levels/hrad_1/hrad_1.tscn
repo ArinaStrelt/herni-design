@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbj76d5pfsoeb"]
+[gd_scene load_steps=9 format=3 uid="uid://cbj76d5pfsoeb"]
 
 [ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_v3ddc"]
 [ext_resource type="PackedScene" uid="uid://dt45p04n7o85i" path="res://scenes/exit_zone.tscn" id="3_0830o"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://8np8ds706ft2" path="res://levels/entrance_model/doors.glb" id="5_uvqkf"]
 [ext_resource type="PackedScene" uid="uid://kg8no6erpr6p" path="res://levels/hrad_1/hrad_1.glb" id="6_6ea0r"]
 [ext_resource type="Script" uid="uid://bs0jpfy1oclj3" path="res://scripts/doors.gd" id="6_g537j"]
-[ext_resource type="PackedScene" uid="uid://y3igs2apyv0g" path="res://scenes/player/player.tscn" id="7_508sw"]
 
 [sub_resource type="Environment" id="Environment_v3ddc"]
 background_mode = 2
@@ -32,25 +31,6 @@ radius = 1.83252
 
 [node name="enemy_cage_spider" parent="." instance=ExtResource("4_v3ddc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.582212, 0, -7.45975)
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.458132, 0.362824, -0.811464, -0.876688, -0.0337286, 0.479875, 0.146741, 0.931247, 0.333535, -10.1385, 5.7299, -4.02098)
-light_color = Color(0.572877, 0.753923, 0.949828, 1)
-light_energy = 11.765
-light_indirect_energy = 5.16
-light_volumetric_fog_energy = 0.0
-light_angular_distance = 7.93
-light_specular = 0.158
-shadow_enabled = true
-shadow_bias = 0.83
-shadow_normal_bias = 7.731
-shadow_transmittance_bias = -16.0
-shadow_blur = 0.783
-directional_shadow_split_2 = 0.0
-directional_shadow_split_3 = 0.385
-directional_shadow_fade_start = 0.435
-directional_shadow_max_distance = 107.0
-directional_shadow_pancake_size = 4.1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_v3ddc")
@@ -83,16 +63,13 @@ script = ExtResource("6_g537j")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.7387)
 shape = SubResource("CylinderShape3D_6ea0r")
 
-[node name="Player" parent="." instance=ExtResource("7_508sw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.12725, 0.0420627, -2.24109)
-
-[node name="hrad_2" parent="." instance=ExtResource("6_6ea0r")]
+[node name="hrad_1" parent="." instance=ExtResource("6_6ea0r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.21191, 0, -4.3813)
 
-[node name="Fire" parent="hrad_2" instance=ExtResource("2_v3ddc")]
+[node name="Fire" parent="hrad_1" instance=ExtResource("2_v3ddc")]
 transform = Transform3D(0.997717, 0, -0.0675277, 0, 1, 0, 0.0675277, 0, 0.997717, 3.76765, 1.16113, -9.09902)
 
-[node name="OmniLight3D3" type="OmniLight3D" parent="hrad_2"]
+[node name="OmniLight3D3" type="OmniLight3D" parent="hrad_1"]
 transform = Transform3D(1, 0, 0, 0, 0.988215, 0.153072, 0, -0.153072, 0.988215, -6.76073, 2.29062, -3.10085)
 light_color = Color(0.730185, 0.522482, 0.380018, 1)
 light_energy = 1.074
@@ -102,7 +79,7 @@ light_size = 0.28
 omni_range = 3.586
 omni_attenuation = 1.877
 
-[node name="OmniLight3D4" type="OmniLight3D" parent="hrad_2"]
+[node name="OmniLight3D4" type="OmniLight3D" parent="hrad_1"]
 transform = Transform3D(1, 0, 0, 0, 0.994757, 0.102272, 0, -0.102272, 0.994757, -6.58983, 2.27375, -0.0324187)
 light_color = Color(0.729412, 0.521569, 0.380392, 1)
 light_energy = 1.074
@@ -112,17 +89,7 @@ light_size = 0.28
 omni_range = 3.586
 omni_attenuation = 1.877
 
-[node name="OmniLight3D4" type="OmniLight3D" parent="hrad_2/OmniLight3D4"]
-transform = Transform3D(1, 0, 0, 0, 0.994756, 0.102272, 0, -0.102272, 0.994756, 0.00859165, 0.550206, -6.00501)
-light_color = Color(0.729412, 0.521569, 0.380392, 1)
-light_energy = 1.074
-light_indirect_energy = 0.16
-light_volumetric_fog_energy = 0.789
-light_size = 0.28
-omni_range = 3.586
-omni_attenuation = 1.877
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="hrad_2"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="hrad_1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.58476, 2.24376, 3.02342)
 light_color = Color(0.729412, 0.521569, 0.380392, 1)
 light_energy = 1.074
@@ -132,7 +99,7 @@ light_size = 0.28
 omni_range = 3.586
 omni_attenuation = 1.877
 
-[node name="OmniLight3D5" type="OmniLight3D" parent="hrad_2"]
+[node name="OmniLight3D5" type="OmniLight3D" parent="hrad_1"]
 transform = Transform3D(1, 0, 0, 0, 0.998688, 0.051203, 0, -0.051203, 0.998688, -6.65112, 2.29874, 5.86169)
 light_color = Color(0.729412, 0.521569, 0.380392, 1)
 light_energy = 1.074
@@ -142,15 +109,25 @@ light_size = 0.28
 omni_range = 3.586
 omni_attenuation = 1.877
 
-[node name="Fire4" parent="hrad_2" instance=ExtResource("2_v3ddc")]
+[node name="Fire4" parent="hrad_1" instance=ExtResource("2_v3ddc")]
 transform = Transform3D(0.99088, 0, -0.134747, 0, 1, 0, 0.134747, 0, 0.99088, 0.367071, 1.15471, -9.31281)
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="hrad_1"]
+transform = Transform3D(1, 0, 0, 0, 0.979081, 0.203471, 0, -0.203471, 0.979081, -6.58124, 2.20693, -6.06221)
+light_color = Color(0.729412, 0.521569, 0.380392, 1)
+light_energy = 1.074
+light_indirect_energy = 0.16
+light_volumetric_fog_energy = 0.789
+light_size = 0.28
+omni_range = 3.586
+omni_attenuation = 1.877
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.80747, -0.554132, -0.202311, -0.32576, -0.13294, -0.93606, 0.491805, 0.821745, -0.287859, 22.585, 11.468, -6.274)
 light_color = Color(0.748635, 0.812688, 0.875873, 1)
-light_energy = 1.102
+light_energy = 2.724
 light_indirect_energy = 0.0
-light_volumetric_fog_energy = 0.02
+light_volumetric_fog_energy = 0.01
 light_angular_distance = 9.92
 light_specular = 0.0
 shadow_enabled = true
@@ -160,14 +137,33 @@ shadow_blur = 6.925
 [node name="DirectionalLight3D3" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.80747, -0.554132, -0.202311, 0.100119, -0.209245, 0.972724, -0.58135, -0.805701, -0.11348, 4.92391, 20.6951, -3.65728)
 light_color = Color(0.348432, 0.444592, 0.556251, 1)
-light_energy = 1.122
-light_indirect_energy = 3.039
-light_volumetric_fog_energy = 0.0
+light_energy = 2.852
+light_indirect_energy = 4.661
+light_volumetric_fog_energy = 0.01
 light_specular = 0.0
 shadow_enabled = true
 shadow_normal_bias = 3.409
 shadow_opacity = 0.62
 shadow_blur = 4.446
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.458132, 0.362824, -0.811464, -0.876688, -0.0337284, 0.479875, 0.146741, 0.931247, 0.333536, -10.1385, 5.7299, -4.02098)
+light_color = Color(0.572877, 0.753923, 0.949828, 1)
+light_energy = 11.765
+light_indirect_energy = 5.16
+light_volumetric_fog_energy = 0.0
+light_angular_distance = 7.93
+light_specular = 0.158
+shadow_enabled = true
+shadow_bias = 0.83
+shadow_normal_bias = 7.731
+shadow_transmittance_bias = -16.0
+shadow_blur = 0.783
+directional_shadow_split_2 = 0.0
+directional_shadow_split_3 = 0.385
+directional_shadow_fade_start = 0.435
+directional_shadow_max_distance = 107.0
+directional_shadow_pancake_size = 4.1
 
 [connection signal="body_entered" from="doors/Area3D" to="doors" method="_on_player_enter"]
 [connection signal="body_exited" from="doors/Area3D" to="doors" method="_on_player_leave"]
