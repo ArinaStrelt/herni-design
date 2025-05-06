@@ -2,26 +2,60 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< HEAD
 uid="uid://cfqqfrwv7ej8m"
 path="res://.godot/imported/hrad_1_Image_0_20.jpg-b5b0cb04075c488112942239ec43f4a6.ctex"
 metadata={
 "vram_texture": false
+=======
+<<<<<<<< HEAD:levels/hrad_2/hrad_2_Image_0_44.jpg.import
+uid="uid://cntjesta14oif"
+path.s3tc="res://.godot/imported/hrad_2_Image_0_44.jpg-d2df327697a3c154c373e555d91e8548.s3tc.ctex"
+========
+uid="uid://00yjh7dolihu"
+path.s3tc="res://.godot/imported/hrad_1_Image_0_20.jpg-b5b0cb04075c488112942239ec43f4a6.s3tc.ctex"
+>>>>>>>> origin/master:levels/hrad_1/hrad_1_Image_0_20.jpg.import
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "bc0fecb8613cc8ce47b5eeb7c2ee8659"
+>>>>>>> origin/master
 }
 
 [deps]
 
+<<<<<<< HEAD
 source_file="res://levels/hrad_1/hrad_1_Image_0_20.jpg"
 dest_files=["res://.godot/imported/hrad_1_Image_0_20.jpg-b5b0cb04075c488112942239ec43f4a6.ctex"]
 
 [params]
 
 compress/mode=0
+=======
+<<<<<<<< HEAD:levels/hrad_2/hrad_2_Image_0_44.jpg.import
+source_file="res://levels/hrad_2/hrad_2_Image_0_44.jpg"
+dest_files=["res://.godot/imported/hrad_2_Image_0_44.jpg-d2df327697a3c154c373e555d91e8548.s3tc.ctex"]
+========
+source_file="res://levels/hrad_1/hrad_1_Image_0_20.jpg"
+dest_files=["res://.godot/imported/hrad_1_Image_0_20.jpg-b5b0cb04075c488112942239ec43f4a6.s3tc.ctex"]
+>>>>>>>> origin/master:levels/hrad_1/hrad_1_Image_0_20.jpg.import
+
+[params]
+
+compress/mode=2
+>>>>>>> origin/master
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
+<<<<<<< HEAD
 mipmaps/generate=false
+=======
+mipmaps/generate=true
+>>>>>>> origin/master
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -31,4 +65,8 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
+<<<<<<< HEAD
 detect_3d/compress_to=1
+=======
+detect_3d/compress_to=0
+>>>>>>> origin/master
