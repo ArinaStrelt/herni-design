@@ -4,6 +4,7 @@ extends CharacterBody3D
 @onready var knight_model: Node3D = $player_knight_model/Knight
 @onready var ui = $"/root/level_loader/UI"
 @onready var loader = $"/root/level_loader"
+@onready var hit_effect := $"/root/level_loader/UI/hit_effect"
 
 var SPEED := 2.5
 var GRAVITY : float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -156,6 +157,11 @@ func flash_red():
 			mesh.set_surface_override_material(0, new_mat)
 			new_mat.albedo_color = Color(1, 0, 0)
 
+	hit_effect.modulate.a = 0.6  # nastavíme červený průhledný overlay
+
+	var tween := create_tween()
+	tween.tween_property(hit_effect, "modulate:a", 0.0, 0.3)  # zmizí za 0.3 s
+	
 	await get_tree().create_timer(0.35).timeout
 
 	for mesh in meshes:
@@ -192,8 +198,10 @@ func reset_player():
 	is_dead = false
 	animation_player.stop()
 	animation_player.play("Idle")
+  # Reset pohybu
 	velocity = Vector3.ZERO
 
+	
 func add_gold(amount: int):
 	gold += amount
 	print("Získáno ", amount, " zlata. Máš celkem:", gold)

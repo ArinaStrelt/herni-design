@@ -2,14 +2,14 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgsg3tvw0b1sc"
+uid="uid://dc835nuuvad5e"
 path.s3tc="res://.godot/imported/hrad_2_Image_0_33.jpg-1e2b8527a2a361f3bd148b049d8d66e1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "d7789ec652206b03abf07aa7750cc5c9"
+"md5": "530aab544de7e9b50689b370531714e1"
 }
 
 [deps]

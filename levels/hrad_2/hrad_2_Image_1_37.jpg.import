@@ -2,14 +2,14 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://db2lf7hbdvaiq"
+uid="uid://b6xjbj4ej4h23"
 path.s3tc="res://.godot/imported/hrad_2_Image_1_37.jpg-6141bda2af1a31e86d80909a0bc93489.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "c696e62e2a925ed075a59aa85aebd731"
+"md5": "ddc77c013fe4f424dffa60db77647268"
 }
 
 [deps]
@@ -27,8 +27,8 @@ compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=8
+roughness/src_normal="res://levels/hrad_2/hrad_2_Image_2_38.jpg"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
