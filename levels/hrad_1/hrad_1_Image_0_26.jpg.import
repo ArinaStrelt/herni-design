@@ -2,13 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<<< HEAD:levels/hrad_1/hrad_1_Image_0_26.jpg.import
 uid="uid://cbjd88lie0wl8"
 path.s3tc="res://.godot/imported/hrad_1_Image_0_26.jpg-701cb9c52ea37a5b8c859cb0bd05b162.s3tc.ctex"
-========
-uid="uid://bb5ylhf0ejdyn"
-path.s3tc="res://.godot/imported/hrad_1_Image_0_13.jpg-85177f20ef4c80fe0470311a494c130a.s3tc.ctex"
->>>>>>>> origin/master:levels/hrad_1/hrad_1_Image_0_13.jpg.import
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -19,13 +14,8 @@ generator_parameters={
 
 [deps]
 
-<<<<<<<< HEAD:levels/hrad_1/hrad_1_Image_0_26.jpg.import
 source_file="res://levels/hrad_1/hrad_1_Image_0_26.jpg"
 dest_files=["res://.godot/imported/hrad_1_Image_0_26.jpg-701cb9c52ea37a5b8c859cb0bd05b162.s3tc.ctex"]
-========
-source_file="res://levels/hrad_1/hrad_1_Image_0_13.jpg"
-dest_files=["res://.godot/imported/hrad_1_Image_0_13.jpg-85177f20ef4c80fe0470311a494c130a.s3tc.ctex"]
->>>>>>>> origin/master:levels/hrad_1/hrad_1_Image_0_13.jpg.import
 
 [params]
 
