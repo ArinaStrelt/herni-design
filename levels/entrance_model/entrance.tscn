@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmxtnall3w373"]
+[gd_scene load_steps=11 format=3 uid="uid://bmxtnall3w373"]
 
 [ext_resource type="PackedScene" uid="uid://dbpxy6wbs3vxm" path="res://levels/entrance_model/entrance.glb" id="1_6e1lf"]
 [ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_wydwa"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bl8hue868b2ug" path="res://scenes/enemies/enemy_knight.tscn" id="6_2phd1"]
 [ext_resource type="Script" uid="uid://bs0jpfy1oclj3" path="res://scripts/doors.gd" id="6_e7nie"]
 [ext_resource type="PackedScene" uid="uid://dt45p04n7o85i" path="res://scenes/exit_zone.tscn" id="6_jhwv2"]
+[ext_resource type="PackedScene" uid="uid://kghywllagtak" path="res://scenes/enemies/enemy_skeleton.tscn" id="7_jhwv2"]
+[ext_resource type="PackedScene" uid="uid://bbo76ppwwjfkt" path="res://scenes/enemies/magic_ball.tscn" id="8_2phd1"]
 
 [sub_resource type="Environment" id="Environment_wfn6q"]
 background_mode = 2
@@ -109,6 +111,10 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2.135
 
 [node name="enemy_knight2" parent="." instance=ExtResource("6_2phd1")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.17149, 0, -7.16331)
+
+[node name="enemy_skeleton" parent="." instance=ExtResource("7_jhwv2")]
+transform = Transform3D(0.695, 0, 0, 0, 0.695, 0, 0, 0, 0.695, 0, 0, -5.77454)
+magic_ball_scene = ExtResource("8_2phd1")
 
 [connection signal="body_entered" from="entrance/doors/Area3D" to="entrance/doors" method="_on_player_enter"]
 [connection signal="body_exited" from="entrance/doors/Area3D" to="entrance/doors" method="_on_player_leave"]
