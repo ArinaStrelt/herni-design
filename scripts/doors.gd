@@ -9,7 +9,7 @@ var _opened := false
 func _ready():
 	animation_player.play("Idle")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !animation_player.is_playing() and _player_close and not _opened and _enemy_killed:
 		animation_player.play("Open")
 		_opened = true

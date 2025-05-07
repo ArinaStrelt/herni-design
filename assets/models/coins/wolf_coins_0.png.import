@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4m8gpn88cdq4"
+uid="uid://bth10sv1bghhy"
 path.s3tc="res://.godot/imported/wolf_coins_0.png-00f320b9437a5d4aa70a9e52fbafdf5a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "67fd3f6d341d8b2c536ab5bfc35cfe7f"
 }
 
 [deps]

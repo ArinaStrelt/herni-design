@@ -28,6 +28,7 @@ var attack_anim_duration = 1
 
 @onready var model_holder = $cage_spider_animated_v2
 @onready var animation_player: AnimationPlayer = model_holder.get_node("AnimationPlayer")
+@onready var nav_agent: NavigationAgent3D = $NavAgent
 
 func _ready():
 	spawn_position = global_position
@@ -111,20 +112,29 @@ func patrol_move(delta):
 		velocity.x = move_toward(velocity.x, 0, speed_patrol)
 		velocity.z = move_toward(velocity.z, 0, speed_patrol)
 	else:
-		var direction = (target_position - global_position)
+		nav_agent.set_target_position(target_position)
+		var next_pos = nav_agent.get_next_path_position()
+		var direction = (next_pos - global_position)
 		direction.y = 0
 
 		if direction.length() < 0.2:
 			set_new_patrol_point()
 		else:
-			velocity.x = direction.normalized().x * speed_patrol
-			velocity.z = direction.normalized().z * speed_patrol
+			velocity = direction.normalized() * speed_patrol
+
 
 func chase_player(_delta):
-	var direction = (player.global_position - global_position)
+	if not player:
+		return
+	nav_agent.set_target_position(player.global_position)
+	var next_pos = nav_agent.get_next_path_position()
+	var direction = (next_pos - global_position)
 	direction.y = 0
-	velocity.x = direction.normalized().x * speed_chase
-	velocity.z = direction.normalized().z * speed_chase
+	if direction.length() > 0.1:
+		velocity = direction.normalized() * speed_chase
+	else:
+		velocity = Vector3.ZERO
+
 
 func attack() -> void:
 	await _attack()

@@ -1,4 +1,3 @@
-
 extends CharacterBody3D
 
 @export var speed_patrol = 21
@@ -28,12 +27,12 @@ var last_animation: String = ""
 
 @onready var model_holder = $monster_enemy
 @onready var animation_player: AnimationPlayer = $monster_enemy/AnimationPlayer
+@onready var nav_agent: NavigationAgent3D = $NavAgent
 
 func _ready():
 	spawn_position = global_position
 	animation_player.play("idle")
 	animation_player.animation_finished.connect(on_animation_changed)
-	
 
 func _physics_process(delta):
 	if is_dead:
@@ -68,7 +67,6 @@ func _physics_process(delta):
 					attack()
 				else:
 					chase_player(delta)
-					
 
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -88,14 +86,20 @@ func _physics_process(delta):
 		var corrected_target_angle = target_angle + deg_to_rad(180)
 		model_holder.rotation.y = lerp_angle(current_angle, corrected_target_angle, delta * rotation_speed)
 
-
 func chase_player(delta):
 	if not animation_player.current_animation == "run":
 		animation_player.play("run")
-	var direction = (player.global_position - global_position)
+
+	if not nav_agent.is_navigation_finished():
+		nav_agent.set_target_position(player.global_position)
+	var next_pos = nav_agent.get_next_path_position()
+	var direction = (next_pos - global_position)
 	direction.y = 0
-	velocity.x = direction.normalized().x * speed_chase
-	velocity.z = direction.normalized().z * speed_chase
+
+	if direction.length() > 0.1:
+		velocity = direction.normalized() * speed_chase
+	else:
+		velocity = Vector3.ZERO
 
 func attack():
 	if attack_timer > 0.0:
@@ -106,7 +110,6 @@ func attack():
 
 	if player and global_position.distance_to(player.global_position) <= attack_distance:
 		animation_player.play("fight")
-			
 
 func on_animation_changed(anim_name: String):
 	if last_animation == "fight":
@@ -139,7 +142,6 @@ func flash_red():
 		if mat:
 			mat.albedo_color = Color(1, 1, 1)
 
-
 func take_damage(amount: int):
 	if is_dead:
 		return
@@ -161,20 +163,20 @@ func take_damage(amount: int):
 func die():
 	is_dead = true
 	print("Enemy died.")
-	
+
 	# Vytvoření mince
 	var coin_scene = preload("res://scenes/coins/coins.tscn").instantiate()
 	var coin = coin_scene.get_node("interact_area")
 
 	# Případně nastav vlastní hodnotu (např. boss dropne 50)
-	coin.value = randi_range(20, 30)  # nebo prostě coin.value = 5
+	coin.value = randi_range(20, 30)
 
 	# Umístění na pozici nepřítele
 	coin_scene.transform.origin = position
 
 	# Přidání do scény
 	get_tree().current_scene.add_child(coin_scene)
-	
+
 	await get_tree().create_timer(2.0).timeout
 
 	queue_free()

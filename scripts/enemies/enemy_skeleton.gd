@@ -21,7 +21,7 @@ func _ready():
 	animation_player.animation_finished.connect(_on_animation_finished)
 	player = get_node("/root/level_loader/Player")  # nebo použij skupinu
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if is_dead:
 		return
 

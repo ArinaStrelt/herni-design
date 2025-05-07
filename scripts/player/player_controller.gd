@@ -11,11 +11,11 @@ var GRAVITY : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var attacking = false
 var is_dead = false
-var max_health = 100
+var max_health = 10000
 var current_health = max_health
 var interactables = []
 var gold = 0
-var damage = 15
+var damage = 1500
 
 var can_move = true  # nová proměnná
 

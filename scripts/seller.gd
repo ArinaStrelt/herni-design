@@ -8,7 +8,7 @@ func _ready():
 	animation_player.play("standing")
 	interact_area.add_to_group("interactable")
 
-func interact(player):
+func interact(_player):
 	print("Interakce s obchodníkem!")
 	if ui:
 		ui.open_shop()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6dwarrnkqhd"]
+[gd_scene load_steps=7 format=3 uid="uid://b6dwarrnkqhd"]
 
 [ext_resource type="PackedScene" uid="uid://byjm4s65cn21l" path="res://levels/boss_level/boss_level.glb" id="1_scxyc"]
 [ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_ympyq"]
@@ -22,34 +22,11 @@ volumetric_fog_density = 0.0791
 volumetric_fog_emission_energy = 17.25
 volumetric_fog_gi_inject = 1.58
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_lg6nu"]
+vertices = PackedVector3Array(-9.10775, 0.192229, -9.02876, -8.85775, 0.192229, -9.02876, -8.60775, 0.192229, -9.52876, -9.10775, 0.192229, -13.7788, -7.85775, 0.192229, -9.52876, -7.60775, 0.192229, -9.02876, -6.10775, 0.192229, -9.02876, -5.85775, 0.192229, -11.5288, -5.10775, 0.192229, -11.5288, -0.107749, 0.442229, -11.2788, 4.89225, 0.192229, -11.5288, 10.6423, 0.192229, -13.5288, 1.14225, 0.692229, -10.7788, 4.64225, 0.192229, -10.7788, -4.35775, 0.192229, -10.7788, -0.607749, 0.442229, -10.7788, 10.6423, 0.192229, -11.2788, 7.89225, 4.94223, 2.47124, 9.64225, 4.94223, 4.22124, 11.6423, 4.69223, 4.22124, 11.3923, 4.69223, -10.5288, 10.8923, 4.69223, -9.52876, 7.64225, 4.69223, -9.52876, 7.89225, 0.192229, 0.721235, 8.14225, 0.192229, 1.72124, 10.3923, 0.192229, 1.97124, 10.6423, 0.192229, -9.52876, 7.89225, 0.192229, -9.52876, 10.6423, 0.192229, 3.97124, -8.60775, 0.192229, -8.27876, -9.10775, 0.192229, 4.47124, -7.85775, 0.192229, -8.27876, -6.35775, 0.192229, 4.47124, -7.85775, 12.6922, -8.52876, -7.85775, 12.6922, -6.02876, -6.10775, 12.6922, -6.02876, -6.10775, 12.6922, -8.52876, -4.10775, 0.192229, -5.02876, -4.85775, 0.192229, -4.77876, -4.10775, 0.192229, -4.27876, -3.85775, 0.192229, 0.721235, -4.60775, 0.192229, 0.971235, -4.60775, 0.192229, 1.97124, -2.60775, 0.192229, -7.52876, -2.85775, 0.442229, -8.27876, -4.10775, 0.442229, -8.27876, 3.39225, 0.192229, -7.27876, -0.857749, 0.442229, -8.02876, -1.35775, 0.192229, -7.52876, -3.85775, 0.192229, -0.778765, 6.64225, 0.192229, -8.52876, 4.14225, 0.442229, -8.52876, -4.35775, 0.192229, -2.52876, 6.89225, 0.192229, 1.72124, -7.60775, 2.19223, -8.27876, -7.60775, 2.19223, -6.52876, -5.85775, 2.19223, -6.52876, -5.85775, 2.19223, -8.27876, -7.85775, 12.6922, -0.278765, -6.10775, 12.6922, -0.0287647, -6.10775, 12.6922, -1.52876, -7.85775, 12.6922, -1.52876, -7.60775, 2.19223, -1.27876, -7.60775, 2.19223, -0.528765, -5.85775, 2.19223, -0.528765, -5.85775, 2.19223, -1.27876, -4.85775, 4.94223, 5.47124, -5.35775, 4.94223, 5.72124, -5.35775, 4.94223, 6.72124, 9.39225, 4.94223, 6.47124, -4.85775, 4.94223, 2.97124, -0.607749, 0.442229, 4.47124, -0.357749, 0.442229, 6.22124, 0.892251, 0.442229, 6.22124, 1.14225, 0.442229, 4.47124, -4.85775, 0.192229, 3.47124, 6.89225, 0.192229, 2.97124, -4.85775, 0.192229, 4.47124, 6.89225, 0.192229, 4.47124, 8.14225, 0.192229, 2.97124, 8.14225, 0.192229, 4.22124, 9.14225, 0.192229, 3.97124, 9.14225, 0.192229, 2.97124)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 7), PackedInt32Array(8, 3, 9), PackedInt32Array(9, 3, 10), PackedInt32Array(10, 3, 11), PackedInt32Array(4, 2, 7), PackedInt32Array(7, 2, 3), PackedInt32Array(13, 12, 10), PackedInt32Array(10, 12, 9), PackedInt32Array(15, 14, 9), PackedInt32Array(9, 14, 8), PackedInt32Array(8, 7, 3), PackedInt32Array(11, 16, 10), PackedInt32Array(18, 17, 19), PackedInt32Array(19, 17, 21), PackedInt32Array(19, 21, 20), PackedInt32Array(17, 22, 21), PackedInt32Array(24, 23, 25), PackedInt32Array(25, 23, 27), PackedInt32Array(25, 27, 26), PackedInt32Array(26, 28, 25), PackedInt32Array(1, 29, 0), PackedInt32Array(0, 29, 30), PackedInt32Array(5, 6, 31), PackedInt32Array(31, 6, 32), PackedInt32Array(31, 32, 30), PackedInt32Array(30, 29, 31), PackedInt32Array(36, 35, 33), PackedInt32Array(33, 35, 34), PackedInt32Array(39, 38, 37), PackedInt32Array(42, 41, 40), PackedInt32Array(44, 43, 45), PackedInt32Array(45, 43, 37), PackedInt32Array(47, 46, 48), PackedInt32Array(48, 46, 49), PackedInt32Array(49, 46, 40), PackedInt32Array(46, 51, 50), PackedInt32Array(39, 49, 52), PackedInt32Array(37, 43, 39), PackedInt32Array(39, 43, 48), PackedInt32Array(39, 48, 49), PackedInt32Array(50, 53, 46), PackedInt32Array(46, 53, 40), PackedInt32Array(40, 53, 42), PackedInt32Array(57, 56, 54), PackedInt32Array(54, 56, 55), PackedInt32Array(61, 60, 58), PackedInt32Array(58, 60, 59), PackedInt32Array(65, 64, 62), PackedInt32Array(62, 64, 63), PackedInt32Array(67, 66, 68), PackedInt32Array(68, 66, 17), PackedInt32Array(68, 17, 18), PackedInt32Array(68, 18, 69), PackedInt32Array(66, 70, 17), PackedInt32Array(72, 71, 73), PackedInt32Array(73, 71, 74), PackedInt32Array(71, 75, 74), PackedInt32Array(74, 75, 76), PackedInt32Array(71, 77, 75), PackedInt32Array(76, 78, 74), PackedInt32Array(82, 81, 79), PackedInt32Array(79, 81, 80)]
+
 [node name="BossLevel" type="Node3D"]
-
-[node name="boss_level" parent="." instance=ExtResource("1_scxyc")]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="boss_level"]
-transform = Transform3D(0.244195, -0.675978, 0.695286, -0.260736, 0.64482, 0.718487, -0.934016, -0.356737, -0.01879, 3.71184, 15.3961, -4.73444)
-light_color = Color(0.721846, 0.835757, 0.839165, 1)
-light_energy = 4.108
-light_indirect_energy = 3.115
-light_specular = 0.0
-shadow_enabled = true
-shadow_bias = 0.0
-shadow_normal_bias = 0.0
-omni_range = 53.6319
-omni_attenuation = 1.287
-
-[node name="Fire2" parent="boss_level" instance=ExtResource("2_ympyq")]
-transform = Transform3D(-0.916964, 0.144729, -0.371794, 0.119927, 0.988774, 0.089124, 0.380519, 0.0371351, -0.924027, 2.77157, 1.19486, -8.20853)
-
-[node name="OmniLight3D5" type="OmniLight3D" parent="boss_level"]
-transform = Transform3D(0.26247, -0.651614, 0.711695, -0.242331, 0.669404, 0.702264, -0.934016, -0.356789, 0.017792, -4.45923, 2.28314, -3.60109)
-light_color = Color(0.690298, 0.522505, 0.268597, 1)
-light_energy = 0.054
-light_indirect_energy = 0.16
-light_volumetric_fog_energy = 0.789
-light_size = 0.28
-omni_range = 3.586
-omni_attenuation = 1.877
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.458132, 0.362824, -0.811464, -0.876688, -0.0337283, 0.479875, 0.146741, 0.931247, 0.333536, -10.1462, 5.7299, -4.02167)
@@ -84,3 +61,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58547, 0, -2.46502)
 
 [node name="boss" parent="." instance=ExtResource("4_lg6nu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.21773, -0.0660815, -4.21028)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_lg6nu")
+
+[node name="boss_level" parent="NavigationRegion3D" instance=ExtResource("1_scxyc")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/boss_level"]
+transform = Transform3D(0.244195, -0.675978, 0.695286, -0.260736, 0.64482, 0.718487, -0.934016, -0.356737, -0.01879, 3.71184, 15.3961, -4.73444)
+light_color = Color(0.721846, 0.835757, 0.839165, 1)
+light_energy = 4.108
+light_indirect_energy = 3.115
+light_specular = 0.0
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 0.0
+omni_range = 53.6319
+omni_attenuation = 1.287
+
+[node name="Fire2" parent="NavigationRegion3D/boss_level" instance=ExtResource("2_ympyq")]
+transform = Transform3D(-0.916964, 0.144729, -0.371794, 0.119927, 0.988774, 0.089124, 0.380519, 0.0371351, -0.924027, 2.77157, 1.19486, -8.20853)
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="NavigationRegion3D/boss_level"]
+transform = Transform3D(0.26247, -0.651614, 0.711695, -0.242331, 0.669404, 0.702264, -0.934016, -0.356789, 0.017792, -4.45923, 2.28314, -3.60109)
+light_color = Color(0.690298, 0.522505, 0.268597, 1)
+light_energy = 0.054
+light_indirect_energy = 0.16
+light_volumetric_fog_energy = 0.789
+light_size = 0.28
+omni_range = 3.586
+omni_attenuation = 1.877

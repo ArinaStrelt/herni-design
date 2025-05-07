@@ -21,7 +21,7 @@ shape = SubResource("CylinderShape3D_27d2k")
 [node name="monster_enemy" parent="." instance=ExtResource("1_bh5fu")]
 transform = Transform3D(0.63, 0, 0, 0, 0.63, 0, 0, 0, 0.63, 0, 0, 0)
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+[node name="NavAgent" type="NavigationAgent3D" parent="."]
 
 [node name="health_bar" parent="." instance=ExtResource("2_fe08f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00812894, 1.43564, 0.0788991)
