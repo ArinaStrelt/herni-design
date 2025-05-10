@@ -116,7 +116,7 @@ func die():
 	is_dead   = true
 	velocity  = Vector3.ZERO
 	move_and_slide()
-	animation_player.play("A-pose")
+	animation_player.play("Death")
 
 	# Vytvoření mince
 	var coin_scene = preload("res://scenes/coins/coins.tscn").instantiate()

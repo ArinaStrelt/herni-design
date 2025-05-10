@@ -38,7 +38,7 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(2, 4, 3), PackedInt32Arr
 environment = SubResource("Environment_426s5")
 
 [node name="exit_zone" parent="." instance=ExtResource("5_pua7d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.545617, 0.479679, -11.5292)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92026, 0.479679, -11.6276)
 next_level_path = "res://levels/boss_level/boss_level.tscn"
 
 [node name="enemy_monster" parent="." instance=ExtResource("9_k7fv6")]

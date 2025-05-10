@@ -13,6 +13,11 @@ func _ready():
 	randomize()
 	load_level("res://levels/Base_model/base.tscn", Vector3(0, 0,-6.6))
 
+func clear_level_entities():
+	for entity in get_tree().get_nodes_in_group("level_entities"):
+		if is_instance_valid(entity):
+			entity.queue_free()
+
 func load_level(path: String, player_position: Vector3):
 	if current_level:
 		current_level.queue_free()
@@ -28,9 +33,7 @@ func change_level(path: String, player_spawn_position: Vector3):
 	await tween.finished
 
 	load_level(path, player_spawn_position)
-	for coin in get_tree().get_nodes_in_group("coins"):
-		if coin and coin.is_inside_tree():
-			coin.get_parent().queue_free()
+	clear_level_entities()
 
 	var fade_in_tween = fade.fade_in()
 	await fade_in_tween.finished
@@ -47,10 +50,7 @@ func reset_run():
 	player.reset_player()
 	ui.update_health(player.current_health, player.max_health)
 	ui.update_gold(player.gold)
-	shop_ui.update_ui()
-	for coin in get_tree().get_nodes_in_group("coins"):
-		if coin and coin.is_inside_tree():
-			coin.get_parent().queue_free()
+	clear_level_entities()
 
 	# Přesunout do základny
 	change_level("res://levels/Base_model/base.tscn", Vector3(0, 0, -6.6 ))

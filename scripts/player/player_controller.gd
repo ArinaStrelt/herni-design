@@ -11,7 +11,7 @@ var GRAVITY : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var attacking = false
 var is_dead = false
-var max_health = 10000
+var max_health = 100
 var current_health = max_health
 var interactables = []
 var gold = 0
@@ -143,7 +143,7 @@ func start_attack(anim_name: String):
 	if animation_player.has_animation(anim_name):
 		attacking = true
 		$player_knight_model.current_attack_anim = anim_name
-		animation_player.play(anim_name)
+		animation_player.play(anim_name, -1, 1.5)
 		await animation_player.animation_finished
 		attacking = false
 
@@ -186,6 +186,8 @@ func take_damage(amount: int):
 
 func die():
 	is_dead = true
+	current_health = 0
+	ui.update_health(current_health, max_health)
 	animation_player.play("Death")
 
 	velocity = Vector3.ZERO

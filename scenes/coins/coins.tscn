@@ -5,7 +5,7 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gjpli"]
 
-[node name="Coins" type="Node3D"]
+[node name="Coins" type="Node3D" groups=["level_entities"]]
 
 [node name="interact_area" type="Area3D" parent="." groups=["interactable"]]
 script = ExtResource("1_gjpli")

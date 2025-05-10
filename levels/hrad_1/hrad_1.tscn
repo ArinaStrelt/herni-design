@@ -48,7 +48,7 @@ near = 0.015
 far = 1319.93
 
 [node name="exit_zone" parent="." instance=ExtResource("3_0830o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.538702, 0.537355, -11.6188)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.84484, 0.523669, -15.8222)
 next_level_path = "res://levels/hrad_2/hrad_2.tscn"
 
 [node name="enemy_cage_spider2" parent="." instance=ExtResource("4_v3ddc")]

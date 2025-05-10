@@ -23,6 +23,7 @@ func update_gold(gold_amount: int) -> void:
 	gold_label.text = "Gold: %d" % gold_amount
 
 func open_shop():
+	shop_ui.update_ui()
 	shop_ui.visible = true
 	shop_opened = true
 	get_tree().paused = true  # pauzne hru, pokud chceš

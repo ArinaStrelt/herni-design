@@ -60,9 +60,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Gold: 0"
 
-[node name="shop_ui" parent="." instance=ExtResource("2_x4jx1")]
-visible = false
-
 [node name="hit_effect" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
@@ -71,3 +68,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_yev5y")
+
+[node name="shop_ui" parent="." instance=ExtResource("2_x4jx1")]
+visible = false
