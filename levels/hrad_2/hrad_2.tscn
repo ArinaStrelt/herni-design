@@ -42,11 +42,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92026, 0.479679, -11.6276)
 next_level_path = "res://levels/boss_level/boss_level.tscn"
 
 [node name="enemy_monster" parent="." instance=ExtResource("9_k7fv6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.97686, -0.043232, -8.06615)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25624, -0.00852945, -5.90941)
 speed_patrol = 2
 
 [node name="enemy_monster2" parent="." instance=ExtResource("9_k7fv6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.64787, -0.0414467, -7.61365)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5888, 0.0228386, -6.32646)
 
 [node name="Seller" parent="." instance=ExtResource("7_tx34c")]
 transform = Transform3D(0.258261, 0, 0.20543, 0, 0.33, 0, -0.20543, 0, 0.258261, -5.05542, -0.069, -9.152)

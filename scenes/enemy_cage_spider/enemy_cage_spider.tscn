@@ -12,6 +12,7 @@ radius = 0.3
 viewport_path = NodePath("SubViewport")
 
 [node name="enemy_cage_spider" type="CharacterBody3D" groups=["enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00336289, 1.19209e-07, -0.00196111)
 script = ExtResource("1_rh0c5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

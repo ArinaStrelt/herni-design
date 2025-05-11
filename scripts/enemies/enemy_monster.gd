@@ -87,11 +87,17 @@ func _physics_process(delta):
 		model_holder.rotation.y = lerp_angle(current_angle, corrected_target_angle, delta * rotation_speed)
 
 func chase_player(delta):
-	if not animation_player.current_animation == "run":
+	if animation_player.current_animation != "run":
 		animation_player.play("run")
 
-	if not nav_agent.is_navigation_finished():
-		nav_agent.set_target_position(player.global_position)
+	# ✅ Always update the path
+	nav_agent.set_target_position(player.global_position)
+
+	# ✅ Wait until path is ready
+	if nav_agent.is_navigation_finished():
+		velocity = Vector3.ZERO
+		return
+
 	var next_pos = nav_agent.get_next_path_position()
 	var direction = (next_pos - global_position)
 	direction.y = 0
