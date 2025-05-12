@@ -39,14 +39,6 @@ shadow_blur = 0.618
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wfn6q")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 10.2499, 18.2068, 7.14833)
-projection = 1
-current = true
-size = 8.537
-near = 0.019
-far = 3326.76
-
 [node name="exit_zone" parent="." instance=ExtResource("6_jhwv2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.541855, -12.9855)
 next_level_path = "res://levels/hrad_1/hrad_1.tscn"
@@ -68,16 +60,16 @@ navigation_mesh = SubResource("NavigationMesh_2phd1")
 [node name="entrance" parent="NavigationRegion3D" instance=ExtResource("1_6e1lf")]
 
 [node name="Fire" parent="NavigationRegion3D/entrance" instance=ExtResource("2_wydwa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.36759, 0.591064, -10.4199)
+transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, 0.732586, 0.643412, -13.4835)
 
 [node name="Fire2" parent="NavigationRegion3D/entrance" instance=ExtResource("2_wydwa")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62439, 0.555538, -10.3463)
+transform = Transform3D(1.78, 0, 0, 0, 1.78, 0, 0, 0, 1.78, 4.26174, 0.76698, -13.3387)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/entrance"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.14473, 1.21697, 0.15157)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.48301, 1.41328, -2.96953)
 light_color = Color(0.77, 0.663098, 0.3927, 1)
-light_energy = 1.201
-light_indirect_energy = 4.502
+light_energy = 5.685
+light_indirect_energy = 5.317
 light_volumetric_fog_energy = 2.251
 light_size = 0.006
 shadow_enabled = true
@@ -90,9 +82,9 @@ omni_range = 2.61118
 omni_attenuation = 1.305
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="NavigationRegion3D/entrance"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.28576, 1.26265, 1.016)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.56649, 1.81405, 1.06154)
 light_color = Color(0.77, 0.663098, 0.3927, 1)
-light_energy = 1.201
+light_energy = 5.176
 light_indirect_energy = 4.502
 light_volumetric_fog_energy = 2.251
 light_size = 0.006
@@ -106,23 +98,28 @@ omni_range = 2.61118
 omni_attenuation = 1.305
 
 [node name="doors" parent="NavigationRegion3D/entrance" instance=ExtResource("5_6e1lf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.46332, 0, -2.95468)
 script = ExtResource("6_e7nie")
 
-[node name="Skeleton3D" parent="NavigationRegion3D/entrance/doors/Armature" index="0"]
-bones/0/rotation = Quaternion(-1.26043e-08, 0.571358, -3.40556e-08, 0.820701)
-bones/2/rotation = Quaternion(-1.26043e-08, -0.571358, 3.40556e-08, 0.820701)
-
 [node name="Door_R_Door_0-col" parent="NavigationRegion3D/entrance/doors/Armature/Skeleton3D" index="0"]
-transform = Transform3D(0.3471, 9.73947e-08, 0.937828, -7.03021e-08, 1, -7.78318e-08, -0.937828, -3.89158e-08, 0.3471, -0.0821313, 1.03474, 0.081062)
+transform = Transform3D(1, 7.10543e-15, 2.38419e-07, -7.10543e-15, 1, 7.10543e-15, -2.38419e-07, -7.10543e-15, 1, -0.10453, 1.03474, -0.0488885)
 
 [node name="Door_L_Door_0-col" parent="NavigationRegion3D/entrance/doors/Armature/Skeleton3D" index="1"]
-transform = Transform3D(0.3471, -9.73947e-08, -0.937828, 7.03021e-08, 1, -7.78318e-08, 0.937828, -3.89158e-08, 0.3471, 2.12232, 1.06573, 0.0035692)
+transform = Transform3D(1, 7.10543e-15, 2.38419e-07, -7.10543e-15, 1, 7.10543e-15, -2.38419e-07, -7.10543e-15, 1, 2.09077, 1.06573, -0.0488909)
 
 [node name="Area3D" type="Area3D" parent="NavigationRegion3D/entrance/doors"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/entrance/doors/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.7387)
 shape = SubResource("CylinderShape3D_e7nie")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 11.003, 13.732, 2.838)
+projection = 1
+current = true
+size = 14.371
+near = 0.015
+far = 1319.93
 
 [connection signal="body_entered" from="NavigationRegion3D/entrance/doors/Area3D" to="NavigationRegion3D/entrance/doors" method="_on_player_enter"]
 [connection signal="body_exited" from="NavigationRegion3D/entrance/doors/Area3D" to="NavigationRegion3D/entrance/doors" method="_on_player_leave"]
