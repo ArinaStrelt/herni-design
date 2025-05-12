@@ -3,22 +3,23 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cyolijfdgc3sg"
-path="res://.godot/imported/entrance_Image_1_21.png-b83d71e879ae207c07d0bb2af8557ea1.ctex"
+path.s3tc="res://.godot/imported/entrance_Image_1_21.png-b83d71e879ae207c07d0bb2af8557ea1.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
-"md5": "054e62e4b1575d9715050939934a1e94"
+"md5": "574ba1d5002d85eb111fcfcdd86f7d1a"
 }
 
 [deps]
 
 source_file="res://levels/entrance_model/entrance_Image_1_21.png"
-dest_files=["res://.godot/imported/entrance_Image_1_21.png-b83d71e879ae207c07d0bb2af8557ea1.ctex"]
+dest_files=["res://.godot/imported/entrance_Image_1_21.png-b83d71e879ae207c07d0bb2af8557ea1.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
@@ -34,4 +35,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

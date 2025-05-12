@@ -2,14 +2,14 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckcqw6m472qdx"
+uid="uid://dhqi1fos7vw2p"
 path.s3tc="res://.godot/imported/boss_level_Image_1_37.jpg-70166f74eeb48f1e1aded192f3c988bc.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "617cfa69710c2f8464d5de42945bf508"
+"md5": "b7d4f6388cf0d50151e0ed874355925e"
 }
 
 [deps]
