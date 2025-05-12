@@ -2,14 +2,14 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4j4c88n48pc6"
+uid="uid://cdo3vk8nfw4fa"
 path.s3tc="res://.godot/imported/boss_level_Image_2_35.jpg-edee7016c551a497913b23517a43019a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "fc2e90ef1d6dfdddf986116c8cc95e93"
+"md5": "1c8897fd6bb5c136014ffd925f57c5c3"
 }
 
 [deps]
@@ -23,7 +23,7 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
