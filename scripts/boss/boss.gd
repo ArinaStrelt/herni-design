@@ -1,9 +1,9 @@
 extends CharacterBody3D
 
 @export var speed_patrol = 0.5
-@export var speed_chase = 0.5
+@export var speed_chase = 1.5
 @export var aggro_distance = 8.0
-@export var attack_distance = 2
+@export var attack_distance = 1.3
 @export var patrol_radius = 5.0
 @export var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var rotation_speed = 5.0
@@ -28,12 +28,12 @@ var attack_anim_duration = 1
 
 @onready var model_holder = $boss_cage_spider2
 @onready var animation_player: AnimationPlayer = model_holder.get_node("AnimationPlayer")
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D  # <- Add this in your scene as a child of this character
+
 func _ready():
 	spawn_position = global_position
 	set_new_patrol_point()
 	_play_animation("Idle")
-
-	# Debug: print position every second
 	_print_position_loop()
 
 func _physics_process(delta):
@@ -120,10 +120,20 @@ func patrol_move(delta):
 			velocity.z = direction.normalized().z * speed_patrol
 
 func chase_player(_delta):
-	var direction = (player.global_position - global_position)
+	nav_agent.set_target_position(player.global_position)
+
+	if nav_agent.is_navigation_finished():
+		velocity = Vector3.ZERO
+		return
+
+	var next_pos = nav_agent.get_next_path_position()
+	var direction = (next_pos - global_position)
 	direction.y = 0
-	velocity.x = direction.normalized().x * speed_chase
-	velocity.z = direction.normalized().z * speed_chase
+
+	if direction.length() > 0.1:
+		velocity = direction.normalized() * speed_chase
+	else:
+		velocity = Vector3.ZERO
 
 func attack() -> void:
 	await _attack()
@@ -166,7 +176,6 @@ func flash_red():
 		if mat:
 			mat.albedo_color = Color(1, 1, 1)
 
-
 func take_damage(amount: int):
 	if is_dead:
 		return
@@ -194,22 +203,14 @@ func die():
 	animation_player.play("Death")
 
 	set_physics_process(false)
-	
-	# Vytvoření mince
+
 	var coin_scene = preload("res://scenes/coins/coins.tscn").instantiate()
 	var coin = coin_scene.get_node("interact_area")
-
-	# Případně nastav vlastní hodnotu (např. boss dropne 50)
-	coin.value = randi_range(15, 25)  # nebo prostě coin.value = 5
-
-	# Umístění na pozici nepřítele
+	coin.value = randi_range(15, 25)
 	coin_scene.transform.origin = position
-
-	# Přidání do scény
 	get_tree().current_scene.add_child(coin_scene)
-	
+
 	await get_tree().create_timer(2.0).timeout
-	
 	queue_free()
 
 func _play_animation(anim_name: String):
