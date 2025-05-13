@@ -150,24 +150,39 @@ func start_attack(anim_name: String):
 func flash_red():
 	var meshes = find_children("*", "MeshInstance3D", true, false)
 
+	# Mapujeme původní barvy pro reset
+	var original_colors := {}
+
 	for mesh in meshes:
-		var mat = mesh.get_active_material(0)
-		if mat:
-			var new_mat = mat.duplicate()
-			mesh.set_surface_override_material(0, new_mat)
-			new_mat.albedo_color = Color(1, 0, 0)
+		var surface_count = mesh.get_surface_override_material_count()
+		for i in mesh.mesh.get_surface_count():
+			var mat = mesh.get_active_material(i)
+			if mat:
+				var new_mat = mat.duplicate()
+				original_colors[mesh.name + "_" + str(i)] = mat.albedo_color
+				mesh.set_surface_override_material(i, new_mat)
+				new_mat.albedo_color = Color(1, 0, 0)
 
-	hit_effect.modulate.a = 0.6  # nastavíme červený průhledný overlay
-
-	var tween := create_tween()
-	tween.tween_property(hit_effect, "modulate:a", 0.0, 0.3)  # zmizí za 0.3 s
-	
 	await get_tree().create_timer(0.35).timeout
 
+	# Obnovení barev
 	for mesh in meshes:
-		var mat = mesh.get_active_material(0)
-		if mat:
-			mat.albedo_color = Color(1, 1, 1)
+		for i in mesh.mesh.get_surface_count():
+			var mat = mesh.get_active_material(i)
+			if mat:
+				var key = mesh.name + "_" + str(i)
+				if key in original_colors:
+					mat.albedo_color = original_colors[key]
+
+func reset_colors():
+	var meshes = $player_knight_model.find_children("*", "MeshInstance3D", true, false)
+
+	for mesh in meshes:
+		for i in mesh.mesh.get_surface_count():
+			var mat = mesh.get_active_material(i)
+			if mat:
+				mat.albedo_color = Color(1, 1, 1)
+
 
 func take_damage(amount: int):
 	if is_dead:
@@ -189,15 +204,14 @@ func die():
 	current_health = 0
 	ui.update_health(current_health, max_health)
 	animation_player.play("Death")
-
 	velocity = Vector3.ZERO
 	await animation_player.animation_finished
-
 	loader.reset_run()
 
 func reset_player():
 	current_health = max_health
 	is_dead = false
+	reset_colors()
 	animation_player.stop()
 	animation_player.play("Idle")
   # Reset pohybu

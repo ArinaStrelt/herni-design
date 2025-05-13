@@ -1,8 +1,9 @@
 extends CharacterBody3D
 
-@export var move_speed := 2.5
+@export var speed := 1
 @export var attack_range := 10.0
 @export var detection_range := 20.0
+@export var attack_cd: = 1.0
 @export var magic_ball_scene := preload("res://scenes/enemies/magic_ball.tscn")
 @export var max_health := 150
 @export var attack_damage := 15
@@ -12,56 +13,65 @@ extends CharacterBody3D
 @onready var player: Node3D = null
 @onready var model: Node3D = $skeleton
 
-var is_shooting := false
-var is_casting := false
-var is_flinching := false
 var current_health = max_health
+var is_attacking: bool = false
+var can_attack: bool = true
 var is_dead: bool  = false
-
-func _ready():
-	animation_player.animation_finished.connect(_on_animation_finished)
-	player = get_node("/root/level_loader/Player")  # nebo použij skupinu
+var has_target: bool = false
 
 func _physics_process(_delta):
 	if is_dead:
 		return
 
-	if not is_instance_valid(player):
+	if player == null:
+		var list := get_tree().get_nodes_in_group("player")
+		if list.size() > 0:
+			player = list[0]
+
+	if player == null:
 		return
 
-	var distance = global_position.distance_to(player.global_position)
+	var dist := global_position.distance_to(player.global_position)
 
-	if distance > detection_range:
-		velocity = Vector3.ZERO
-		move_and_slide()
-		if animation_player.current_animation != "Idle":
-			animation_player.play("Idle")
-		is_shooting = false
+	if is_attacking:
 		return
 
-	look_at(player.global_position)
+	if dist <= detection_range:
+		has_target = true
 
-	if distance > attack_range:
-		var direction = (player.global_position - global_position).normalized()
-		velocity = direction * move_speed
-		move_and_slide()
-		if animation_player.current_animation != "Run":
-			animation_player.play("Run")
-		is_shooting = false
+	if has_target:
+		look_at(player.global_position, Vector3.UP)
+
+		if dist > attack_range:
+			var dir := (player.global_position - global_position).normalized()
+			velocity = dir * speed
+			move_and_slide()
+			animation_player.play("Run", -1, 0.75)
+		else:
+			velocity = Vector3.ZERO
+			move_and_slide()
+			attack()
 	else:
 		velocity = Vector3.ZERO
 		move_and_slide()
-		if not is_casting and not is_flinching:
-			animation_player.play("Attack")
-			is_casting = true
-		is_shooting = true
+		animation_player.play("Idle")
 
-func _on_animation_finished(anim_name: String):
-	if anim_name == "Attack":
-		is_casting = false
-	elif anim_name == "Impact":
-		is_flinching = false  # odteď může skeleton opět kouzlit
+func attack():
+	if not can_attack:
+		return
 
+	is_attacking = true
+	can_attack = false
+
+	animation_player.play("Attack")
+	await animation_player.animation_finished
+
+	if not is_instance_valid(player) or is_dead:
+		return
+
+	is_attacking = false
+	await get_tree().create_timer(attack_cd).timeout
+	can_attack = true
 
 func cast_spell():
 	var ball = magic_ball_scene.instantiate()
@@ -100,9 +110,6 @@ func take_damage(amount: int):
 
 	current_health -= amount
 
-	# Přeruš kouzlení a začni flinch fázi
-	is_casting = false
-	is_flinching = true
 	animation_player.play("Impact")
 
 	$health_bar.update_healthbar(current_health, max_health)
