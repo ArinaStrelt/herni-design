@@ -6,6 +6,7 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dgf3a"]
 height = 1.00195
+radius = 0.7
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_0xsra"]
 viewport_path = NodePath("SubViewport")
@@ -23,3 +24,7 @@ shape = SubResource("CylinderShape3D_dgf3a")
 [node name="health_bar" parent="." instance=ExtResource("3_atjq5")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.108263, 1.26236, -0.0420927)
 texture = SubResource("ViewportTexture_0xsra")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+radius = 1.5
