@@ -6,6 +6,7 @@ extends CharacterBody3D
 @export var attack_range: float = 1     # vzdálenost pro útok
 @export var attack_cd: float = 0.25     # pauza mezi útoky
 @export var max_health: int = 100
+@export var attack_damage := 25
 
 var current_health: int   = max_health
 var player: Node3D
@@ -87,6 +88,7 @@ func attack():
 
 	is_attacking = true
 	can_attack   = false
+	model.attack_damage = attack_damage
 	model.current_attack_anim = "Slash"
 	anim.play("Slash")            # AnimationPlayer uvnitř modelu
 	await anim.animation_finished  # počká na konec seku
@@ -132,3 +134,10 @@ func die():
 	await get_tree().create_timer(2.0).timeout
 	
 	queue_free()
+
+func scale_difficulty(level: int):
+	if level > 1:
+		max_health = max_health + ((level-1) * 75)
+		attack_damage = level * (attack_damage/(level-1))
+	else:
+		return

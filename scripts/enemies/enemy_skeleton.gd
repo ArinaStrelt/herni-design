@@ -3,8 +3,9 @@ extends CharacterBody3D
 @export var move_speed := 2.5
 @export var attack_range := 10.0
 @export var detection_range := 20.0
-@export var magic_ball_scene: PackedScene
-@export var max_health := 100
+@export var magic_ball_scene := preload("res://scenes/enemies/magic_ball.tscn")
+@export var max_health := 150
+@export var attack_damage := 15
 
 @onready var animation_player: AnimationPlayer = $skeleton/AnimationPlayer
 @onready var magic_spawn_point: Marker3D = $skeleton/magic_point
@@ -66,7 +67,7 @@ func cast_spell():
 	var ball = magic_ball_scene.instantiate()
 	get_tree().current_scene.add_child(ball)
 	ball.global_transform.origin = magic_spawn_point.global_transform.origin
-
+	ball.attack_damage = attack_damage
 	var from = ball.global_position
 	var to = player.global_position
 	to.y = from.y  # let vodorovně
@@ -133,3 +134,10 @@ func die():
 	await get_tree().create_timer(2.0).timeout
 	
 	queue_free()
+
+func scale_difficulty(level: int):
+	if level > 1:
+		max_health = max_health + ((level-1) * 100)
+		attack_damage = level * (attack_damage/(level-1))
+	else:
+		return

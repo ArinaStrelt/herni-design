@@ -1,8 +1,5 @@
 extends Area3D
 
-@export var next_level_path: String
-@export var next_spawn_position: Vector3 = Vector3(0, 0, 0)
-
 func _on_body_entered(body):
 	if not body.is_in_group("player"):
 		return
@@ -16,4 +13,4 @@ func _on_body_entered(body):
 
 	# Voláme přechod přes LevelLoader (který je v rootu)
 	var loader = get_node("/root/level_loader")
-	loader.change_level(next_level_path, next_spawn_position)
+	loader.change_level()

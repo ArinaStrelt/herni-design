@@ -2,7 +2,7 @@ extends Node3D
 
 var already_hit := {}
 var current_attack_anim := ""
-var attack_damage := 10
+var attack_damage := 0
 
 func attack_hitbox_on():
 	if current_attack_anim != "":

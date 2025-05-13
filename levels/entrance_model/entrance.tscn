@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bmxtnall3w373"]
+[gd_scene load_steps=11 format=3 uid="uid://bmxtnall3w373"]
 
 [ext_resource type="PackedScene" uid="uid://dbpxy6wbs3vxm" path="res://levels/entrance_model/entrance.glb" id="1_6e1lf"]
 [ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_wydwa"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://bs0jpfy1oclj3" path="res://scripts/doors.gd" id="6_e7nie"]
 [ext_resource type="PackedScene" uid="uid://dt45p04n7o85i" path="res://scenes/exit_zone.tscn" id="6_jhwv2"]
 [ext_resource type="PackedScene" uid="uid://kghywllagtak" path="res://scenes/enemies/enemy_skeleton.tscn" id="7_jhwv2"]
-[ext_resource type="PackedScene" uid="uid://bbo76ppwwjfkt" path="res://scenes/enemies/magic_ball.tscn" id="8_2phd1"]
 
 [sub_resource type="Environment" id="Environment_wfn6q"]
 background_mode = 2
@@ -40,8 +39,7 @@ shadow_blur = 0.618
 environment = SubResource("Environment_wfn6q")
 
 [node name="exit_zone" parent="." instance=ExtResource("6_jhwv2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.541855, -12.9855)
-next_level_path = "res://levels/hrad_1/hrad_1.tscn"
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.55887, 0.541855, -16.6044)
 
 [node name="enemy_knight" parent="." instance=ExtResource("6_2phd1")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2.13524, 0, -7.20358)
@@ -51,7 +49,6 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.1714
 
 [node name="enemy_skeleton" parent="." instance=ExtResource("7_jhwv2")]
 transform = Transform3D(0.695, 0, 0, 0, 0.695, 0, 0, 0, 0.695, -0.415, 0, -8.57244)
-magic_ball_scene = ExtResource("8_2phd1")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04, 0)
@@ -120,6 +117,9 @@ current = true
 size = 14.371
 near = 0.015
 far = 1319.93
+
+[node name="player_spawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36765, 0, 1.11243)
 
 [connection signal="body_entered" from="NavigationRegion3D/entrance/doors/Area3D" to="NavigationRegion3D/entrance/doors" method="_on_player_enter"]
 [connection signal="body_exited" from="NavigationRegion3D/entrance/doors/Area3D" to="NavigationRegion3D/entrance/doors" method="_on_player_leave"]
