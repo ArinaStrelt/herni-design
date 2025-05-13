@@ -22,7 +22,6 @@ shape = SubResource("CylinderShape3D_63k4b")
 transform = Transform3D(-0.47, 0, -4.10887e-08, 0, 0.47, 0, 4.10887e-08, 0, -0.47, 0, 0, 0)
 
 [node name="NavAgent" type="NavigationAgent3D" parent="."]
-path_desired_distance = 0.1
 debug_enabled = true
 
 [node name="health_bar" parent="." instance=ExtResource("3_lhjrl")]
