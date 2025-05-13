@@ -6,7 +6,6 @@ var _opened := false
 
 func _ready():
 	animation_player.play("Idle")
-	check_enemies_and_open()
 
 func _process(_delta: float) -> void:
 	check_enemies_and_open()

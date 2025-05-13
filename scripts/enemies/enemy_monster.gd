@@ -7,10 +7,10 @@ extends CharacterBody3D
 @export var patrol_radius = 5.0
 @export var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var rotation_speed = 5.0
-@export var max_health := 250
+@export var max_health := 200
 @export var knockback_duration = 0.25
 @export var knockback_force = 5.0
-@export var attack_damage = 25
+@export var attack_damage = 40
 @export var attack_cooldown = 1
 
 var current_health := max_health
@@ -186,3 +186,10 @@ func die():
 	await get_tree().create_timer(2.0).timeout
 
 	queue_free()
+
+func scale_difficulty(level: int):
+	if level > 1:
+		max_health = max_health + ((level-1) * 125)
+		attack_damage = level * (attack_damage/(level-1))
+	else:
+		return

@@ -8,35 +8,100 @@ extends Node3D
 
 var current_level: Node = null
 
+var room_pool := [
+	"res://levels/hrad_1/hrad_1.tscn",
+	"res://levels/hrad_2/hrad_2.tscn"
+]
+
+var start_room := "res://levels/entrance_model/entrance.tscn"
+var boss_room := "res://levels/boss_level/boss_level.tscn"
+
+var room_count := 0
+var max_rooms_before_boss := 4
+
 func _ready():
 	# Načti první level při spuštění
 	randomize()
-	load_level("res://levels/Base_model/base.tscn", Vector3(0, 0,-6.6))
+	load_level("res://levels/Base_model/base.tscn")
 
 func clear_level_entities():
 	for entity in get_tree().get_nodes_in_group("level_entities"):
 		if is_instance_valid(entity):
 			entity.queue_free()
 
-func load_level(path: String, player_position: Vector3):
+func load_level(path: String):
 	if current_level:
 		current_level.queue_free()
 
-	var scene := load(path)
+	var scene = ResourceLoader.load(path, "PackedScene")
+
 	current_level = scene.instantiate()
 	level_root.add_child(current_level)
 
-	player.global_transform.origin = player_position
+	# Hledání spawnu hráče
+	var spawn_marker = current_level.get_node_or_null("player_spawn")
+	if spawn_marker:
+		player.global_transform.origin = spawn_marker.global_transform.origin
+	else:
+		print("⚠️ Varování: PlayerSpawn nebyl nalezen – hráč se nespawnul správně.")
 
-func change_level(path: String, player_spawn_position: Vector3):
+
+func change_level(path := ""):
 	var tween = fade.fade_out()
 	await tween.finished
+	print(room_count)
+	if path == "":
+		if room_count == 0:
+			path = start_room
+		elif room_count >= max_rooms_before_boss:
+			path = boss_room
+		else:
+			path = room_pool.pick_random()
+	print(path)
+	if not path.ends_with("base.tscn"):
+		room_count += 1
+	else:
+		room_count = 0
 
-	load_level(path, player_spawn_position)
+	
+	
+	load_level(path)
 	clear_level_entities()
+	spawn_enemies_in_level()
 
 	var fade_in_tween = fade.fade_in()
 	await fade_in_tween.finished
+
+func get_scaled_enemy():
+	var tier1 = preload("res://scenes/enemies/enemy_knight.tscn")
+	var tier2 = preload("res://scenes/enemy_cage_spider/enemy_cage_spider.tscn")
+	var tier3 = preload("res://scenes/enemies/enemy_skeleton.tscn")
+	var tier4 = preload("res://scenes/enemy_monster/enemy_monster.tscn")
+
+	if room_count < 2:
+		return [tier1, tier3].pick_random()
+	elif room_count < 4:
+		return [tier1, tier2, tier3].pick_random()
+	else:
+		return [tier1, tier2, tier3, tier4].pick_random()
+
+func spawn_enemies_in_level():
+	if not current_level:
+		return
+
+	var spawn_parent = current_level.get_node_or_null("enemy_spawns")
+	if not spawn_parent:
+		return
+
+	for point in spawn_parent.get_children():
+		var enemy_scene = get_scaled_enemy().instantiate()
+		enemy_scene.transform.origin = point.global_transform.origin
+
+		# Můžeš také upravit staty dynamicky:
+		if enemy_scene.has_method("scale_difficulty"):
+			enemy_scene.scale_difficulty(room_count)
+
+		current_level.add_child(enemy_scene)
 
 
 func reset_run():
@@ -53,4 +118,4 @@ func reset_run():
 	clear_level_entities()
 
 	# Přesunout do základny
-	change_level("res://levels/Base_model/base.tscn", Vector3(0, 0, -6.6 ))
+	change_level("res://levels/Base_model/base.tscn")

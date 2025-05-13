@@ -98,3 +98,6 @@ directional_shadow_split_3 = 0.385
 directional_shadow_fade_start = 0.435
 directional_shadow_max_distance = 107.0
 directional_shadow_pancake_size = 4.1
+
+[node name="player_spawn" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.28569, 0, 1.08161)

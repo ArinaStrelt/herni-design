@@ -7,7 +7,7 @@ extends CharacterBody3D
 @export var patrol_radius = 5.0
 @export var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var rotation_speed = 5.0
-@export var max_health := 150
+@export var max_health := 75
 @export var knockback_duration = 1
 @export var knockback_force = 0
 @export var attack_damage = 10
@@ -234,3 +234,11 @@ func _print_position_loop() -> void:
 	while not is_dead:
 		print("Spider position:", global_position)
 		await get_tree().create_timer(1.0).timeout
+		
+		
+func scale_difficulty(level: int):
+	if level > 1:
+		max_health = max_health + ((level-1) * 50)
+		attack_damage = level * (attack_damage/(level-1))
+	else:
+		return
