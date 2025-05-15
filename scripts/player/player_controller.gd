@@ -15,7 +15,7 @@ var max_health = 100
 var current_health = max_health
 var interactables = []
 var gold = 0
-var damage = 1500
+var damage = 15
 
 var can_move = true  # nová proměnná
 

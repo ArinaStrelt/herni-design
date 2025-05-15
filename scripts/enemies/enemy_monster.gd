@@ -88,7 +88,7 @@ func _physics_process(delta):
 		var corrected_target_angle = target_angle + deg_to_rad(180)
 		model_holder.rotation.y = lerp_angle(current_angle, corrected_target_angle, delta * rotation_speed)
 
-func chase_player(delta):
+func chase_player(_delta):
 	if animation_player.current_animation != "run":
 		animation_player.play("run")
 
@@ -216,4 +216,4 @@ func die():
 func scale_difficulty(level: int):
 	if level > 1:
 		max_health = max_health + ((level-1) * 125)
-		attack_damage = level * (attack_damage/(level-1))
+		attack_damage = int(level * (float(attack_damage) / (level - 1)))
