@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hl4je4jcu0sp"
-path.s3tc="res://.godot/imported/cage_spider_animated_v2_guelp_gue_BaseColor-RGB_Alpha.png-79f0f5b7c964d886e6220a86c4f9146a.s3tc.ctex"
+uid="uid://br2h7muwqjk0v"
+path.s3tc="res://.godot/imported/cage_spider_animated_v3_new_cage_cage_Metallic-new_cage_cage_Roughness.png-1abc83433701bf41472e2f61302f808b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "56d84fe7dd6a58a25e5e10ddd21ea99e"
+"md5": "75ef3a906f45b3aad82604d6072c2712"
 }
 
 [deps]
 
-source_file="res://assets/models/enemy_cage_spider_animated_2/cage_spider_animated_v2_guelp_gue_BaseColor-RGB_Alpha.png"
-dest_files=["res://.godot/imported/cage_spider_animated_v2_guelp_gue_BaseColor-RGB_Alpha.png-79f0f5b7c964d886e6220a86c4f9146a.s3tc.ctex"]
+source_file="res://assets/models/enemy_cage_spider_animated_3/cage_spider_animated_v3_new_cage_cage_Metallic-new_cage_cage_Roughness.png"
+dest_files=["res://.godot/imported/cage_spider_animated_v3_new_cage_cage_Metallic-new_cage_cage_Roughness.png-1abc83433701bf41472e2f61302f808b.s3tc.ctex"]
 
 [params]
 

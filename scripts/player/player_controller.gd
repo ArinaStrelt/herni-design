@@ -12,11 +12,11 @@ var GRAVITY : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var attacking = false
 var is_dead = false
-var max_health = 100
+var max_health = 1000
 var current_health = max_health
 var interactables = []
 var gold = 0
-var damage = 15
+var damage = 150
 
 var is_rolling: bool = false
 var roll_speed := 1.75

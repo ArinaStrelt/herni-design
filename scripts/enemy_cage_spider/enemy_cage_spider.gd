@@ -26,7 +26,7 @@ var attack_timer = 0.0
 var attack_animations = ["Attack", "Attack2"]
 var attack_anim_duration = 1
 
-@onready var model_holder = $cage_spider_animated_v2
+@onready var model_holder = $cage_spider_animated_v3
 @onready var animation_player: AnimationPlayer = model_holder.get_node("AnimationPlayer")
 @onready var nav_agent: NavigationAgent3D = $NavAgent
 
