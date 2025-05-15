@@ -1,6 +1,6 @@
 extends Area3D
 
-@export var speed := 2
+@export var speed := 4
 @export var lifetime := 5.0
 @export var attack_damage := 0
 var direction: Vector3 = Vector3.ZERO
