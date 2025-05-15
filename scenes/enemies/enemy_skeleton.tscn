@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://dteo6g3s7xu7f" path="res://scenes/health_bar.tscn" id="3_lsw4l"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_1quu0"]
-radius = 0.90918
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1quu0"]
 viewport_path = NodePath("SubViewport")
@@ -17,7 +16,7 @@ script = ExtResource("1_vs6eh")
 transform = Transform3D(-0.025, 0, -3.7749e-09, 0, 0.025, 0, 3.7749e-09, 0, -0.025, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.855, 0, 0, 0, 0.855, 0, 0, 0, 0.855, 0, 1, 0)
+transform = Transform3D(0.855, 0, 0, 0, 0.855, 0, 0, 0, 0.855, 0, 0.85338, 0)
 shape = SubResource("CylinderShape3D_1quu0")
 
 [node name="health_bar" parent="." instance=ExtResource("3_lsw4l")]

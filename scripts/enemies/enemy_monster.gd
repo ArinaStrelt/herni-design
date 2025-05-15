@@ -1,13 +1,13 @@
 extends CharacterBody3D
 
-@export var speed_patrol = 21
-@export var speed_chase = 2
+@export var speed_patrol = 0.5
+@export var speed_chase = 2.5
 @export var aggro_distance = 8.0
 @export var attack_distance = 1.5
-@export var patrol_radius = 5.0
+@export var patrol_radius = 2.0
 @export var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var rotation_speed = 5.0
-@export var max_health := 200
+@export var max_health := 250
 @export var knockback_duration = 0.25
 @export var knockback_force = 5.0
 @export var attack_damage = 40
@@ -33,6 +33,7 @@ func _ready():
 	spawn_position = global_position
 	animation_player.play("idle")
 	animation_player.animation_finished.connect(on_animation_changed)
+	pick_new_patrol_point()
 
 func _physics_process(delta):
 	if is_dead:
@@ -54,8 +55,8 @@ func _physics_process(delta):
 		distance_to_player = global_position.distance_to(player.global_position)
 		if distance_to_player <= aggro_distance:
 			state = "chase"
-		else:
-			state = "idle"
+		elif state != "patrol":
+			state = "patrol"
 
 	match state:
 		"idle":
@@ -67,13 +68,14 @@ func _physics_process(delta):
 					attack()
 				else:
 					chase_player(delta)
+		"patrol":
+			patrol(delta)
 
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
 	move_and_slide()
 
-	# Smooth rotation
 	var look_dir: Vector3
 	if velocity.length() > 0.1:
 		look_dir = velocity.normalized()
@@ -86,14 +88,12 @@ func _physics_process(delta):
 		var corrected_target_angle = target_angle + deg_to_rad(180)
 		model_holder.rotation.y = lerp_angle(current_angle, corrected_target_angle, delta * rotation_speed)
 
-func chase_player(delta):
+func chase_player(_delta):
 	if animation_player.current_animation != "run":
 		animation_player.play("run")
 
-	# ✅ Always update the path
 	nav_agent.set_target_position(player.global_position)
 
-	# ✅ Wait until path is ready
 	if nav_agent.is_navigation_finished():
 		velocity = Vector3.ZERO
 		return
@@ -106,6 +106,40 @@ func chase_player(delta):
 		velocity = direction.normalized() * speed_chase
 	else:
 		velocity = Vector3.ZERO
+
+func patrol(delta):
+	if nav_agent.is_navigation_finished():
+		if animation_player.current_animation != "idle":
+			animation_player.play("idle")
+		velocity = Vector3.ZERO
+		wait_time -= delta
+		if wait_time <= 0:
+			pick_new_patrol_point()
+		return
+
+	if animation_player.current_animation != "run":
+		animation_player.play("run")
+		animation_player.speed_scale = 0.7
+
+	var next_pos = nav_agent.get_next_path_position()
+	var direction = next_pos - global_position
+	direction.y = 0
+
+	if direction.length() > 0.1:
+		velocity = direction.normalized() * speed_patrol
+	else:
+		velocity = Vector3.ZERO
+
+func pick_new_patrol_point():
+	var offset = Vector3(
+		randf_range(-1.0, 1.0),
+		0,
+		randf_range(-1.0, 1.0)
+	).normalized() * patrol_radius
+
+	var target = spawn_position + offset
+	nav_agent.set_target_position(target)
+	wait_time = randf_range(1.0, 2.5)
 
 func attack():
 	if attack_timer > 0.0:
@@ -122,7 +156,6 @@ func on_animation_changed(anim_name: String):
 		do_the_damage()
 	last_animation = anim_name
 
-# udělej damage až když se dokončí animace
 func do_the_damage():
 	if player and global_position.distance_to(player.global_position) <= attack_distance:
 		if "take_damage" in player:
@@ -170,17 +203,10 @@ func die():
 	is_dead = true
 	print("Enemy died.")
 
-	# Vytvoření mince
 	var coin_scene = preload("res://scenes/coins/coins.tscn").instantiate()
 	var coin = coin_scene.get_node("interact_area")
-
-	# Případně nastav vlastní hodnotu (např. boss dropne 50)
 	coin.value = randi_range(20, 30)
-
-	# Umístění na pozici nepřítele
 	coin_scene.transform.origin = position
-
-	# Přidání do scény
 	get_tree().current_scene.add_child(coin_scene)
 
 	await get_tree().create_timer(2.0).timeout
@@ -190,6 +216,4 @@ func die():
 func scale_difficulty(level: int):
 	if level > 1:
 		max_health = max_health + ((level-1) * 125)
-		attack_damage = level * (attack_damage/(level-1))
-	else:
-		return
+		attack_damage = int(level * (float(attack_damage) / (level - 1)))

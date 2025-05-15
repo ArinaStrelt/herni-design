@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @export var speed := 1
 @export var attack_range := 10.0
-@export var detection_range := 20.0
+@export var detection_range := 15.0
 @export var attack_cd: = 1.0
 @export var magic_ball_scene := preload("res://scenes/enemies/magic_ball.tscn")
 @export var max_health := 150
@@ -120,7 +120,7 @@ func take_damage(amount: int):
 
 
 func die():
-	var position = global_transform.origin
+	var death_position = global_transform.origin
 	is_dead   = true
 	velocity  = Vector3.ZERO
 	move_and_slide()
@@ -134,17 +134,18 @@ func die():
 	coin.value = randi_range(10, 20)  # nebo prostě coin.value = 5
 
 	# Umístění na pozici nepřítele
-	coin_scene.transform.origin = position
+	coin_scene.transform.origin = death_position
 
 	# Přidání do scény
 	get_tree().current_scene.add_child(coin_scene)
-	await get_tree().create_timer(2.0).timeout
+	await animation_player.animation_finished
 	
 	queue_free()
 
 func scale_difficulty(level: int):
 	if level > 1:
 		max_health = max_health + ((level-1) * 100)
-		attack_damage = level * (attack_damage/(level-1))
+		attack_damage = int(level * (float(attack_damage) / (level - 1)))
+
 	else:
 		return

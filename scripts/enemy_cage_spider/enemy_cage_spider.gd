@@ -4,7 +4,7 @@ extends CharacterBody3D
 @export var speed_chase = 1.5
 @export var aggro_distance = 5.0
 @export var attack_distance = 1.0
-@export var patrol_radius = 5.0
+@export var patrol_radius = 4.0
 @export var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var rotation_speed = 5.0
 @export var max_health := 75
@@ -239,6 +239,7 @@ func _print_position_loop() -> void:
 func scale_difficulty(level: int):
 	if level > 1:
 		max_health = max_health + ((level-1) * 50)
-		attack_damage = level * (attack_damage/(level-1))
+		attack_damage = int(level * (float(attack_damage) / (level - 1)))
+
 	else:
 		return

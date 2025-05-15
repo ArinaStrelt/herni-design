@@ -16,7 +16,7 @@ var max_health = 100
 var current_health = max_health
 var interactables = []
 var gold = 0
-var damage = 1500
+var damage = 15
 
 var is_rolling: bool = false
 var roll_speed := 1.75
@@ -184,7 +184,7 @@ func flash_red():
 	var original_colors := {}
 
 	for mesh in meshes:
-		var surface_count = mesh.get_surface_override_material_count()
+		var _surface_count = mesh.get_surface_override_material_count()
 		for i in mesh.mesh.get_surface_count():
 			var mat = mesh.get_active_material(i)
 			if mat:
