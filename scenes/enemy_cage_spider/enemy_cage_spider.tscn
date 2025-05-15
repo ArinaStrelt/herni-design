@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b8kope1ygbg0t" path="res://scripts/enemy_cage_spider/enemy_cage_spider.gd" id="1_rh0c5"]
 [ext_resource type="PackedScene" uid="uid://dteo6g3s7xu7f" path="res://scenes/health_bar.tscn" id="3_ajug3"]
-[ext_resource type="PackedScene" uid="uid://by1bykw6wq7cn" path="res://assets/models/enemy_cage_spider_animated_2/cage_spider_animated_v2.glb" id="3_vasbb"]
+[ext_resource type="PackedScene" uid="uid://b68ccp4d6ivka" path="res://assets/models/enemy_cage_spider_animated_3/cage_spider_animated_v3.glb" id="3_bnj1x"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vasbb"]
 height = 1.00183
@@ -19,7 +19,7 @@ script = ExtResource("1_rh0c5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.501114, 0)
 shape = SubResource("CylinderShape3D_vasbb")
 
-[node name="cage_spider_animated_v2" parent="." instance=ExtResource("3_vasbb")]
+[node name="cage_spider_animated_v3" parent="." instance=ExtResource("3_bnj1x")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 
 [node name="health_bar" parent="." instance=ExtResource("3_ajug3")]
