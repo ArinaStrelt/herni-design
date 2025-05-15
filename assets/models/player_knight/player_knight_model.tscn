@@ -3553,7 +3553,7 @@ bones/65/rotation = Quaternion(0.00516525, 0.0283678, 0.0870193, 0.995789)
 bones/66/rotation = Quaternion(0.00640316, 0.0281143, -0.054824, 0.99808)
 
 [node name="K30_W01_REF_001" parent="Knight/Skeleton3D" index="0"]
-transform = Transform3D(0.656746, 0.447598, 0.606912, 0.0868918, 0.754527, -0.650491, -0.749089, 0.479943, 0.45664, -0.398359, 1.39561, 0.348973)
+transform = Transform3D(0.656746, 0.447597, 0.606912, 0.0868922, 0.754527, -0.650491, -0.749089, 0.479943, 0.45664, -0.398358, 1.39561, 0.348973)
 
 [node name="sword_hitbox" type="Area3D" parent="Knight/Skeleton3D/K30_W01_REF_001" index="1"]
 monitoring = false

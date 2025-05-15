@@ -3806,7 +3806,7 @@ bones/82/position = Vector3(2.24899e-06, 16.4751, 4.44438e-07)
 bones/82/rotation = Quaternion(0.307605, 0.0449699, 0.0278918, 0.950041)
 
 [node name="Cube_sword_0" parent="Armature/Skeleton3D" index="0"]
-transform = Transform3D(1.39871, -2.93988, 1.43781, -0.867508, 1.17462, 3.24565, -3.15557, -1.62602, -0.254966, -37.9764, 6.40622, -100.457)
+transform = Transform3D(1.39871, -2.93988, 1.4378, -0.867502, 1.17462, 3.24566, -3.15557, -1.62602, -0.25496, -37.9765, 6.40619, -100.457)
 
 [node name="sword_hitbox" type="Area3D" parent="Armature/Skeleton3D/Cube_sword_0" index="1"]
 monitoring = false
@@ -3816,7 +3816,7 @@ transform = Transform3D(1, 0, 0, 4.76837e-07, 1, -2.98023e-08, 0, -2.98023e-08, 
 shape = SubResource("BoxShape3D_sa8gp")
 
 [node name="Cube_001_SBWORKING_sword_0" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(1.39871, -2.93988, 1.43781, -0.867508, 1.17462, 3.24565, -3.15557, -1.62602, -0.254966, -74.9652, -77.1183, -93.8851)
+transform = Transform3D(1.39871, -2.93988, 1.4378, -0.867502, 1.17462, 3.24566, -3.15557, -1.62602, -0.25496, -74.9652, -77.1183, -93.8853)
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {

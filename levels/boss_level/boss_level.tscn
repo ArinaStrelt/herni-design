@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6dwarrnkqhd"]
+[gd_scene load_steps=9 format=3 uid="uid://b6dwarrnkqhd"]
 
 [ext_resource type="PackedScene" uid="uid://2c0hfufyc4rv" path="res://levels/boss_level/boss_level.glb" id="1_scxyc"]
 [ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_ympyq"]
 [ext_resource type="PackedScene" uid="uid://d150g1cwpq5ew" path="res://scenes/enemy_cage_spider/enemy_cage_spider.tscn" id="3_6emdl"]
 [ext_resource type="PackedScene" uid="uid://bv82aiiek0115" path="res://scenes/boss/boss.tscn" id="4_lg6nu"]
+[ext_resource type="PackedScene" uid="uid://dn2cll1sjuaap" path="res://scenes/enemy_monster/enemy_monster.tscn" id="5_k55a1"]
+[ext_resource type="PackedScene" uid="uid://kghywllagtak" path="res://scenes/enemies/enemy_skeleton.tscn" id="6_3xrqo"]
 
 [sub_resource type="Environment" id="Environment_ympyq"]
 background_mode = 2
@@ -32,13 +34,16 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 4, 3), PackedInt32Arr
 environment = SubResource("Environment_ympyq")
 
 [node name="enemy_cage_spider" parent="." instance=ExtResource("3_6emdl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.51476, 0, -2.43911)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.607369, 0, -2.43911)
 
 [node name="enemy_cage_spider2" parent="." instance=ExtResource("3_6emdl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58547, 0, -2.46502)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.58547, 0, -4.61351)
+
+[node name="enemy_cage_spider3" parent="." instance=ExtResource("3_6emdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.04803, 1.19209e-07, -4.05785)
 
 [node name="boss" parent="." instance=ExtResource("4_lg6nu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.21773, -0.0660815, -4.21028)
+transform = Transform3D(-0.0578079, 0, -0.998328, 0, 1, 0, 0.998328, 0, -0.0578079, 4.40532, -0.0660815, -7.88865)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_lg6nu")
@@ -101,3 +106,24 @@ directional_shadow_pancake_size = 4.1
 
 [node name="player_spawn" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.28569, 0, 1.08161)
+
+[node name="enemy_cage_spider4" parent="." instance=ExtResource("3_6emdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.63661, 1.19209e-07, -2.4218)
+
+[node name="enemy_monster" parent="." instance=ExtResource("5_k55a1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67123, 0, -7.61081)
+
+[node name="enemy_monster2" parent="." instance=ExtResource("5_k55a1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.05989, 0, -7.69446)
+
+[node name="enemy_skeleton" parent="." instance=ExtResource("6_3xrqo")]
+transform = Transform3D(-0.838823, 0, -0.544405, 0, 1, 0, 0.544405, 0, -0.838823, -0.664583, 4.76837e-07, -8.26528)
+
+[node name="enemy_skeleton2" parent="." instance=ExtResource("6_3xrqo")]
+transform = Transform3D(-0.85169, 0, -0.524045, 0, 1, 0, 0.524045, 0, -0.85169, 7.04309, 0, -5.6295)
+
+[node name="enemy_skeleton3" parent="." instance=ExtResource("6_3xrqo")]
+transform = Transform3D(-0.978721, 0, 0.205196, 0, 1, 0, -0.205196, 0, -0.978721, 9.93209, 0, -3.02145)
+
+[node name="enemy_skeleton4" parent="." instance=ExtResource("6_3xrqo")]
+transform = Transform3D(-0.975227, 0, 0.221208, 0, 1, 0, -0.221208, 0, -0.975227, 9.99265, 0, -7.71691)

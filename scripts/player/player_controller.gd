@@ -1,7 +1,8 @@
 extends CharacterBody3D
 
-@onready var animation_player: AnimationPlayer = $player_knight_model/AnimationPlayer
-@onready var knight_model: Node3D = $player_knight_model/Knight
+@onready var animation_player: AnimationPlayer = $player_knight_model_new/AnimationPlayer
+
+@onready var knight_model: Node3D = $player_knight_model_new
 @onready var ui = $"/root/level_loader/UI"
 @onready var loader = $"/root/level_loader"
 @onready var hit_effect := $"/root/level_loader/UI/hit_effect"
@@ -17,6 +18,10 @@ var interactables = []
 var gold = 0
 var damage = 1500
 
+var is_rolling: bool = false
+var roll_speed := 1.75
+var roll_duration := 1
+
 var can_move = true  # nová proměnná
 
 func _ready():
@@ -25,7 +30,7 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _input(event):
-	if is_dead:
+	if is_dead or is_rolling:
 		return
 
 	# E klávesa (interact)
@@ -39,13 +44,16 @@ func _input(event):
 	# Útoky
 	if can_move:
 		if event.is_action_pressed("attack") and not attacking:
-			start_attack("Slash")
+			start_attack("Attack")
 
 		elif event.is_action_pressed("attack_2") and not attacking:
-			start_attack("Spin_slash")
+			start_attack("Spin_Attack")
 
 		elif event.is_action_pressed("restart") and not is_dead:
 			die()
+		
+		elif event.is_action_pressed("roll"):
+			start_roll()
 
 func try_interact():
 	if interactables.size() == 0:
@@ -68,6 +76,28 @@ func try_interact():
 			if ui and ui.shop_opened:
 				can_move = false  # zakáže pohyb
 
+func start_roll():
+	if is_dead or attacking:
+		return
+	
+	is_rolling = true
+	attacking = true  # volitelně, aby nemohl útočit během skoku
+	animation_player.play("Roll", -1, 1.2)
+
+	var direction = transform.basis.z.normalized()
+	var timer = get_tree().create_timer(roll_duration)
+
+	while timer.time_left > 0:
+		velocity = direction * roll_speed
+		move_and_slide()
+		await get_tree().process_frame
+
+	# rollback na normální stav
+	velocity = Vector3.ZERO
+	is_rolling = false
+	attacking = false
+
+
 func _physics_process(delta):
 	if is_dead:
 		return
@@ -76,7 +106,7 @@ func _physics_process(delta):
 		# když je zakázaný pohyb, tak jen resetuj rychlost
 		velocity.x = 0.0
 		velocity.z = 0.0
-		animation_player.play("Idle")
+		animation_player.play("Idle_2")
 	else:
 		handle_movement(delta)
 
@@ -111,7 +141,7 @@ func handle_movement(delta):
 	else:
 		velocity.x = 0.0
 		velocity.z = 0.0
-		animation_player.play("Idle")
+		animation_player.play("Idle_2")
 
 # -----------------------
 # Tvoje pomocné funkce (beze změny):
@@ -142,8 +172,8 @@ func _on_area_exited(area):
 func start_attack(anim_name: String):
 	if animation_player.has_animation(anim_name):
 		attacking = true
-		$player_knight_model.current_attack_anim = anim_name
-		animation_player.play(anim_name, -1, 1.5)
+		knight_model.current_attack_anim = anim_name
+		animation_player.play(anim_name)
 		await animation_player.animation_finished
 		attacking = false
 
@@ -166,16 +196,10 @@ func flash_red():
 	await get_tree().create_timer(0.35).timeout
 
 	# Obnovení barev
-	for mesh in meshes:
-		for i in mesh.mesh.get_surface_count():
-			var mat = mesh.get_active_material(i)
-			if mat:
-				var key = mesh.name + "_" + str(i)
-				if key in original_colors:
-					mat.albedo_color = original_colors[key]
+	reset_colors()
 
 func reset_colors():
-	var meshes = $player_knight_model.find_children("*", "MeshInstance3D", true, false)
+	var meshes = knight_model.find_children("*", "MeshInstance3D", true, false)
 
 	for mesh in meshes:
 		for i in mesh.mesh.get_surface_count():
@@ -185,7 +209,7 @@ func reset_colors():
 
 
 func take_damage(amount: int):
-	if is_dead:
+	if is_dead or is_rolling:
 		return
 
 	current_health -= amount
@@ -196,14 +220,15 @@ func take_damage(amount: int):
 	if current_health <= 0:
 		die()
 	else:
-		if animation_player.has_animation("Hurt"):
-			animation_player.play("Hurt")
+		if animation_player.has_animation("Impact"):
+			animation_player.play("Impact")
+			
 
 func die():
 	is_dead = true
 	current_health = 0
 	ui.update_health(current_health, max_health)
-	animation_player.play("Death")
+	animation_player.play("Death_2")
 	velocity = Vector3.ZERO
 	await animation_player.animation_finished
 	loader.reset_run()
@@ -213,7 +238,7 @@ func reset_player():
 	is_dead = false
 	reset_colors()
 	animation_player.stop()
-	animation_player.play("Idle")
+	animation_player.play("Idle_2")
   # Reset pohybu
 	velocity = Vector3.ZERO
 
