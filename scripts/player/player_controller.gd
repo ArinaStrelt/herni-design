@@ -154,7 +154,7 @@ func flash_red():
 	var original_colors := {}
 
 	for mesh in meshes:
-		var surface_count = mesh.get_surface_override_material_count()
+		var _surface_count = mesh.get_surface_override_material_count()
 		for i in mesh.mesh.get_surface_count():
 			var mat = mesh.get_active_material(i)
 			if mat:
