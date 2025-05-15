@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bv82aiiek0115"]
+[gd_scene load_steps=6 format=3 uid="uid://bv82aiiek0115"]
 
 [ext_resource type="Script" uid="uid://beru588o4hql7" path="res://scripts/boss/boss.gd" id="1_8ftqf"]
 [ext_resource type="PackedScene" uid="uid://banxt8qpup670" path="res://assets/models/boss/boss_cage_spider2.glb" id="1_dgf3a"]
 [ext_resource type="PackedScene" uid="uid://dteo6g3s7xu7f" path="res://scenes/health_bar.tscn" id="3_atjq5"]
-[ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="4_0xsra"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dgf3a"]
 height = 1.00195
@@ -25,9 +24,6 @@ shape = SubResource("CylinderShape3D_dgf3a")
 [node name="health_bar" parent="." instance=ExtResource("3_atjq5")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.108263, 1.26236, -0.0420927)
 texture = SubResource("ViewportTexture_0xsra")
-
-[node name="Fire2" parent="." instance=ExtResource("4_0xsra")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.147081, 0.672767, -0.0286218)
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
