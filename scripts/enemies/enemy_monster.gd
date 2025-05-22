@@ -28,6 +28,7 @@ var last_animation: String = ""
 @onready var model_holder = $monster_enemy
 @onready var animation_player: AnimationPlayer = $monster_enemy/AnimationPlayer
 @onready var nav_agent: NavigationAgent3D = $NavAgent
+@onready var collision_shape: CollisionShape3D = $CollisionShape3D
 
 func _ready():
 	spawn_position = global_position
@@ -202,6 +203,8 @@ func take_damage(amount: int):
 func die():
 	is_dead = true
 	print("Enemy died.")
+	
+	collision_shape.set_deferred("disabled", true)
 
 	var coin_scene = preload("res://scenes/coins/coins.tscn").instantiate()
 	var coin = coin_scene.get_node("interact_area")

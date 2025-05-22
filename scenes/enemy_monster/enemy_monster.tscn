@@ -29,3 +29,6 @@ texture = SubResource("ViewportTexture_4308b")
 avoidance_enabled = true
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.709328, 0)
+radius = 0.5
+height = 2.0

@@ -22,6 +22,7 @@ var spawn_position: Vector3
 @onready var model: Node3D = $enemy_knight_model
 @onready var anim: AnimationPlayer = model.get_node("AnimationPlayer")
 @onready var nav_agent: NavigationAgent3D = $NavAgent
+@onready var collision_shape: CollisionShape3D = $CollisionShape3D 
 
 func _ready():
 	spawn_position = global_position
@@ -157,6 +158,7 @@ func take_damage(amount:int):
 func die():
 	var death_position = global_transform.origin
 	is_dead = true
+	collision_shape.set_deferred("disabled", true)
 	velocity = Vector3.ZERO
 	move_and_slide()
 	anim.play("A-pose")
