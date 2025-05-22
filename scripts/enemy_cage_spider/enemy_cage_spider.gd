@@ -29,14 +29,14 @@ var attack_anim_duration = 1
 @onready var model_holder = $cage_spider_animated_v3
 @onready var animation_player: AnimationPlayer = model_holder.get_node("AnimationPlayer")
 @onready var nav_agent: NavigationAgent3D = $NavAgent
+@onready var collision_shape: CollisionShape3D = $CollisionShape3D
+
 
 func _ready():
 	spawn_position = global_position
 	set_new_patrol_point()
 	_play_animation("Idle")
 
-	# Debug: print position every second
-	_print_position_loop()
 
 func _physics_process(delta):
 	if is_dead:
@@ -201,6 +201,8 @@ func die():
 	is_dead = true
 	print("Enemy died.")
 
+	collision_shape.set_deferred("disabled", true)
+
 	animation_player.stop()
 	animation_player.play("Death")
 
@@ -228,13 +230,6 @@ func _play_animation(anim_name: String):
 		return
 	if animation_player.current_animation != anim_name:
 		animation_player.play(anim_name)
-
-func _print_position_loop() -> void:
-	await get_tree().create_timer(1.0).timeout
-	while not is_dead:
-		print("Spider position:", global_position)
-		await get_tree().create_timer(1.0).timeout
-		
 		
 func scale_difficulty(level: int):
 	if level > 1:
