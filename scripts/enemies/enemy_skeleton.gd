@@ -12,6 +12,7 @@ extends CharacterBody3D
 @onready var magic_spawn_point: Marker3D = $skeleton/magic_point
 @onready var player: Node3D = null
 @onready var model: Node3D = $skeleton
+@onready var collision_shape: CollisionShape3D = $CollisionShape3D
 
 var current_health = max_health
 var is_attacking: bool = false
@@ -122,6 +123,7 @@ func take_damage(amount: int):
 func die():
 	var death_position = global_transform.origin
 	is_dead   = true
+	collision_shape.set_deferred("disabled", true)
 	velocity  = Vector3.ZERO
 	move_and_slide()
 	animation_player.play("Death")

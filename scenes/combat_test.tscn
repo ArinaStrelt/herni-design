@@ -1,6 +1,5 @@
-[gd_scene load_steps=8 format=3 uid="uid://dlo3ohfbkdqv0"]
+[gd_scene load_steps=7 format=3 uid="uid://dlo3ohfbkdqv0"]
 
-[ext_resource type="PackedScene" uid="uid://y3igs2apyv0g" path="res://scenes/player/player.tscn" id="1_ekcfv"]
 [ext_resource type="PackedScene" uid="uid://bv82aiiek0115" path="res://scenes/boss/boss.tscn" id="3_5jbmu"]
 [ext_resource type="PackedScene" uid="uid://dt45p04n7o85i" path="res://scenes/exit_zone.tscn" id="4_s5ga2"]
 
@@ -16,7 +15,7 @@ size = Vector2(100, 100)
 [sub_resource type="BoxShape3D" id="BoxShape3D_0yobm"]
 size = Vector3(100, 1, 100)
 
-[node name="Node3D" type="Node3D"]
+[node name="combat_test" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -25,15 +24,13 @@ shadow_enabled = true
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3, 5.07057)
 
-[node name="Player" parent="." instance=ExtResource("1_ekcfv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.0474)
-
 [node name="exit_zone" parent="." instance=ExtResource("4_s5ga2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2049, 2.38419e-07, 1.40189)
 
 [node name="boss" parent="." instance=ExtResource("3_5jbmu")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.270544, -0.0112565)
 navigation_mesh = SubResource("NavigationMesh_w6gk5")
 
 [node name="A" type="MeshInstance3D" parent="NavigationRegion3D"]

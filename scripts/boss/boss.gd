@@ -28,7 +28,8 @@ var attack_anim_duration = 1
 
 @onready var model_holder = $boss_cage_spider2
 @onready var animation_player: AnimationPlayer = model_holder.get_node("AnimationPlayer")
-@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D  # <- Add this in your scene as a child of this character
+@onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
+@onready var collision_shape: CollisionShape3D = $CollisionShape3D
 
 func _ready():
 	spawn_position = global_position
@@ -198,6 +199,8 @@ func take_damage(amount: int):
 func die():
 	is_dead = true
 	print("Enemy died.")
+
+	collision_shape.set_deferred("disabled", true)
 
 	animation_player.stop()
 	animation_player.play("Death")

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://2c0hfufyc4rv" path="res://levels/boss_level/boss_level.glb" id="1_scxyc"]
 [ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_ympyq"]
-[ext_resource type="PackedScene" uid="uid://d150g1cwpq5ew" path="res://scenes/enemy_cage_spider/enemy_cage_spider.tscn" id="3_6emdl"]
+[ext_resource type="PackedScene" uid="uid://d150g1cwpq5ew" path="res://enemy_cage_spider.tscn" id="3_6emdl"]
 [ext_resource type="PackedScene" uid="uid://bv82aiiek0115" path="res://scenes/boss/boss.tscn" id="4_lg6nu"]
 [ext_resource type="PackedScene" uid="uid://dn2cll1sjuaap" path="res://scenes/enemy_monster/enemy_monster.tscn" id="5_k55a1"]
 [ext_resource type="PackedScene" uid="uid://kghywllagtak" path="res://scenes/enemies/enemy_skeleton.tscn" id="6_3xrqo"]

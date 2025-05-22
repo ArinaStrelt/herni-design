@@ -26,5 +26,8 @@ texture = SubResource("ViewportTexture_1quu0")
 [node name="NavAgent" type="NavigationAgent3D" parent="."]
 target_desired_distance = 0.5
 avoidance_enabled = true
+radius = 1.0
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.472253, 0)
+radius = 0.4
