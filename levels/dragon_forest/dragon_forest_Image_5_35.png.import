@@ -3,11 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdmswlagkmev8"
-path.s3tc="res://.godot/imported/dragon_forest_Image_5_35.png-307127590631c4bdc2c2da50a57b94a7.s3tc.ctex"
-metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
+valid=false
 generator_parameters={
 "md5": "b2df2a89a14829059333aecb883d3e56"
 }
@@ -15,7 +11,6 @@ generator_parameters={
 [deps]
 
 source_file="res://levels/dragon_forest/dragon_forest_Image_5_35.png"
-dest_files=["res://.godot/imported/dragon_forest_Image_5_35.png-307127590631c4bdc2c2da50a57b94a7.s3tc.ctex"]
 
 [params]
 
