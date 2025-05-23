@@ -1,12 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bmxtnall3w373"]
+[gd_scene load_steps=9 format=3 uid="uid://bmxtnall3w373"]
 
 [ext_resource type="PackedScene" uid="uid://dbpxy6wbs3vxm" path="res://levels/entrance_model/entrance.glb" id="1_6e1lf"]
 [ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_wydwa"]
 [ext_resource type="PackedScene" uid="uid://8np8ds706ft2" path="res://levels/entrance_model/doors.glb" id="5_6e1lf"]
-[ext_resource type="PackedScene" uid="uid://bl8hue868b2ug" path="res://scenes/enemies/enemy_knight.tscn" id="6_2phd1"]
 [ext_resource type="Script" uid="uid://bs0jpfy1oclj3" path="res://scripts/doors.gd" id="6_e7nie"]
 [ext_resource type="PackedScene" uid="uid://dt45p04n7o85i" path="res://scenes/exit_zone.tscn" id="6_jhwv2"]
-[ext_resource type="PackedScene" uid="uid://kghywllagtak" path="res://scenes/enemies/enemy_skeleton.tscn" id="7_jhwv2"]
 
 [sub_resource type="Environment" id="Environment_wfn6q"]
 background_mode = 2
@@ -40,15 +38,6 @@ environment = SubResource("Environment_wfn6q")
 
 [node name="exit_zone" parent="." instance=ExtResource("6_jhwv2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.55887, 0.541855, -16.6044)
-
-[node name="enemy_knight" parent="." instance=ExtResource("6_2phd1")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2.13524, 0, -7.20358)
-
-[node name="enemy_knight2" parent="." instance=ExtResource("6_2phd1")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.17149, 0, -7.16331)
-
-[node name="enemy_skeleton" parent="." instance=ExtResource("7_jhwv2")]
-transform = Transform3D(0.695, 0, 0, 0, 0.695, 0, 0, 0, 0.695, -0.415, 0, -8.57244)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.04, 0)
@@ -119,7 +108,33 @@ near = 0.015
 far = 1319.93
 
 [node name="player_spawn" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36765, 0, 1.11243)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36765, 0, 2.97623)
+
+[node name="enemy_spawns" type="Node3D" parent="."]
+
+[node name="spawn_point1" type="Marker3D" parent="enemy_spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.70445, 0, -2.02293)
+
+[node name="spawn_point2" type="Marker3D" parent="enemy_spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31006, 0, -2.02293)
+
+[node name="spawn_point3" type="Marker3D" parent="enemy_spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.36772, 0, -2.02293)
+
+[node name="spawn_point4" type="Marker3D" parent="enemy_spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.09096, 0, -6.25059)
+
+[node name="spawn_point5" type="Marker3D" parent="enemy_spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.70861, 0, -6.13313)
+
+[node name="spawn_point6" type="Marker3D" parent="enemy_spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.88392, 0, -6.23033)
+
+[node name="spawn_point7" type="Marker3D" parent="enemy_spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05809, 0, -9.78721)
+
+[node name="spawn_point8" type="Marker3D" parent="enemy_spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.65275, 0, -9.81217)
 
 [connection signal="body_entered" from="NavigationRegion3D/entrance/doors/Area3D" to="NavigationRegion3D/entrance/doors" method="_on_player_enter"]
 [connection signal="body_exited" from="NavigationRegion3D/entrance/doors/Area3D" to="NavigationRegion3D/entrance/doors" method="_on_player_leave"]

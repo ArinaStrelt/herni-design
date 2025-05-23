@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @export var speed_patrol = 0.5
-@export var speed_chase = 2.5
+@export var speed_chase = 0.75
 @export var aggro_distance = 8.0
 @export var attack_distance = 2.0
 @export var patrol_radius = 2.0
@@ -207,4 +207,4 @@ func die():
 func scale_difficulty(level: int):
 	if level > 1:
 		max_health = max_health + ((level-1) * 125)
-		attack_damage = int(level * (float(attack_damage) / (level - 1)))
+		attack_damage = attack_damage + ((level-1) * 15)

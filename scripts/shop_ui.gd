@@ -21,7 +21,7 @@ extends Control
 var hp_upgrade_amount = 20
 var hp_upgrade_cost = 25
 
-var dmg_upgrade_amount = 5
+var dmg_upgrade_amount = 10
 var dmg_upgrade_cost = 25
 
 func _ready():
