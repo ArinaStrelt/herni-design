@@ -233,8 +233,8 @@ func _play_animation(anim_name: String):
 		
 func scale_difficulty(level: int):
 	if level > 1:
-		max_health = max_health + ((level-1) * 50)
-		attack_damage = int(level * (float(attack_damage) / (level - 1)))
+		max_health = max_health + ((level-1) * 25)
+		attack_damage = attack_damage + ((level-1) * 10)
 
 	else:
 		return

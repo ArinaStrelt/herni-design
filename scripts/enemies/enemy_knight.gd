@@ -174,5 +174,5 @@ func die():
 
 func scale_difficulty(level: int):
 	if level > 1:
-		max_health += ((level - 1) * 75)
-		attack_damage = int(level * (float(attack_damage) / (level - 1)))
+		max_health = max_health + ((level-1) * 75)
+		attack_damage = attack_damage + ((level-1) * 15)

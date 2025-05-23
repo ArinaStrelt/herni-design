@@ -8,7 +8,12 @@ extends Node3D
 
 var current_level: Node = null
 
-var room_pool := [
+var room_pool_1 := [
+	"res://levels/dragon_forest/dragon_forest.tscn",
+	"res://levels/ruins_forest/ruins_forest.tscn"
+]
+
+var room_pool_2 := [
 	"res://levels/hrad_1/hrad_1.tscn",
 	"res://levels/hrad_2/hrad_2.tscn"
 ]
@@ -17,7 +22,7 @@ var start_room := "res://levels/entrance_model/entrance.tscn"
 var boss_room := "res://levels/boss_level/boss_level.tscn"
 
 var room_count := 0
-var max_rooms_before_boss := 4
+var max_rooms_before_boss := 7
 
 func _ready():
 	# Načti první level při spuštění
@@ -49,19 +54,21 @@ func load_level(path: String):
 func change_level(path := ""):
 	var tween = fade.fade_out()
 	await tween.finished
-	print(room_count)
-	if path == "":
-		if room_count == 0:
-			path = start_room
-		elif room_count >= max_rooms_before_boss:
-			path = boss_room
-		else:
-			path = room_pool.pick_random()
-	print(path)
 	if not path.ends_with("base.tscn"):
 		room_count += 1
 	else:
 		room_count = 0
+	print(room_count)
+	if path == "":
+		if room_count == 4:
+			path = start_room
+		elif room_count > max_rooms_before_boss:
+			path = boss_room
+		elif room_count < 4:
+			path = room_pool_1.pick_random()
+		else:
+			path = room_pool_2.pick_random()
+	print(path)
 
 	
 	
@@ -74,13 +81,13 @@ func change_level(path := ""):
 
 func get_scaled_enemy():
 	var tier1 = preload("res://scenes/enemies/enemy_knight.tscn")
-	var tier2 = preload("res://scenes/enemy_cage_spider/enemy_cage_spider.tscn")
+	var tier2 = preload("res://scenes/enemies/enemy_cage_spider.tscn")
 	var tier3 = preload("res://scenes/enemies/enemy_skeleton.tscn")
 	var tier4 = preload("res://scenes/enemy_monster/enemy_monster.tscn")
 
-	if room_count < 2:
+	if room_count < 3:
 		return [tier1, tier3].pick_random()
-	elif room_count < 4:
+	elif room_count < 5:
 		return [tier1, tier2, tier3].pick_random()
 	else:
 		return [tier1, tier2, tier3, tier4].pick_random()

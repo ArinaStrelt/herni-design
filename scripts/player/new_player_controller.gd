@@ -1,7 +1,6 @@
 extends CharacterBody3D
 
 @onready var animation_player: AnimationPlayer = $player_knight_model_new/AnimationPlayer
-
 @onready var knight_model: Node3D = $player_knight_model_new
 @onready var ui = $"/root/level_loader/UI"
 @onready var loader = $"/root/level_loader"
@@ -13,16 +12,14 @@ var GRAVITY : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var attacking = false
 var is_dead = false
 var is_flinching = false
-var max_health = 100
+var max_health = 1000
 var current_health = max_health
 var interactables = []
 var gold = 0
-var damage = 20
+var damage = 150
 var is_rolling: bool = false
 var roll_speed := 2
-var roll_duration := 1.5
-
-var can_move = true  # nová proměnná
+var can_move = true
 
 func _ready():
 	$interact_area.connect("area_entered", _on_area_entered)
@@ -33,7 +30,6 @@ func _input(event):
 	if is_dead or is_rolling:
 		return
 
-	# E klávesa (interact)
 	if event.is_action_pressed("interact"):
 		if ui and ui.shop_opened:
 			ui.close_shop()
@@ -41,94 +37,28 @@ func _input(event):
 		else:
 			try_interact()
 
-	# Útoky
 	if can_move:
 		if event.is_action_pressed("attack") and not attacking:
 			start_attack("Attack")
-
 		elif event.is_action_pressed("attack_2") and not attacking:
 			start_attack("Spin_Attack")
-
 		elif event.is_action_pressed("restart") and not is_dead:
 			die()
-		
 		elif event.is_action_pressed("roll"):
 			start_roll()
-
-func try_interact():
-	if interactables.size() == 0:
-		return
-
-	var closest = get_closest_interactable()
-	if closest:
-		var target = closest
-
-		while target and not target.has_method("interact"):
-			if target.get_parent():
-				target = target.get_parent()
-			else:
-				break
-
-		if target and target.has_method("interact"):
-			target.interact(self)
-
-			# Pokud interact otevřel obchod
-			if ui and ui.shop_opened:
-				can_move = false  # zakáže pohyb
-
-func start_roll():
-	if is_dead:
-		return
-	
-	is_rolling = true
-	attacking = true
-	knight_model.attack_hitbox_off()
-	animation_player.play("Roll", -1, 1.2)
-
-	var roll_direction := transform.basis.z.normalized()
-	var timer = get_tree().create_timer(animation_player.get_animation("Roll").length * 0.8)
-
-	while timer.time_left > 0:
-		# Získáme nový směr podle vstupu
-		var input_vector = Vector2(
-			Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-			Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")
-		).normalized()
-
-		if input_vector != Vector2.ZERO:
-			var target_dir = Vector3(input_vector.x, 0, input_vector.y).normalized()
-			# Plynulé přiblížení směru
-			roll_direction = roll_direction.lerp(target_dir, 0.2)
-
-			# Rotace modelu do směru pohybu
-			var target_rotation = atan2(roll_direction.x, roll_direction.z)
-			rotation.y = lerp_angle(rotation.y, target_rotation, 0.2)
-
-		velocity = roll_direction.normalized() * roll_speed
-		move_and_slide()
-		await get_tree().process_frame
-
-	# rollback
-	velocity = Vector3.ZERO
-	is_rolling = false
-	attacking = false
-
-
-
 
 func _physics_process(delta):
 	if is_dead or is_flinching:
 		return
 
 	if not can_move:
-		# když je zakázaný pohyb, tak jen resetuj rychlost
-		velocity.x = 0.0
-		velocity.z = 0.0
+		velocity = Vector3.ZERO
 		animation_player.play("Idle_2")
+	elif is_rolling:
+		handle_roll()
 	else:
 		handle_movement(delta)
 
-	# Gravitace pořád běží
 	if not is_on_floor():
 		velocity.y -= GRAVITY * delta
 	else:
@@ -142,64 +72,123 @@ func handle_movement(delta):
 		velocity.z = 0.0
 		return
 
+	# Otáčení celé postavy směrem k myši
+	var mouse_pos = get_mouse_world_position()
+	if mouse_pos:
+		var dir = (mouse_pos - global_position)
+		dir.y = 0
+		if dir.length() > 0.1:
+			look_at(mouse_pos, Vector3.UP)
+			rotate_y(deg_to_rad(180))
+
 	var input_vector = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")
 	).normalized()
 
 	if input_vector != Vector2.ZERO:
-		var direction = Vector3(input_vector.x, 0, input_vector.y).normalized()
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		var forward = -transform.basis.z
+		var right = -transform.basis.x
+		var move_direction = (forward * input_vector.y + right * input_vector.x).normalized()
 
-		var target_rotation = atan2(direction.x, direction.z)
-		rotation.y = lerp_angle(rotation.y, target_rotation, delta * 10.0)
-
+		velocity.x = move_direction.x * SPEED
+		velocity.z = move_direction.z * SPEED
 		animation_player.play("Run")
 	else:
 		velocity.x = 0.0
 		velocity.z = 0.0
 		animation_player.play("Idle_2")
 
-# -----------------------
-# Tvoje pomocné funkce (beze změny):
-func look_towards_mouse():
-	var camera = get_viewport().get_camera_3d()
-	if not camera:
+func handle_roll():
+	# Otáčení k myši
+	var mouse_pos = get_mouse_world_position()
+	if mouse_pos:
+		var dir = (mouse_pos - global_position)
+		dir.y = 0
+		if dir.length() > 0.1:
+			look_at(mouse_pos, Vector3.UP)
+			rotate_y(deg_to_rad(180))
+
+	# Pohyb podle WSAD nebo myši
+	var input_vector = Vector2(
+		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
+		Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")
+	).normalized()
+
+	var move_direction = Vector3.ZERO
+
+	if input_vector != Vector2.ZERO:
+		var forward = -transform.basis.z
+		var right = -transform.basis.x
+		move_direction = (forward * input_vector.y + right * input_vector.x).normalized()
+	else:
+		# Pokud nedrží WSAD → jdi směrem k myši
+		if mouse_pos:
+			move_direction = (mouse_pos - global_position).normalized()
+			move_direction.y = 0  # zabránit skákání
+
+	velocity.x = move_direction.x * roll_speed
+	velocity.z = move_direction.z * roll_speed
+
+
+func start_roll():
+	if is_dead:
 		return
+	is_rolling = true
+	attacking = true
+	knight_model.attack_hitbox_off()
+	animation_player.play("Roll", -1, 1.2)
 
-	var mouse_pos = get_viewport().get_mouse_position()
-	var from = camera.project_ray_origin(mouse_pos)
-	var to = from + camera.project_ray_normal(mouse_pos) * 1000
+	var duration = animation_player.get_animation("Roll").length / 1.2
+	await get_tree().create_timer(duration * 0.8).timeout
 
-	var space_state = get_world_3d().direct_space_state
-	var result = space_state.intersect_ray(
-		PhysicsRayQueryParameters3D.create(from, to)
-	)
+	is_rolling = false
+	attacking = false
 
-	if result and result.has("position"):
-		var target_pos = result.position
-		var to_mouse = (target_pos - global_transform.origin).normalized()
-		var angle = atan2(to_mouse.x, to_mouse.z)
+func get_mouse_world_position():
+	var camera := get_viewport().get_camera_3d()
+	if camera == null:
+		return null
 
-		# Otoč pouze model, ne celý CharacterBody
-		rotation.y = angle
+	var mouse_pos := get_viewport().get_mouse_position()
+	var from := camera.project_ray_origin(mouse_pos)
+	var to := from + camera.project_ray_normal(mouse_pos) * 1000
 
+	var space_state := get_world_3d().direct_space_state
+	var query := PhysicsRayQueryParameters3D.create(from, to)
+	query.exclude = [self]
 
+	var result := space_state.intersect_ray(query)
+	if result:
+		var position : Vector3 = result.position
+		position.y = global_transform.origin.y
+		return position
+
+	return null
+
+func try_interact():
+	if interactables.size() == 0:
+		return
+	var closest = get_closest_interactable()
+	if closest:
+		var target = closest
+		while target and not target.has_method("interact"):
+			target = target.get_parent()
+		if target and target.has_method("interact"):
+			target.interact(self)
+			if ui and ui.shop_opened:
+				can_move = false
 
 func get_closest_interactable():
 	var closest = null
-	var shortest_distance = INF
-
+	var shortest = INF
 	for obj in interactables:
 		if not obj or not obj.is_inside_tree():
 			continue
-
-		var distance = global_transform.origin.distance_to(obj.global_transform.origin)
-		if distance < shortest_distance:
+		var dist = global_transform.origin.distance_to(obj.global_transform.origin)
+		if dist < shortest:
 			closest = obj
-			shortest_distance = distance
-
+			shortest = dist
 	return closest
 
 func _on_area_entered(area):
@@ -212,7 +201,6 @@ func _on_area_exited(area):
 
 func start_attack(anim_name: String):
 	if animation_player.has_animation(anim_name):
-		look_towards_mouse()
 		attacking = true
 		knight_model.current_attack_anim = anim_name
 		animation_player.play(anim_name)
@@ -222,12 +210,8 @@ func start_attack(anim_name: String):
 
 func flash_red():
 	var meshes = find_children("*", "MeshInstance3D", true, false)
-
-	# Mapujeme původní barvy pro reset
 	var original_colors := {}
-
 	for mesh in meshes:
-		var _surface_count = mesh.get_surface_override_material_count()
 		for i in mesh.mesh.get_surface_count():
 			var mat = mesh.get_active_material(i)
 			if mat:
@@ -237,26 +221,20 @@ func flash_red():
 				new_mat.albedo_color = Color(1, 0, 0)
 
 	await get_tree().create_timer(0.35).timeout
-
-	# Obnovení barev
 	reset_colors()
 
 func reset_colors():
 	var meshes = knight_model.find_children("*", "MeshInstance3D", true, false)
-
 	for mesh in meshes:
 		for i in mesh.mesh.get_surface_count():
 			var mat = mesh.get_active_material(i)
 			if mat:
 				mat.albedo_color = Color(1, 1, 1)
 
-
 func take_damage(amount: int):
 	if is_dead or is_rolling:
 		return
-
 	current_health -= amount
-	print("Hráč byl zasažen: ", current_health)
 	ui.update_health(current_health, max_health)
 	flash_red()
 
@@ -269,7 +247,6 @@ func take_damage(amount: int):
 		animation_player.play("Impact", -1, 1.3)
 		await animation_player.animation_finished
 		is_flinching = false
-			
 
 func die():
 	is_dead = true
@@ -286,13 +263,9 @@ func reset_player():
 	reset_colors()
 	animation_player.stop()
 	animation_player.play("Idle_2")
-  # Reset pohybu
 	velocity = Vector3.ZERO
 
-	
 func add_gold(amount: int):
 	gold += amount
-	print("Získáno ", amount, " zlata. Máš celkem:", gold)
-	
 	if ui:
 		ui.update_gold(gold)
