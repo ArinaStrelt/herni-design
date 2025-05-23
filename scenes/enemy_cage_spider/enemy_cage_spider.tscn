@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://d150g1cwpq5ew"]
+
+[ext_resource type="Script" uid="uid://b8kope1ygbg0t" path="res://scripts/enemy_cage_spider/enemy_cage_spider.gd" id="1_46twy"]
+[ext_resource type="PackedScene" uid="uid://b68ccp4d6ivka" path="res://assets/models/enemy_cage_spider_animated_3/cage_spider_animated_v3.glb" id="2_h4803"]
+[ext_resource type="PackedScene" uid="uid://dteo6g3s7xu7f" path="res://scenes/health_bar.tscn" id="3_awoe7"]
+[ext_resource type="PackedScene" uid="uid://dx64dtbyugdvo" path="res://scenes/enemy_cage_spider/cage_spider_animated_v_3_model.tscn" id="4_vasbb"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vasbb"]
+height = 1.00183
+radius = 0.3
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vasbb"]
+viewport_path = NodePath("SubViewport")
+
+[node name="enemy_cage_spider" type="CharacterBody3D" groups=["enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00336289, 1.19209e-07, -0.00196111)
+script = ExtResource("1_46twy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.501, 0)
+shape = SubResource("CylinderShape3D_vasbb")
+
+[node name="cage_spider_animated_old" parent="." instance=ExtResource("2_h4803")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.0627322, 0, 0.0220526)
+visible = false
+
+[node name="health_bar" parent="." instance=ExtResource("3_awoe7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.836, 0)
+texture = SubResource("ViewportTexture_vasbb")
+
+[node name="NavAgent" type="NavigationAgent3D" parent="."]
+target_desired_distance = 0.5
+avoidance_enabled = true
+radius = 1.2
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.370885, 0)
+radius = 0.5
+
+[node name="cage_spider_animated_v3" parent="." instance=ExtResource("4_vasbb")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.060167, 0, 0.0192872)

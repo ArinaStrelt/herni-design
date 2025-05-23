@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://coj0pe6heuwgv"
-path="res://.godot/imported/dragon_forest.glb-6ccbfc5bbf267f7fc8fa34f54afb814d.scn"
+valid=false
 
 [deps]
 
 source_file="res://levels/dragon_forest/dragon_forest.glb"
-dest_files=["res://.godot/imported/dragon_forest.glb-6ccbfc5bbf267f7fc8fa34f54afb814d.scn"]
 
 [params]
 

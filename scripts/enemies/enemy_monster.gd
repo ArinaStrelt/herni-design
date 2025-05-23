@@ -23,17 +23,15 @@ var wait_time = 0.0
 var knockback_direction = Vector3.ZERO
 var knockback_timer = 0.0
 var attack_timer = 0.0
-var last_animation: String = ""
 
-@onready var model_holder = $monster_enemy
-@onready var animation_player: AnimationPlayer = $monster_enemy/AnimationPlayer
+@onready var model_holder: Node = $monster_enemy_model  # musí mít připojený správný skript
+@onready var animation_player: AnimationPlayer = $monster_enemy_model/AnimationPlayer
 @onready var nav_agent: NavigationAgent3D = $NavAgent
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 
 func _ready():
 	spawn_position = global_position
 	animation_player.play("idle")
-	animation_player.animation_finished.connect(on_animation_changed)
 	pick_new_patrol_point()
 
 func _physics_process(delta):
@@ -150,20 +148,10 @@ func attack():
 	velocity = Vector3.ZERO
 
 	if player and global_position.distance_to(player.global_position) <= attack_distance:
+		# Předáme hodnoty do modelu
+		model_holder.set("attack_damage", attack_damage)
+		model_holder.set("current_attack_anim", "fight")
 		animation_player.play("fight")
-
-func on_animation_changed(anim_name: String):
-	if last_animation == "fight":
-		do_the_damage()
-	last_animation = anim_name
-
-func do_the_damage():
-	if player and global_position.distance_to(player.global_position) <= attack_distance:
-		if "take_damage" in player:
-			player.take_damage(attack_damage)
-			print("Enemy attacked player for", attack_damage)
-		else:
-			print("Player does not have take_damage() method!")
 
 func flash_red():
 	var meshes = find_children("*", "MeshInstance3D", true, false)
