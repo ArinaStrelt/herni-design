@@ -97,6 +97,7 @@ func _physics_process(delta):
 			animation_player.speed_scale = 1.0
 			_play_animation("Idle")
 
+
 func set_new_patrol_point():
 	var random_offset = Vector3(
 		randf_range(-patrol_radius, patrol_radius),
@@ -105,6 +106,7 @@ func set_new_patrol_point():
 	)
 	target_position = spawn_position + random_offset
 	wait_time = randf_range(1.0, 3.0)
+
 
 func patrol_move(delta):
 	if wait_time > 0:
@@ -139,6 +141,7 @@ func chase_player(_delta):
 func attack() -> void:
 	await _attack()
 
+
 func _attack() -> void:
 	if attack_timer > 0.0 or state == "attack":
 		return
@@ -147,18 +150,18 @@ func _attack() -> void:
 	velocity = Vector3.ZERO
 	state = "attack"
 
-	if player and global_position.distance_to(player.global_position) <= attack_distance:
-		if "take_damage" in player:
-			player.take_damage(attack_damage)
-			print("Enemy attacked player for", attack_damage)
-		else:
-			print("Player does not have take_damage() method!")
+	var selected_attack = attack_animations[randi() % attack_animations.size()]
+	model_holder.attack_damage = attack_damage
+	model_holder.current_attack_anim = selected_attack
+	model_holder.attack_hitbox_on()
 
-	var random_attack = attack_animations[randi() % attack_animations.size()]
-	_play_animation(random_attack)
+	_play_animation(selected_attack)
 
 	await get_tree().create_timer(attack_anim_duration).timeout
+
+	model_holder.attack_hitbox_off()
 	state = "chase"
+
 
 func flash_red():
 	var meshes = find_children("*", "MeshInstance3D", true, false)
@@ -197,6 +200,7 @@ func take_damage(amount: int):
 	if current_health <= 0:
 		die()
 
+
 func die():
 	is_dead = true
 	print("Enemy died.")
@@ -207,34 +211,27 @@ func die():
 	animation_player.play("Death")
 
 	set_physics_process(false)
-	
-	# Vytvoření mince
+
 	var coin_scene = preload("res://scenes/coins/coins.tscn").instantiate()
 	var coin = coin_scene.get_node("interact_area")
-
-	# Případně nastav vlastní hodnotu (např. boss dropne 50)
-	coin.value = randi_range(15, 25)  # nebo prostě coin.value = 5
-
-	# Umístění na pozici nepřítele
+	coin.value = randi_range(15, 25)
 	coin_scene.transform.origin = position
 
-	# Přidání do scény
 	get_tree().current_scene.add_child(coin_scene)
-	
+
 	await get_tree().create_timer(2.0).timeout
-	
+
 	queue_free()
+
 
 func _play_animation(anim_name: String):
 	if not animation_player.has_animation(anim_name):
 		return
 	if animation_player.current_animation != anim_name:
 		animation_player.play(anim_name)
-		
+
+
 func scale_difficulty(level: int):
 	if level > 1:
 		max_health = max_health + ((level-1) * 50)
 		attack_damage = int(level * (float(attack_damage) / (level - 1)))
-
-	else:
-		return

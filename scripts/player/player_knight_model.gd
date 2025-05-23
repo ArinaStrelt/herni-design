@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var player = get_node("/root/level_loader/Player")
+@onready var player = get_node_or_null("/root/level_loader/Player")
 var already_hit := {}
 var current_attack_anim := ""
 
