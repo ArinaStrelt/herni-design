@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bps4bo3env10e"
-valid=false
+path="res://.godot/imported/ruins.glb-1b1a3a7a6a74f4a9294439d7372cc97d.scn"
 
 [deps]
 
 source_file="res://levels/ruins_forest/ruins.glb"
+dest_files=["res://.godot/imported/ruins.glb-1b1a3a7a6a74f4a9294439d7372cc97d.scn"]
 
 [params]
 

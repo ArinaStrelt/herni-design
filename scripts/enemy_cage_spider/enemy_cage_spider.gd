@@ -238,4 +238,3 @@ func scale_difficulty(level: int):
 
 	else:
 		return
-
