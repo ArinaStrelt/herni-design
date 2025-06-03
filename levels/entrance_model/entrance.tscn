@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bmxtnall3w373"]
+[gd_scene load_steps=10 format=3 uid="uid://bmxtnall3w373"]
 
 [ext_resource type="PackedScene" uid="uid://dbpxy6wbs3vxm" path="res://levels/entrance_model/entrance.glb" id="1_6e1lf"]
 [ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_wydwa"]
 [ext_resource type="PackedScene" uid="uid://8np8ds706ft2" path="res://levels/entrance_model/doors.glb" id="5_6e1lf"]
+[ext_resource type="PackedScene" uid="uid://dfs76jfbgmbjp" path="res://scenes/seller/seller.tscn" id="6_2phd1"]
 [ext_resource type="Script" uid="uid://bs0jpfy1oclj3" path="res://scripts/doors.gd" id="6_e7nie"]
 [ext_resource type="PackedScene" uid="uid://dt45p04n7o85i" path="res://scenes/exit_zone.tscn" id="6_jhwv2"]
 
@@ -46,10 +47,10 @@ navigation_mesh = SubResource("NavigationMesh_2phd1")
 [node name="entrance" parent="NavigationRegion3D" instance=ExtResource("1_6e1lf")]
 
 [node name="Fire" parent="NavigationRegion3D/entrance" instance=ExtResource("2_wydwa")]
-transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, 0.732586, 0.643412, -13.4835)
+transform = Transform3D(2.16773, 0, 0, 0, 2.51799, 0, 0, 0, 2.16773, 0.621647, 0.365823, -13.3164)
 
 [node name="Fire2" parent="NavigationRegion3D/entrance" instance=ExtResource("2_wydwa")]
-transform = Transform3D(1.78, 0, 0, 0, 1.78, 0, 0, 0, 1.78, 4.26174, 0.76698, -13.3387)
+transform = Transform3D(2.64495, 0, 0, 0, 3.16666, 0, 0, 0, 1.78, 3.86813, 0.313292, -13.734)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="NavigationRegion3D/entrance"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.48301, 1.41328, -2.96953)
@@ -98,6 +99,9 @@ transform = Transform3D(1, 7.10543e-15, 2.38419e-07, -7.10543e-15, 1, 7.10543e-1
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/entrance/doors/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.7387)
 shape = SubResource("CylinderShape3D_e7nie")
+
+[node name="Seller" parent="NavigationRegion3D/entrance" instance=ExtResource("6_2phd1")]
+transform = Transform3D(0.290937, 0, 0.155742, 0, 0.33, 0, -0.155742, 0, 0.290937, -1.11287, -0.0642229, -13.0035)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 11.003, 13.732, 2.838)

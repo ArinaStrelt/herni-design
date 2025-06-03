@@ -3,14 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bkqacbt46c35e"
-valid=false
+path.s3tc="res://.godot/imported/ruins_Image_7.png-1a446f859a44d33791e3db7f63a054d8.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
 generator_parameters={
-"md5": "e365ff5f5660cad23306c8583c338f24"
+"md5": "c6784cd5d0991494cda3ee3de35a43a3"
 }
 
 [deps]
 
 source_file="res://levels/ruins_forest/ruins_Image_7.png"
+dest_files=["res://.godot/imported/ruins_Image_7.png-1a446f859a44d33791e3db7f63a054d8.s3tc.ctex"]
 
 [params]
 
