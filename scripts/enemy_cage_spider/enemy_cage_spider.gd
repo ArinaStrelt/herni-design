@@ -155,7 +155,7 @@ func _attack() -> void:
 	model_holder.current_attack_anim = selected_attack
 	model_holder.attack_hitbox_on()
 
-	_play_animation(selected_attack)
+	_play_animation("Attack2")
 
 	await get_tree().create_timer(attack_anim_duration).timeout
 

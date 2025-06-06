@@ -54,6 +54,9 @@ func _input(event):
 		
 		elif event.is_action_pressed("roll"):
 			start_roll()
+			
+		elif event.is_action_pressed("debug_damage_all"):
+			damage_all_enemies()
 
 func try_interact():
 	if interactables.size() == 0:
@@ -296,3 +299,9 @@ func add_gold(amount: int):
 	
 	if ui:
 		ui.update_gold(gold)
+
+func damage_all_enemies():
+	for enemy in get_tree().get_nodes_in_group("enemies"):
+		if enemy.has_method("take_damage"):
+			enemy.take_damage(1000)
+			print("Damaged enemy:", enemy.name)

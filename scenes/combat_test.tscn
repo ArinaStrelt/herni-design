@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dlo3ohfbkdqv0"]
 
-[ext_resource type="PackedScene" uid="uid://d150g1cwpq5ew" path="res://scenes/enemy_cage_spider/enemy_cage_spider.tscn" id="2_5jbmu"]
+[ext_resource type="PackedScene" uid="uid://d150g1cwpq5ew" path="res://scenes/enemies/enemy_cage_spider.tscn" id="2_5jbmu"]
 [ext_resource type="PackedScene" uid="uid://byk7wrccha6w" path="res://scenes/enemies/testing_enemy_cube.tscn" id="3_5jbmu"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_w6gk5"]
