@@ -7,17 +7,16 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vasbb"]
 height = 1.00183
-radius = 0.3
+radius = 0.45
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_vasbb"]
 viewport_path = NodePath("SubViewport")
 
 [node name="enemy_cage_spider" type="CharacterBody3D" groups=["enemies"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00336289, 1.19209e-07, -0.00196111)
 script = ExtResource("1_46twy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.501, 0)
+transform = Transform3D(1.00397, 0, 0, 0, 1.00397, 0, 0, 0, 1.00397, 0, 0.501, 0)
 shape = SubResource("CylinderShape3D_vasbb")
 
 [node name="cage_spider_animated_old" parent="." instance=ExtResource("2_h4803")]
@@ -35,7 +34,8 @@ radius = 1.2
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.370885, 0)
+visible = false
 radius = 0.5
 
 [node name="cage_spider_animated_v3" parent="." instance=ExtResource("4_vasbb")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.060167, 0, 0.0192872)
+transform = Transform3D(0.299304, 0, 0, 0, 0.299304, 0, 0, 0, 0.299304, -0.060167, 0, 0.0192872)
