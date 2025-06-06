@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed_patrol = 2.0
+@export var speed_patrol = 1.0
 @export var speed_chase = 1.5
 @export var aggro_distance = 5.0
 @export var attack_distance = 1.0

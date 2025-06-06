@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @export var speed_patrol = 0.5
 @export var speed_chase = 0.75
-@export var aggro_distance = 8.0
+@export var aggro_distance = 5.0
 @export var attack_distance = 2.0
 @export var patrol_radius = 2.0
 @export var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
