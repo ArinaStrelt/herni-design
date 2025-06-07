@@ -1,8 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dn2cll1sjuaap"]
+[gd_scene load_steps=11 format=3 uid="uid://dn2cll1sjuaap"]
 
 [ext_resource type="Script" uid="uid://cfol5afm4cvsg" path="res://scripts/enemies/enemy_monster.gd" id="1_27d2k"]
 [ext_resource type="PackedScene" uid="uid://dteo6g3s7xu7f" path="res://scenes/health_bar.tscn" id="2_fe08f"]
 [ext_resource type="PackedScene" uid="uid://6jn3v652i4gp" path="res://scenes/enemy_monster/monster_enemy_model.tscn" id="4_4308b"]
+[ext_resource type="AudioStream" uid="uid://bou5khu7n4f3e" path="res://audio/SFX/enemies/monster/attack.wav" id="4_axafj"]
+[ext_resource type="AudioStream" uid="uid://dbj3ocdibthfr" path="res://audio/SFX/enemies/monster/walk.mp3" id="5_axafj"]
+[ext_resource type="AudioStream" uid="uid://cohhto8eqjvn2" path="res://audio/SFX/enemies/monster/voice.mp3" id="6_p0b3m"]
+[ext_resource type="AudioStream" uid="uid://b87va1rogobwc" path="res://audio/SFX/enemies/monster/death.wav" id="7_1ohw4"]
+[ext_resource type="AudioStream" uid="uid://btwj3s4cg11hh" path="res://audio/SFX/enemies/hit.wav" id="8_tpeum"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_27d2k"]
 height = 1.25965
@@ -30,3 +35,31 @@ radius = 0.5
 height = 2.0
 
 [node name="monster_enemy_model" parent="." instance=ExtResource("4_4308b")]
+
+[node name="AudioStreamPlayer3D_attack" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_axafj")
+pitch_scale = 1.04
+
+[node name="AudioStreamPlayer3D_walk" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_axafj")
+volume_db = 17.349
+pitch_scale = 2.37
+max_distance = 26.09
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D_voice" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_p0b3m")
+volume_db = 19.277
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D_death" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_1ohw4")
+volume_db = 20.241
+pitch_scale = 2.07
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D_hit" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_tpeum")
+volume_db = 19.277
+max_distance = 26.65
+bus = &"SFX"

@@ -1,6 +1,7 @@
 extends Control
 
 @onready var player = get_node("/root/level_loader/Player")
+@onready var storeBuyAudioStream = $AudioStreamPlayer3D_buy
 
 # HP sekce
 @onready var hp_current_label = $panel/HBoxContainer/hp_section/current_hp
@@ -51,6 +52,7 @@ func _on_hp_upgrade():
 		player.ui.update_health(player.current_health, player.max_health)
 		player.ui.update_gold(player.gold)
 		hp_upgrade_cost += 25
+		storeBuyAudioStream.play()
 		update_ui()
 
 func _on_dmg_upgrade():
@@ -59,6 +61,7 @@ func _on_dmg_upgrade():
 		player.damage += dmg_upgrade_amount
 		player.ui.update_gold(player.gold)
 		dmg_upgrade_cost += 25
+		storeBuyAudioStream.play()
 		update_ui()
 
 func _on_close_pressed():
@@ -66,3 +69,4 @@ func _on_close_pressed():
 	ui.close_shop()
 	if player:
 		player.can_move = true
+		

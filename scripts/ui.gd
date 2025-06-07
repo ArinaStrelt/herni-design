@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var health_bar: ProgressBar = $container_healthbar/player_health_bar
 @onready var health_bar_label = $container_healthbar/player_health_label
 @onready var shop_ui = $shop_ui
+@onready var storeEnteringAudioStream = $AudioStreamPlayer3D_enter
 var shop_opened := false
 
 func _ready():
@@ -23,12 +24,14 @@ func update_gold(gold_amount: int) -> void:
 	gold_label.text = "Gold: %d" % gold_amount
 
 func open_shop():
+	storeEnteringAudioStream.play()
 	shop_ui.update_ui()
 	shop_ui.visible = true
 	shop_opened = true
 	get_tree().paused = true  # pauzne hru, pokud chceš
 	
 func close_shop():
+	
 	shop_ui.visible = false
 	shop_opened = false
 	get_tree().paused = false

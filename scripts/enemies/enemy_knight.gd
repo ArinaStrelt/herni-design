@@ -23,7 +23,12 @@ var spawn_position: Vector3
 @onready var anim: AnimationPlayer = model.get_node("AnimationPlayer")
 @onready var nav_agent: NavigationAgent3D = $NavAgent
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D 
-
+@onready var enemyHitAudioStream = $AudioStreamPlayer3D_hit
+@onready var enemyWalkAudioStream = $AudioStreamPlayer3D_walk
+@onready var enemyChaseAudioStream = $AudioStreamPlayer3D_chase
+@onready var enemySwordAudioStream = $AudioStreamPlayer3D_sword
+@onready var enemyVoiceAudioStream = $AudioStreamPlayer3D_voice
+@onready var enemyDeathAudioStream = $AudioStreamPlayer3D_death
 func _ready():
 	spawn_position = global_position
 	pick_new_patrol_point()
@@ -58,7 +63,11 @@ func _physics_process(_delta):
 				move_and_slide()
 				if anim.current_animation != "Run":
 					anim.play("Run")
+					if !enemyChaseAudioStream.playing:
+						enemyChaseAudioStream.play()
+					
 			else:
+				enemyChaseAudioStream.stop()
 				velocity = Vector3.ZERO
 				move_and_slide()
 				attack()
@@ -74,6 +83,7 @@ func patrol(delta):
 		move_and_slide()
 		if anim.current_animation != "Idle":
 			anim.play("Idle")
+		
 		wait_time -= delta
 		if wait_time <= 0:
 			pick_new_patrol_point()
@@ -81,6 +91,10 @@ func patrol(delta):
 
 	if anim.current_animation != "Run":
 		anim.play("Run", -1, 0.5)
+		if !enemyWalkAudioStream.playing:
+				enemyWalkAudioStream.play()
+		else:
+			enemyWalkAudioStream.stop()
 
 	var next_pos = nav_agent.get_next_path_position()
 	var direction = (next_pos - global_position)
@@ -138,6 +152,8 @@ func attack():
 	model.attack_damage = attack_damage
 	model.current_attack_anim = "Slash"
 	anim.play("Slash")
+	enemySwordAudioStream.play()
+	enemyWalkAudioStream.stop()
 	await anim.animation_finished
 
 	is_attacking = false
@@ -148,7 +164,12 @@ func take_damage(amount:int):
 	if is_dead:
 		return
 	current_health -= amount
+	enemyHitAudioStream.play()
+	enemyVoiceAudioStream.play()
 	anim.play("Impact")
+	enemyWalkAudioStream.stop()
+	
+	
 	$health_bar.update_healthbar(current_health, max_health)
 	flash_red()
 
@@ -161,6 +182,7 @@ func die():
 	collision_shape.set_deferred("disabled", true)
 	velocity = Vector3.ZERO
 	move_and_slide()
+	enemyDeathAudioStream.play()
 	anim.play("A-pose")
 
 	var coin_scene = preload("res://scenes/coins/coins.tscn").instantiate()

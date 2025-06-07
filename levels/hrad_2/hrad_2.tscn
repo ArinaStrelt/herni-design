@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://d1kvyjfdw0e3e"]
+[gd_scene load_steps=17 format=3 uid="uid://d1kvyjfdw0e3e"]
 
 [ext_resource type="PackedScene" uid="uid://bqodtnn4b6jng" path="res://levels/hrad_2/hrad_2.glb" id="1_hwuwg"]
 [ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_426s5"]
 [ext_resource type="PackedScene" uid="uid://dt45p04n7o85i" path="res://scenes/exit_zone.tscn" id="5_pua7d"]
+[ext_resource type="AudioStream" uid="uid://bmapkwb35gif6" path="res://audio/SFX/objects/dooropen.wav" id="5_tx34c"]
 [ext_resource type="PackedScene" uid="uid://8np8ds706ft2" path="res://levels/entrance_model/doors.glb" id="6_tx34c"]
 [ext_resource type="Script" uid="uid://bs0jpfy1oclj3" path="res://scripts/doors.gd" id="7_ouefy"]
 [ext_resource type="PackedScene" uid="uid://dfs76jfbgmbjp" path="res://scenes/seller/seller.tscn" id="7_tx34c"]
@@ -130,6 +131,10 @@ script = ExtResource("7_ouefy")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="doors/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.7387)
 shape = SubResource("CylinderShape3D_k7fv6")
+
+[node name="AudioStreamPlayer3D_open" type="AudioStreamPlayer3D" parent="doors"]
+stream = ExtResource("5_tx34c")
+pitch_scale = 1.31
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_tx34c")

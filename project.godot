@@ -15,6 +15,14 @@ run/main_scene="uid://c3gh1bqx6dxr2"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://audio/SFX/default_bus_layout.tres"
+
+[autoload]
+
+AudioPlayer="*res://audio/background/atmosphere/forest/audio_player.gd"
+
 [global_group]
 
 enemies=""

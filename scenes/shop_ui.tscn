@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://k1nkb3i10t7x"]
+[gd_scene load_steps=4 format=3 uid="uid://k1nkb3i10t7x"]
 
 [ext_resource type="Script" uid="uid://cgs1f456pnigd" path="res://scripts/shop_ui.gd" id="1_fs6yy"]
+[ext_resource type="AudioStream" uid="uid://bsamb78f1exrk" path="res://audio/SFX/objects/shop_buy.wav" id="2_oixfk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b84dc"]
 bg_color = Color(0, 0, 0, 1)
@@ -119,3 +120,6 @@ vertical_alignment = 1
 [node name="upgrade_dmg_button" type="Button" parent="panel/HBoxContainer/dmg_section"]
 layout_mode = 2
 text = "Upgrade Damage"
+
+[node name="AudioStreamPlayer3D_buy" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_oixfk")

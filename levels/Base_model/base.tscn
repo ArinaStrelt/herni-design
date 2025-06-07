@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://w0ntym617oic"]
+[gd_scene load_steps=9 format=3 uid="uid://w0ntym617oic"]
 
 [ext_resource type="PackedScene" uid="uid://rnhgp7lia1nx" path="res://levels/Base_model/base.glb" id="1_ck4x4"]
+[ext_resource type="Script" uid="uid://buq7p3e6k8sjm" path="res://scripts/levels/forest_levels.gd" id="1_n03nx"]
 [ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_vp66m"]
 [ext_resource type="PackedScene" uid="uid://byk7wrccha6w" path="res://scenes/enemies/testing_enemy_cube.tscn" id="4_scqal"]
 [ext_resource type="PackedScene" uid="uid://dt45p04n7o85i" path="res://scenes/exit_zone.tscn" id="5_pbrmj"]
@@ -13,6 +14,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [node name="Base" type="Node3D"]
+script = ExtResource("1_n03nx")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, 0, -4.37114e-08, 1, 8.74228e-08, 1, 4.37114e-08, -4.73188, 0, -9.83818)

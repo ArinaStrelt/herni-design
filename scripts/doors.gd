@@ -1,7 +1,7 @@
 extends Node3D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-
+@onready var doorOpenAudioStream = $AudioStreamPlayer3D_open
 var _opened := false
 
 func _ready():
@@ -16,4 +16,6 @@ func check_enemies_and_open():
 
 	if get_tree().get_nodes_in_group("enemies").is_empty():
 		animation_player.play("Open")
+		doorOpenAudioStream.play()
+		
 		_opened = true
