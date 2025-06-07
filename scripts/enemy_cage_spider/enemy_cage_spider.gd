@@ -32,7 +32,8 @@ var attack_anim_duration = 1
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var enemyWalkAudioStream = $AudioStreamPlayer3D_walk
 @onready var enemyDeathAudioStream = $AudioStreamPlayer3D_death
-
+@onready var enemyAttackAudioStream = $AudioStreamPlayer3D_attack
+@onready var enemyHitAudioStream = $AudioStreamPlayer3D_hit
 
 func _ready():
 	spawn_position = global_position
@@ -155,7 +156,7 @@ func _attack() -> void:
 	attack_timer = attack_cooldown
 	velocity = Vector3.ZERO
 	state = "attack"
-
+	enemyAttackAudioStream.play()
 	var selected_attack = attack_animations[randi() % attack_animations.size()]
 	model_holder.attack_damage = attack_damage
 
@@ -193,7 +194,7 @@ func take_damage(amount: int):
 		return
 
 	current_health -= amount
-	enemyDeathAudioStream.play()
+	enemyHitAudioStream.play()
 	print("Enemy took damage:", amount)
 	$health_bar.update_healthbar(current_health, max_health)
 	flash_red()
@@ -217,6 +218,7 @@ func die():
 
 	animation_player.stop()
 	animation_player.play("Death")
+	enemyDeathAudioStream.play()
 
 	set_physics_process(false)
 

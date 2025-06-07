@@ -12,17 +12,18 @@ extends CharacterBody3D
 @onready var playerCoinsAudioStream = $AudioStreamPlayer3D_coins
 @onready var playerHitAudioStream = $AudioStreamPlayer3D_hit
 @onready var playerOuchAudioStream = $AudioStreamPlayer3D_ouch
+@onready var playerDeathAudioStream = $AudioStreamPlayer3D_death
 var SPEED := 2.5
 var GRAVITY : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var attacking = false
 var is_dead = false
 var is_flinching = false
-var max_health = 10000000000000
+var max_health = 100
 var current_health = max_health
 var interactables = []
 var gold = 0
-var damage = 20000000000
+var damage = 20
 var is_rolling: bool = false
 var roll_speed := 2
 var roll_duration := 1.5
@@ -293,6 +294,7 @@ func take_damage(amount: int):
 
 func die():
 	is_dead = true
+	playerDeathAudioStream.play()
 	current_health = 0
 	ui.update_health(current_health, max_health)
 	animation_player.play("Death_2")

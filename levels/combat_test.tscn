@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://crgn7vbgsj8u0"]
 
 [ext_resource type="PackedScene" uid="uid://y3igs2apyv0g" path="res://scenes/player/player.tscn" id="1_e3d47"]
-[ext_resource type="PackedScene" uid="uid://d150g1cwpq5ew" path="res://scenes/enemy_cage_spider/enemy_cage_spider.tscn" id="2_5m5qr"]
+[ext_resource type="PackedScene" uid="uid://d150g1cwpq5ew" path="res://scenes/enemies/enemy_cage_spider_REMOTE_1991.tscn" id="2_5m5qr"]
 [ext_resource type="PackedScene" uid="uid://bl8hue868b2ug" path="res://scenes/enemies/enemy_knight.tscn" id="3_5m5qr"]
 [ext_resource type="PackedScene" uid="uid://dn2cll1sjuaap" path="res://scenes/enemy_monster/enemy_monster.tscn" id="4_beftu"]
 

@@ -28,8 +28,11 @@ var attack_timer = 0.0
 @onready var animation_player: AnimationPlayer = $monster_enemy_model/AnimationPlayer
 @onready var nav_agent: NavigationAgent3D = $NavAgent
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
+@onready var enemyAttackAudioStream = $AudioStreamPlayer3D_attack
+@onready var enemyWalkAudioStream = $AudioStreamPlayer3D_walk
+@onready var enemyVoiceAudioStream = $AudioStreamPlayer3D_voice
+@onready var enemyDeathAudioStream = $AudioStreamPlayer3D_death
 @onready var enemyHitAudioStream = $AudioStreamPlayer3D_hit
-
 
 func _ready():
 	spawn_position = global_position
@@ -92,6 +95,7 @@ func _physics_process(delta):
 func chase_player(_delta):
 	if animation_player.current_animation != "run":
 		animation_player.play("run")
+		
 
 	nav_agent.set_target_position(player.global_position)
 
@@ -120,6 +124,10 @@ func patrol(delta):
 
 	if animation_player.current_animation != "run":
 		animation_player.play("run")
+		if !enemyWalkAudioStream.playing:
+				enemyWalkAudioStream.play()
+		else:
+			enemyWalkAudioStream.stop()
 		animation_player.speed_scale = 0.7
 
 	var next_pos = nav_agent.get_next_path_position()
@@ -145,6 +153,8 @@ func pick_new_patrol_point():
 func attack():
 	if attack_timer > 0.0:
 		return
+		if enemyWalkAudioStream.playing:
+				enemyWalkAudioStream.stop
 	
 	attack_timer = attack_cooldown
 	velocity = Vector3.ZERO
@@ -153,8 +163,10 @@ func attack():
 		# Předáme hodnoty do modelu
 		model_holder.set("attack_damage", attack_damage)
 		model_holder.set("current_attack_anim", "fight")
+		
 		animation_player.play("fight")
-		enemyHitAudioStream.play()
+	
+		
 
 func flash_red():
 	var meshes = find_children("*", "MeshInstance3D", true, false)
@@ -177,7 +189,10 @@ func take_damage(amount: int):
 	if is_dead:
 		return
 
+	
 	current_health -= amount
+	enemyHitAudioStream.play()
+	enemyVoiceAudioStream.play()
 	print("Enemy took damage:", amount)
 	$health_bar.update_healthbar(current_health, max_health)
 	flash_red()
@@ -194,6 +209,7 @@ func take_damage(amount: int):
 func die():
 	is_dead = true
 	print("Enemy died.")
+	enemyDeathAudioStream.play()
 	
 	collision_shape.set_deferred("disabled", true)
 

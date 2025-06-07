@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmabc5n8w0cah"]
+[gd_scene load_steps=8 format=3 uid="uid://dmabc5n8w0cah"]
 
 [ext_resource type="Script" uid="uid://bid05qu2dpe0v" path="res://scripts/ui.gd" id="1_nt7q6"]
 [ext_resource type="PackedScene" uid="uid://k1nkb3i10t7x" path="res://scenes/shop_ui.tscn" id="2_x4jx1"]
+[ext_resource type="AudioStream" uid="uid://dgcg3wxlc0caa" path="res://audio/SFX/objects/shop_enter.wav" id="3_yev5y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlq6p"]
 bg_color = Color(0.0991667, 0.35, 0, 1)
@@ -71,3 +72,7 @@ texture = SubResource("GradientTexture2D_yev5y")
 
 [node name="shop_ui" parent="." instance=ExtResource("2_x4jx1")]
 visible = false
+
+[node name="AudioStreamPlayer3D_enter" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_yev5y")
+bus = &"UI"

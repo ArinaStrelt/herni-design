@@ -23,12 +23,12 @@ var spawn_position: Vector3
 @onready var anim: AnimationPlayer = model.get_node("AnimationPlayer")
 @onready var nav_agent: NavigationAgent3D = $NavAgent
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D 
-@onready var playerHitAudioStream = $AudioStreamPlayer3D_hit
-@onready var playerWalkAudioStream = $AudioStreamPlayer3D_walk
-@onready var playerChaseAudioStream = $AudioStreamPlayer3D_chase
-@onready var playerSwordAudioStream = $AudioStreamPlayer3D_sword
-@onready var playerVoiceAudioStream = $AudioStreamPlayer3D_voice
-@onready var playerDeathAudioStream = $AudioStreamPlayer3D_death
+@onready var enemyHitAudioStream = $AudioStreamPlayer3D_hit
+@onready var enemyWalkAudioStream = $AudioStreamPlayer3D_walk
+@onready var enemyChaseAudioStream = $AudioStreamPlayer3D_chase
+@onready var enemySwordAudioStream = $AudioStreamPlayer3D_sword
+@onready var enemyVoiceAudioStream = $AudioStreamPlayer3D_voice
+@onready var enemyDeathAudioStream = $AudioStreamPlayer3D_death
 func _ready():
 	spawn_position = global_position
 	pick_new_patrol_point()
@@ -63,11 +63,11 @@ func _physics_process(_delta):
 				move_and_slide()
 				if anim.current_animation != "Run":
 					anim.play("Run")
-					if !playerChaseAudioStream.playing:
-						playerChaseAudioStream.play()
+					if !enemyChaseAudioStream.playing:
+						enemyChaseAudioStream.play()
 					
 			else:
-				playerChaseAudioStream.stop()
+				enemyChaseAudioStream.stop()
 				velocity = Vector3.ZERO
 				move_and_slide()
 				attack()
@@ -91,10 +91,10 @@ func patrol(delta):
 
 	if anim.current_animation != "Run":
 		anim.play("Run", -1, 0.5)
-		if !playerWalkAudioStream.playing:
-				playerWalkAudioStream.play()
+		if !enemyWalkAudioStream.playing:
+				enemyWalkAudioStream.play()
 		else:
-			playerWalkAudioStream.stop()
+			enemyWalkAudioStream.stop()
 
 	var next_pos = nav_agent.get_next_path_position()
 	var direction = (next_pos - global_position)
@@ -152,8 +152,8 @@ func attack():
 	model.attack_damage = attack_damage
 	model.current_attack_anim = "Slash"
 	anim.play("Slash")
-	playerSwordAudioStream.play()
-	playerWalkAudioStream.stop()
+	enemySwordAudioStream.play()
+	enemyWalkAudioStream.stop()
 	await anim.animation_finished
 
 	is_attacking = false
@@ -164,10 +164,10 @@ func take_damage(amount:int):
 	if is_dead:
 		return
 	current_health -= amount
-	playerHitAudioStream.play()
-	playerVoiceAudioStream.play()
+	enemyHitAudioStream.play()
+	enemyVoiceAudioStream.play()
 	anim.play("Impact")
-	playerWalkAudioStream.stop()
+	enemyWalkAudioStream.stop()
 	
 	
 	$health_bar.update_healthbar(current_health, max_health)
@@ -182,7 +182,7 @@ func die():
 	collision_shape.set_deferred("disabled", true)
 	velocity = Vector3.ZERO
 	move_and_slide()
-	playerDeathAudioStream.play()
+	enemyDeathAudioStream.play()
 	anim.play("A-pose")
 
 	var coin_scene = preload("res://scenes/coins/coins.tscn").instantiate()

@@ -17,6 +17,7 @@ extends CharacterBody3D
 @onready var enemyFireballAudioStream = $AudioStreamPlayer3D_fireball
 @onready var enemyVoiceAudioStream = $AudioStreamPlayer3D_voice
 @onready var enemyWalkAudioStream = $AudioStreamPlayer3D_walk
+@onready var enemyDeathAudioStream = $AudioStreamPlayer3D_death
 
 var current_health = max_health
 var is_attacking: bool = false
@@ -138,6 +139,7 @@ func die():
 	velocity  = Vector3.ZERO
 	move_and_slide()
 	animation_player.play("Death")
+	enemyDeathAudioStream.play()
 
 	# Vytvoření mince
 	var coin_scene = preload("res://scenes/coins/coins.tscn").instantiate()
