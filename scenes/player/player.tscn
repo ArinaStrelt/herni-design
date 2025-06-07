@@ -1,7 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://y3igs2apyv0g"]
+[gd_scene load_steps=11 format=3 uid="uid://y3igs2apyv0g"]
 
 [ext_resource type="Script" uid="uid://bvvsbrlhqmnyk" path="res://scripts/player/player_controller.gd" id="1_dovo2"]
 [ext_resource type="PackedScene" uid="uid://bqwv43omkude6" path="res://scenes/player/player_knight_model_new.tscn" id="2_dovo2"]
+[ext_resource type="AudioStream" uid="uid://whbugaqv4o4w" path="res://audio/SFX/player/walking.wav" id="3_gmlin"]
+[ext_resource type="AudioStream" uid="uid://bu6gxinoy56j" path="res://audio/SFX/player/attack.mp3" id="4_lvxji"]
+[ext_resource type="AudioStream" uid="uid://beep3j6s1b14j" path="res://audio/SFX/player/rolling.wav" id="5_p47bc"]
+[ext_resource type="AudioStream" uid="uid://ekg1soq6xwid" path="res://audio/SFX/player/coins.wav" id="6_75vfm"]
+[ext_resource type="AudioStream" uid="uid://cgxg85pjr7ej5" path="res://audio/SFX/player/player_damage.wav" id="7_0owmy"]
+[ext_resource type="AudioStream" uid="uid://lt3cl4oqp4b8" path="res://audio/SFX/player/ouch.wav" id="8_qek5x"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dovo2"]
 radius = 0.846191
@@ -23,3 +29,36 @@ shape = SubResource("CylinderShape3D_dovo2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="interact_area"]
 shape = SubResource("SphereShape3D_dovo2")
+
+[node name="AudioStreamPlayer3D_walking" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_gmlin")
+volume_db = 20.382
+pitch_scale = 2.15
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D_attack" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_lvxji")
+volume_db = 19.277
+pitch_scale = 0.78
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D_roll" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_p47bc")
+volume_db = 18.313
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D_coins" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_75vfm")
+volume_db = 19.597
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D_hit" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_0owmy")
+volume_db = 21.205
+pitch_scale = 1.26
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D_ouch" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_qek5x")
+volume_db = 20.976
+bus = &"SFX"

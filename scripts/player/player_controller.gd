@@ -6,18 +6,23 @@ extends CharacterBody3D
 @onready var ui = $"/root/level_loader/UI"
 @onready var loader = $"/root/level_loader"
 @onready var hit_effect := $"/root/level_loader/UI/hit_effect"
-
+@onready var playerWalkingAudioStream = $AudioStreamPlayer3D_walking
+@onready var playerAttackAudioStream = $AudioStreamPlayer3D_attack
+@onready var playerRollAudioStream = $AudioStreamPlayer3D_roll
+@onready var playerCoinsAudioStream = $AudioStreamPlayer3D_coins
+@onready var playerHitAudioStream = $AudioStreamPlayer3D_hit
+@onready var playerOuchAudioStream = $AudioStreamPlayer3D_ouch
 var SPEED := 2.5
 var GRAVITY : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 var attacking = false
 var is_dead = false
 var is_flinching = false
-var max_health = 100
+var max_health = 10000000000000
 var current_health = max_health
 var interactables = []
 var gold = 0
-var damage = 20
+var damage = 20000000000
 var is_rolling: bool = false
 var roll_speed := 2
 var roll_duration := 1.5
@@ -45,15 +50,18 @@ func _input(event):
 	if can_move:
 		if event.is_action_pressed("attack") and not attacking:
 			start_attack("Attack")
+			playerAttackAudioStream.play()
 
 		elif event.is_action_pressed("attack_2") and not attacking:
 			start_attack("Spin_Attack")
+			playerAttackAudioStream.play()
 
 		elif event.is_action_pressed("restart") and not is_dead:
 			die()
 		
 		elif event.is_action_pressed("roll"):
 			start_roll()
+			
 
 func try_interact():
 	if interactables.size() == 0:
@@ -84,6 +92,7 @@ func start_roll():
 	attacking = true
 	knight_model.attack_hitbox_off()
 	animation_player.play("Roll", -1, 1.2)
+	playerRollAudioStream.play()
 
 	var roll_direction := transform.basis.z.normalized()
 	var timer = get_tree().create_timer(animation_player.get_animation("Roll").length * 0.8)
@@ -154,12 +163,17 @@ func handle_movement(delta):
 
 		var target_rotation = atan2(direction.x, direction.z)
 		rotation.y = lerp_angle(rotation.y, target_rotation, delta * 10.0)
-
+		
 		animation_player.play("Run")
+		if is_on_floor():
+			if !playerWalkingAudioStream.playing:
+				playerWalkingAudioStream.play()
 	else:
 		velocity.x = 0.0
 		velocity.z = 0.0
 		animation_player.play("Idle_2")
+		playerWalkingAudioStream.stop()
+
 
 # -----------------------
 # Tvoje pomocné funkce (beze změny):
@@ -254,8 +268,12 @@ func reset_colors():
 func take_damage(amount: int):
 	if is_dead or is_rolling:
 		return
-
+	if playerAttackAudioStream.playing:
+		playerAttackAudioStream.stop()
 	current_health -= amount
+	playerHitAudioStream.play()
+	playerOuchAudioStream.play()
+	
 	print("Hráč byl zasažen: ", current_health)
 	ui.update_health(current_health, max_health)
 	flash_red()
@@ -291,6 +309,7 @@ func reset_player():
 
 	
 func add_gold(amount: int):
+	playerCoinsAudioStream.play()
 	gold += amount
 	print("Získáno ", amount, " zlata. Máš celkem:", gold)
 	

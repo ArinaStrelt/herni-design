@@ -30,6 +30,8 @@ var attack_anim_duration = 1
 @onready var animation_player: AnimationPlayer = model_holder.get_node("AnimationPlayer")
 @onready var nav_agent: NavigationAgent3D = $NavAgent
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
+@onready var enemyWalkAudioStream = $AudioStreamPlayer3D_walk
+@onready var enemyDeathAudioStream = $AudioStreamPlayer3D_death
 
 
 func _ready():
@@ -93,7 +95,11 @@ func _physics_process(delta):
 		if velocity.length() > 0.1:
 			animation_player.speed_scale = 2.0 if state == "chase" else 1.0
 			_play_animation("Walk")
+			
+			if !enemyWalkAudioStream.playing:
+				enemyWalkAudioStream.play()
 		else:
+			enemyWalkAudioStream.stop()
 			animation_player.speed_scale = 1.0
 			_play_animation("Idle")
 
@@ -145,13 +151,14 @@ func attack() -> void:
 func _attack() -> void:
 	if attack_timer > 0.0 or state == "attack":
 		return
-
+	
 	attack_timer = attack_cooldown
 	velocity = Vector3.ZERO
 	state = "attack"
 
 	var selected_attack = attack_animations[randi() % attack_animations.size()]
 	model_holder.attack_damage = attack_damage
+
 	model_holder.current_attack_anim = selected_attack
 	model_holder.attack_hitbox_on()
 
@@ -186,6 +193,7 @@ func take_damage(amount: int):
 		return
 
 	current_health -= amount
+	enemyDeathAudioStream.play()
 	print("Enemy took damage:", amount)
 	$health_bar.update_healthbar(current_health, max_health)
 	flash_red()

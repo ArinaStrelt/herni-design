@@ -13,6 +13,10 @@ extends CharacterBody3D
 @onready var player: Node3D = null
 @onready var model: Node3D = $skeleton
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
+@onready var enemyHitAudioStream = $AudioStreamPlayer3D_hit
+@onready var enemyFireballAudioStream = $AudioStreamPlayer3D_fireball
+@onready var enemyVoiceAudioStream = $AudioStreamPlayer3D_voice
+@onready var enemyWalkAudioStream = $AudioStreamPlayer3D_walk
 
 var current_health = max_health
 var is_attacking: bool = false
@@ -48,7 +52,11 @@ func _physics_process(_delta):
 			velocity = dir * speed
 			move_and_slide()
 			animation_player.play("Run", -1, 0.75)
+			
+			if !enemyWalkAudioStream.playing:
+				enemyWalkAudioStream.play()
 		else:
+			enemyWalkAudioStream.stop()
 			velocity = Vector3.ZERO
 			move_and_slide()
 			attack()
@@ -60,7 +68,7 @@ func _physics_process(_delta):
 func attack():
 	if not can_attack:
 		return
-
+	
 	is_attacking = true
 	can_attack = false
 
@@ -75,6 +83,7 @@ func attack():
 	can_attack = true
 
 func cast_spell():
+	
 	var ball = magic_ball_scene.instantiate()
 	get_tree().current_scene.add_child(ball)
 	ball.global_transform.origin = magic_spawn_point.global_transform.origin
@@ -85,6 +94,7 @@ func cast_spell():
 
 	var dir = (to - from).normalized()
 	ball.set_velocity(dir)
+	enemyFireballAudioStream.play()
 
 func flash_red():
 	var meshes = model.find_children("*", "MeshInstance3D", true, false)
@@ -110,7 +120,8 @@ func take_damage(amount: int):
 		return
 
 	current_health -= amount
-
+	enemyHitAudioStream.play()
+	enemyVoiceAudioStream.play()
 	animation_player.play("Impact")
 
 	$health_bar.update_healthbar(current_health, max_health)

@@ -16,4 +16,5 @@ func check_enemies_and_open():
 
 	if get_tree().get_nodes_in_group("enemies").is_empty():
 		animation_player.play("Open")
+		
 		_opened = true

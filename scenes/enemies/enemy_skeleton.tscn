@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://kghywllagtak"]
+[gd_scene load_steps=10 format=3 uid="uid://kghywllagtak"]
 
 [ext_resource type="Script" uid="uid://chrqtve5d8frm" path="res://scripts/enemies/enemy_skeleton.gd" id="1_vs6eh"]
 [ext_resource type="PackedScene" uid="uid://wgdo5k4tr1wk" path="res://scenes/enemies/skeleton_model.tscn" id="2_vs6eh"]
 [ext_resource type="PackedScene" uid="uid://dteo6g3s7xu7f" path="res://scenes/health_bar.tscn" id="3_lsw4l"]
+[ext_resource type="AudioStream" uid="uid://btwj3s4cg11hh" path="res://audio/SFX/enemies/hit.wav" id="4_1quu0"]
+[ext_resource type="AudioStream" uid="uid://pcymv6g5boxm" path="res://audio/SFX/enemies/skeleton/fireball.wav" id="5_gyhkd"]
+[ext_resource type="AudioStream" uid="uid://cadf3yyy83avt" path="res://audio/SFX/enemies/skeleton/enemy_voice.wav" id="6_3nnob"]
+[ext_resource type="AudioStream" uid="uid://b85fj3mqiscdl" path="res://audio/SFX/enemies/skeleton/walk.wav" id="7_m8f4q"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_1quu0"]
 
@@ -31,3 +35,29 @@ radius = 1.0
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.472253, 0)
 radius = 0.4
+
+[node name="AudioStreamPlayer3D_hit" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_1quu0")
+volume_db = 17.349
+pitch_scale = 1.77
+max_distance = 30.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D_fireball" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_gyhkd")
+volume_db = 35.663
+pitch_scale = 2.1
+max_distance = 50.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D_voice" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_3nnob")
+volume_db = 52.048
+pitch_scale = 0.69
+max_distance = 30.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D_walk" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_m8f4q")
+volume_db = 10.602
+max_distance = 30.0

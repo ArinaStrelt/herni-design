@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://digtj58bvqtoi"]
+
+[ext_resource type="Script" uid="uid://c3kymd8mbj2bh" path="res://audio/background/atmosphere/forest/audio_player.gd" id="1_vnmks"]
+
+[node name="audio_player" type="AudioStreamPlayer3D"]
+bus = &"transition"
+script = ExtResource("1_vnmks")

@@ -28,6 +28,8 @@ var attack_timer = 0.0
 @onready var animation_player: AnimationPlayer = $monster_enemy_model/AnimationPlayer
 @onready var nav_agent: NavigationAgent3D = $NavAgent
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
+@onready var enemyHitAudioStream = $AudioStreamPlayer3D_hit
+
 
 func _ready():
 	spawn_position = global_position
@@ -143,7 +145,7 @@ func pick_new_patrol_point():
 func attack():
 	if attack_timer > 0.0:
 		return
-
+	
 	attack_timer = attack_cooldown
 	velocity = Vector3.ZERO
 
@@ -152,6 +154,7 @@ func attack():
 		model_holder.set("attack_damage", attack_damage)
 		model_holder.set("current_attack_anim", "fight")
 		animation_player.play("fight")
+		enemyHitAudioStream.play()
 
 func flash_red():
 	var meshes = find_children("*", "MeshInstance3D", true, false)
