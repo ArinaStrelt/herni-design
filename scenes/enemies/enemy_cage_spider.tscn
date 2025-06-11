@@ -37,8 +37,9 @@ radius = 0.5
 
 [node name="AudioStreamPlayer3D_walk" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_f6t7v")
+volume_db = 21.247
 pitch_scale = 0.81
-max_distance = 15.0
+max_distance = 22.4
 bus = &"SFX"
 
 [node name="AudioStreamPlayer3D_attack" type="AudioStreamPlayer3D" parent="."]
@@ -48,7 +49,7 @@ bus = &"SFX"
 
 [node name="AudioStreamPlayer3D_death" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_855pf")
-volume_db = 20.241
+volume_db = 11.566
 bus = &"SFX"
 
 [node name="AudioStreamPlayer3D_hit" type="AudioStreamPlayer3D" parent="."]

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cfol5afm4cvsg" path="res://scripts/enemies/enemy_monster.gd" id="1_27d2k"]
 [ext_resource type="PackedScene" uid="uid://dteo6g3s7xu7f" path="res://scenes/health_bar.tscn" id="2_fe08f"]
 [ext_resource type="PackedScene" uid="uid://6jn3v652i4gp" path="res://scenes/enemy_monster/monster_enemy_model.tscn" id="4_4308b"]
-[ext_resource type="AudioStream" uid="uid://bou5khu7n4f3e" path="res://audio/SFX/enemies/monster/attack.wav" id="4_axafj"]
+[ext_resource type="AudioStream" uid="uid://cviy8yjydeudu" path="res://audio/SFX/enemies/monster/442957__qubodup__monster-attack.wav" id="4_tpeum"]
 [ext_resource type="AudioStream" uid="uid://dbj3ocdibthfr" path="res://audio/SFX/enemies/monster/walk.mp3" id="5_axafj"]
 [ext_resource type="AudioStream" uid="uid://cohhto8eqjvn2" path="res://audio/SFX/enemies/monster/voice.mp3" id="6_p0b3m"]
 [ext_resource type="AudioStream" uid="uid://b87va1rogobwc" path="res://audio/SFX/enemies/monster/death.wav" id="7_1ohw4"]
@@ -37,8 +37,11 @@ height = 2.0
 [node name="monster_enemy_model" parent="." instance=ExtResource("4_4308b")]
 
 [node name="AudioStreamPlayer3D_attack" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_axafj")
-pitch_scale = 1.04
+stream = ExtResource("4_tpeum")
+volume_db = 12.229
+pitch_scale = 0.78
+max_distance = 29.74
+bus = &"SFX"
 
 [node name="AudioStreamPlayer3D_walk" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_axafj")

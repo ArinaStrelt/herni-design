@@ -100,7 +100,8 @@ func _physics_process(delta):
 			if !enemyWalkAudioStream.playing:
 				enemyWalkAudioStream.play()
 		else:
-			enemyWalkAudioStream.stop()
+			if enemyWalkAudioStream.playing:
+				enemyWalkAudioStream.stop()
 			animation_player.speed_scale = 1.0
 			_play_animation("Idle")
 

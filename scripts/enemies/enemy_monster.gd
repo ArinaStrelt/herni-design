@@ -23,6 +23,7 @@ var wait_time = 0.0
 var knockback_direction = Vector3.ZERO
 var knockback_timer = 0.0
 var attack_timer = 0.0
+var is_attacking = false
 
 @onready var model_holder: Node = $monster_enemy_model  # musí mít připojený správný skript
 @onready var animation_player: AnimationPlayer = $monster_enemy_model/AnimationPlayer
@@ -78,6 +79,13 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
+	if velocity.length() > 0.1:
+		if not enemyWalkAudioStream.playing:
+			enemyWalkAudioStream.play()
+	else:
+		if enemyWalkAudioStream.playing:
+			enemyWalkAudioStream.stop()
+
 	move_and_slide()
 
 	var look_dir: Vector3
@@ -96,7 +104,6 @@ func chase_player(_delta):
 	if animation_player.current_animation != "run":
 		animation_player.play("run")
 		
-
 	nav_agent.set_target_position(player.global_position)
 
 	if nav_agent.is_navigation_finished():
@@ -124,10 +131,6 @@ func patrol(delta):
 
 	if animation_player.current_animation != "run":
 		animation_player.play("run")
-		if !enemyWalkAudioStream.playing:
-				enemyWalkAudioStream.play()
-		else:
-			enemyWalkAudioStream.stop()
 		animation_player.speed_scale = 0.7
 
 	var next_pos = nav_agent.get_next_path_position()
@@ -153,20 +156,18 @@ func pick_new_patrol_point():
 func attack():
 	if attack_timer > 0.0:
 		return
-		if enemyWalkAudioStream.playing:
-				enemyWalkAudioStream.stop
 	
 	attack_timer = attack_cooldown
 	velocity = Vector3.ZERO
-
 	if player and global_position.distance_to(player.global_position) <= attack_distance:
 		# Předáme hodnoty do modelu
 		model_holder.set("attack_damage", attack_damage)
 		model_holder.set("current_attack_anim", "fight")
 		
+	if not enemyAttackAudioStream.playing and (not animation_player.is_playing() or animation_player.current_animation != "fight"):
+		enemyAttackAudioStream.play()
 		animation_player.play("fight")
-	
-		
+		print("Attack sound is playing: ", enemyAttackAudioStream.playing)
 
 func flash_red():
 	var meshes = find_children("*", "MeshInstance3D", true, false)
