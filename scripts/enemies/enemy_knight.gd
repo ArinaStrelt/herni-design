@@ -22,7 +22,8 @@ var spawn_position: Vector3
 @onready var model: Node3D = $enemy_knight_model
 @onready var anim: AnimationPlayer = model.get_node("AnimationPlayer")
 @onready var nav_agent: NavigationAgent3D = $NavAgent
-@onready var collision_shape: CollisionShape3D = $CollisionShape3D 
+@onready var collision_shape: CollisionShape3D = $CollisionShape3D
+@onready var health_bar = $health_bar
 @onready var enemyHitAudioStream = $AudioStreamPlayer3D_hit
 @onready var enemyWalkAudioStream = $AudioStreamPlayer3D_walk
 @onready var enemyChaseAudioStream = $AudioStreamPlayer3D_chase
@@ -170,7 +171,7 @@ func take_damage(amount:int):
 	enemyWalkAudioStream.stop()
 	
 	
-	$health_bar.update_healthbar(current_health, max_health)
+	health_bar.update_healthbar(current_health, max_health)
 	flash_red()
 
 	if current_health <= 0:
@@ -180,6 +181,7 @@ func die():
 	var death_position = global_transform.origin
 	is_dead = true
 	collision_shape.set_deferred("disabled", true)
+	health_bar.visible = false
 	velocity = Vector3.ZERO
 	move_and_slide()
 	enemyDeathAudioStream.play()

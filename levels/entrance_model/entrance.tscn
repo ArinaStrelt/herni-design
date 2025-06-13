@@ -177,9 +177,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.88392, 0, -6.23033)
 [node name="spawn_point7" type="Marker3D" parent="enemy_spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05809, 0, -9.78721)
 
-[node name="spawn_point8" type="Marker3D" parent="enemy_spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.65275, 0, -9.81217)
-
 [connection signal="body_entered" from="NavigationRegion3D/entrance/doors/Area3D" to="NavigationRegion3D/entrance/doors" method="_on_player_enter"]
 [connection signal="body_exited" from="NavigationRegion3D/entrance/doors/Area3D" to="NavigationRegion3D/entrance/doors" method="_on_player_leave"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://y3igs2apyv0g"]
 
-[ext_resource type="Script" uid="uid://bvvsbrlhqmnyk" path="res://scripts/player/player_controller.gd" id="1_dovo2"]
+[ext_resource type="Script" uid="uid://c16fhtj76w5yr" path="res://scripts/player/new_player_controller.gd" id="1_5gtgg"]
 [ext_resource type="PackedScene" uid="uid://bqwv43omkude6" path="res://scenes/player/player_knight_model_new.tscn" id="2_dovo2"]
 [ext_resource type="AudioStream" uid="uid://whbugaqv4o4w" path="res://audio/SFX/player/walking.wav" id="3_gmlin"]
 [ext_resource type="AudioStream" uid="uid://bu6gxinoy56j" path="res://audio/SFX/player/attack.mp3" id="4_lvxji"]
@@ -17,7 +17,7 @@ radius = 0.846191
 radius = 0.651095
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
-script = ExtResource("1_dovo2")
+script = ExtResource("1_5gtgg")
 
 [node name="player_knight_model_new" parent="." instance=ExtResource("2_dovo2")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)

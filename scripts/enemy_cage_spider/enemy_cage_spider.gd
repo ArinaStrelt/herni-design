@@ -30,6 +30,7 @@ var attack_anim_duration = 1
 @onready var animation_player: AnimationPlayer = model_holder.get_node("AnimationPlayer")
 @onready var nav_agent: NavigationAgent3D = $NavAgent
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
+@onready var health_bar = $health_bar
 @onready var enemyWalkAudioStream = $AudioStreamPlayer3D_walk
 @onready var enemyDeathAudioStream = $AudioStreamPlayer3D_death
 @onready var enemyAttackAudioStream = $AudioStreamPlayer3D_attack
@@ -197,7 +198,7 @@ func take_damage(amount: int):
 	current_health -= amount
 	enemyHitAudioStream.play()
 	print("Enemy took damage:", amount)
-	$health_bar.update_healthbar(current_health, max_health)
+	health_bar.update_healthbar(current_health, max_health)
 	flash_red()
 
 	if player:
@@ -216,7 +217,7 @@ func die():
 	print("Enemy died.")
 
 	collision_shape.set_deferred("disabled", true)
-
+	health_bar.visible = false
 	animation_player.stop()
 	animation_player.play("Death")
 	enemyDeathAudioStream.play()

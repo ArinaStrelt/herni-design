@@ -10,7 +10,7 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_u8ga1"]
 viewport_path = NodePath("SubViewport")
 
-[node name="enemy_cube" type="CharacterBody3D" groups=["player"]]
+[node name="enemy_cube" type="CharacterBody3D" groups=["enemies"]]
 script = ExtResource("1_hwjj7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

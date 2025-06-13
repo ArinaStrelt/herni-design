@@ -29,6 +29,7 @@ var is_attacking = false
 @onready var animation_player: AnimationPlayer = $monster_enemy_model/AnimationPlayer
 @onready var nav_agent: NavigationAgent3D = $NavAgent
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
+@onready var health_bar = $health_bar
 @onready var enemyAttackAudioStream = $AudioStreamPlayer3D_attack
 @onready var enemyWalkAudioStream = $AudioStreamPlayer3D_walk
 @onready var enemyVoiceAudioStream = $AudioStreamPlayer3D_voice
@@ -195,7 +196,7 @@ func take_damage(amount: int):
 	enemyHitAudioStream.play()
 	enemyVoiceAudioStream.play()
 	print("Enemy took damage:", amount)
-	$health_bar.update_healthbar(current_health, max_health)
+	health_bar.update_healthbar(current_health, max_health)
 	flash_red()
 
 	if player:
@@ -213,7 +214,7 @@ func die():
 	enemyDeathAudioStream.play()
 	
 	collision_shape.set_deferred("disabled", true)
-
+	health_bar.visible = false
 	var coin_scene = preload("res://scenes/coins/coins.tscn").instantiate()
 	var coin = coin_scene.get_node("interact_area")
 	coin.value = randi_range(20, 30)
