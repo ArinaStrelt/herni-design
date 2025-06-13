@@ -120,13 +120,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.58577)
 [node name="enemy_spawns" type="Node3D" parent="."]
 
 [node name="spawn_point1" type="Marker3D" parent="enemy_spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.45208, 0, -1.38881)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.796545, 0, -12.6638)
 
 [node name="spawn_point2" type="Marker3D" parent="enemy_spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.685537, 0, -4.45892)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.46316, 0, -11.8785)
 
 [node name="spawn_point3" type="Marker3D" parent="enemy_spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85679, 0, -2.12737)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.315937, 0, -4.06521)
 
 [node name="spawn_point4" type="Marker3D" parent="enemy_spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.84942, 0, -6.64777)
@@ -136,12 +136,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.74142, 0, -6.75923)
 
 [node name="spawn_point6" type="Marker3D" parent="enemy_spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.450049, 0, -8.39864)
-
-[node name="spawn_point7" type="Marker3D" parent="enemy_spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -12.091)
-
-[node name="spawn_point8" type="Marker3D" parent="enemy_spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.35401, 0, -11.6119)
 
 [node name="plot" parent="." instance=ExtResource("3_jsrm8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.052202, 0, 0.148645)

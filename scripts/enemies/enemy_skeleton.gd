@@ -12,6 +12,7 @@ extends CharacterBody3D
 @onready var magic_spawn_point: Marker3D = $skeleton/magic_point
 @onready var player: Node3D = null
 @onready var model: Node3D = $skeleton
+@onready var health_bar = $health_bar
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var enemyHitAudioStream = $AudioStreamPlayer3D_hit
 @onready var enemyFireballAudioStream = $AudioStreamPlayer3D_fireball
@@ -125,7 +126,7 @@ func take_damage(amount: int):
 	enemyVoiceAudioStream.play()
 	animation_player.play("Impact")
 
-	$health_bar.update_healthbar(current_health, max_health)
+	health_bar.update_healthbar(current_health, max_health)
 	flash_red()
 
 	if current_health <= 0:
@@ -136,6 +137,7 @@ func die():
 	var death_position = global_transform.origin
 	is_dead   = true
 	collision_shape.set_deferred("disabled", true)
+	health_bar.visible = false
 	velocity  = Vector3.ZERO
 	move_and_slide()
 	animation_player.play("Death")

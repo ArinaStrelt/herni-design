@@ -233,31 +233,25 @@ omni_attenuation = 1.877
 [node name="enemy_spawns" type="Node3D" parent="."]
 
 [node name="spawn_point1" type="Marker3D" parent="enemy_spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.31781, 0, -8.24079)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.56528, -9.53674e-07, -5.19552)
 
 [node name="spawn_point2" type="Marker3D" parent="enemy_spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.941902, 0, -11.0473)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.22773, 0, -8.44235)
 
 [node name="spawn_point3" type="Marker3D" parent="enemy_spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.95109, 0, -10.4653)
 
 [node name="spawn_point4" type="Marker3D" parent="enemy_spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.24249, 0, -7.82384)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.32378, 0, -6.99388)
 
 [node name="spawn_point5" type="Marker3D" parent="enemy_spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09688, 0, -5.61134)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.30141, 9.53674e-07, -2.07492)
 
 [node name="spawn_point6" type="Marker3D" parent="enemy_spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.78368, 0, -5.61134)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.35409, 0, -4.02295)
 
 [node name="spawn_point7" type="Marker3D" parent="enemy_spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.26271, 0, -12.5765)
-
-[node name="spawn_point8" type="Marker3D" parent="enemy_spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92, 0, -3.17276)
-
-[node name="spawn_point9" type="Marker3D" parent="enemy_spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.908, 0, -3.17276)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01906, 0, -11.6273)
 
 [node name="player_spawn" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.07657, 0, 0.696907)

@@ -79,18 +79,18 @@ func change_level(path := ""):
 	var fade_in_tween = fade.fade_in()
 	await fade_in_tween.finished
 
-func get_scaled_enemy():
+func get_scaled_enemy_pool():
 	var tier1 = preload("res://scenes/enemies/enemy_knight.tscn")
 	var tier2 = preload("res://scenes/enemies/enemy_cage_spider.tscn")
 	var tier3 = preload("res://scenes/enemies/enemy_skeleton.tscn")
 	var tier4 = preload("res://scenes/enemy_monster/enemy_monster.tscn")
 
 	if room_count < 3:
-		return [tier1, tier3].pick_random()
+		return [tier1, tier3]
 	elif room_count < 5:
-		return [tier1, tier2, tier3].pick_random()
+		return [tier1, tier2, tier3]
 	else:
-		return [tier1, tier2, tier3, tier4].pick_random()
+		return [tier1, tier2, tier3, tier4]
 
 func spawn_enemies_in_level():
 	if not current_level:
@@ -100,15 +100,42 @@ func spawn_enemies_in_level():
 	if not spawn_parent:
 		return
 
-	for point in spawn_parent.get_children():
-		var enemy_scene = get_scaled_enemy().instantiate()
-		enemy_scene.transform.origin = point.global_transform.origin
+	var enemy_pool = get_scaled_enemy_pool()
 
-		# Můžeš také upravit staty dynamicky:
-		if enemy_scene.has_method("scale_difficulty"):
-			enemy_scene.scale_difficulty(room_count)
+	var tier3_scene = preload("res://scenes/enemies/enemy_skeleton.tscn")
+	var non_tier3_pool = enemy_pool.duplicate()
+	non_tier3_pool.erase(tier3_scene)
 
-		current_level.add_child(enemy_scene)
+	var max_tier3 = 3
+	var total_spawn_points = spawn_parent.get_child_count()
+	var tier3_to_spawn = min(max_tier3, total_spawn_points)
+	tier3_to_spawn = randi() % (tier3_to_spawn + 1)  # náhodný počet tier3 mezi 0 a limit
+
+	# Připrav seznam všech nepřátel, které budeme spawnovat
+	var spawn_list = []
+
+	# Nejprve přidáme požadovaný počet tier3
+	for i in range(tier3_to_spawn):
+		spawn_list.append(tier3_scene)
+
+	# Zbytek doplníme náhodně z ostatních nepřátel
+	for i in range(total_spawn_points - tier3_to_spawn):
+		spawn_list.append(non_tier3_pool.pick_random())
+
+	# Zamícháme pořadí, aby spawnování bylo náhodné
+	spawn_list.shuffle()
+
+	# Provedeme samotný spawn
+	for i in range(total_spawn_points):
+		var point = spawn_parent.get_child(i)
+		var enemy_instance = spawn_list[i].instantiate()
+		enemy_instance.transform.origin = point.global_transform.origin
+
+		if enemy_instance.has_method("scale_difficulty"):
+			enemy_instance.scale_difficulty(room_count)
+
+		current_level.add_child(enemy_instance)
+
 
 
 func reset_run():
