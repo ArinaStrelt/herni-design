@@ -30,6 +30,10 @@ var attack_anim_duration = 1
 @onready var animation_player: AnimationPlayer = model_holder.get_node("AnimationPlayer")
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
+@onready var enemyWalkAudioStream = $AudioStreamPlayer3D_walk
+@onready var enemyDeathAudioStream = $AudioStreamPlayer3D_death
+@onready var enemyAttackAudioStream = $AudioStreamPlayer3D_attack
+@onready var enemyHitAudioStream = $AudioStreamPlayer3D_hit
 
 func _ready():
 	spawn_position = global_position
@@ -92,7 +96,12 @@ func _physics_process(delta):
 		if velocity.length() > 0.1:
 			animation_player.speed_scale = 2.0 if state == "chase" else 1.0
 			_play_animation("Walk")
+			
+			if !enemyWalkAudioStream.playing:
+				enemyWalkAudioStream.play()
 		else:
+			if enemyWalkAudioStream.playing:
+				enemyWalkAudioStream.stop()
 			animation_player.speed_scale = 1.0
 			_play_animation("Idle")
 
@@ -146,6 +155,7 @@ func _attack() -> void:
 	attack_timer = attack_cooldown
 	velocity = Vector3.ZERO
 	state = "attack"
+	enemyAttackAudioStream.play()
 
 	if player and global_position.distance_to(player.global_position) <= attack_distance:
 		if "take_damage" in player:
@@ -183,6 +193,7 @@ func take_damage(amount: int):
 
 	current_health -= amount
 	print("Enemy took damage:", amount)
+	enemyHitAudioStream.play()
 	$health_bar.update_healthbar(current_health, max_health)
 	flash_red()
 
@@ -204,6 +215,7 @@ func die():
 
 	animation_player.stop()
 	animation_player.play("Death")
+	enemyDeathAudioStream.play()
 
 	set_physics_process(false)
 
