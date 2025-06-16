@@ -6,7 +6,7 @@ extends CharacterBody3D
 @export var attack_range: float = 1
 @export var attack_cd: float = 0.25
 @export var max_health: int = 100
-@export var attack_damage := 25
+@export var attack_damage := 20
 @export var patrol_radius: float = 4.0
 
 var current_health: int = max_health
@@ -203,5 +203,6 @@ func die():
 
 func scale_difficulty(level: int):
 	if level > 1:
-		max_health = max_health + ((level-1) * 75)
-		attack_damage = attack_damage + ((level-1) * 15)
+		max_health = max_health + ((level-1) * 85)
+		attack_damage = attack_damage + ((level-1) * 10)
+		current_health = max_health

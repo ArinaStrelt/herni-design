@@ -24,6 +24,7 @@ var knockback_direction = Vector3.ZERO
 var knockback_timer = 0.0
 var attack_timer = 0.0
 var is_attacking = false
+var has_target = false
 
 @onready var model_holder: Node = $monster_enemy_model  # musí mít připojený správný skript
 @onready var animation_player: AnimationPlayer = $monster_enemy_model/AnimationPlayer
@@ -61,9 +62,12 @@ func _physics_process(delta):
 		distance_to_player = global_position.distance_to(player.global_position)
 		if distance_to_player <= aggro_distance:
 			state = "chase"
-			health_bar.show_aggro()
+			if !has_target:
+				health_bar.show_aggro()
+			has_target = true
 		elif state != "patrol":
 			state = "patrol"
+			has_target = false
 
 	match state:
 		"idle":
@@ -231,3 +235,4 @@ func scale_difficulty(level: int):
 	if level > 1:
 		max_health = max_health + ((level-1) * 125)
 		attack_damage = attack_damage + ((level-1) * 15)
+		current_health = max_health

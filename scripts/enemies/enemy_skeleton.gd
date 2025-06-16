@@ -6,7 +6,7 @@ extends CharacterBody3D
 @export var attack_cd: = 1.0
 @export var magic_ball_scene := preload("res://scenes/enemies/magic_ball.tscn")
 @export var max_health := 150
-@export var attack_damage := 15
+@export var attack_damage := 10
 
 @onready var animation_player: AnimationPlayer = $skeleton/AnimationPlayer
 @onready var magic_spawn_point: Marker3D = $skeleton/magic_point
@@ -163,8 +163,8 @@ func die():
 
 func scale_difficulty(level: int):
 	if level > 1:
-		max_health = max_health + ((level-1) * 50)
+		max_health = max_health + ((level-1) * 60)
 		attack_damage = attack_damage + ((level-1) * 10)
-
+		current_health = max_health
 	else:
 		return

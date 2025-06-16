@@ -7,10 +7,10 @@ extends CharacterBody3D
 @export var patrol_radius = 5.0
 @export var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var rotation_speed = 5.0
-@export var max_health := 450
+@export var max_health := 600
 @export var knockback_duration = 1
 @export var knockback_force = 0
-@export var attack_damage = 10
+@export var attack_damage = 25
 @export var attack_cooldown = 2
 
 var current_health = max_health
@@ -25,6 +25,7 @@ var knockback_timer = 0.0
 var attack_timer = 0.0
 var attack_animations = ["Attack", "Attack2"]
 var attack_anim_duration = 1
+var has_target = false
 
 @onready var model_holder = $boss_cage_spider2
 @onready var animation_player: AnimationPlayer = model_holder.get_node("AnimationPlayer")
@@ -61,8 +62,12 @@ func _physics_process(delta):
 		distance_to_player = global_position.distance_to(player.global_position)
 		if distance_to_player <= aggro_distance and state != "attack":
 			state = "chase"
+			if !has_target:
+				$health_bar.show_aggro()
+			has_target = true
 		elif distance_to_player > aggro_distance * 1.2 and state != "attack":
 			state = "patrol"
+			has_target = false
 	else:
 		state = "patrol"
 
@@ -87,10 +92,9 @@ func _physics_process(delta):
 		look_dir = (player.global_position - global_position).normalized()
 
 	if look_dir:
-		var target_angle = atan2(-look_dir.x, -look_dir.z)
+		var target_angle = atan2(look_dir.x, look_dir.z)
 		var current_angle = model_holder.rotation.y
-		var corrected_target_angle = target_angle + deg_to_rad(90)
-		model_holder.rotation.y = lerp_angle(current_angle, corrected_target_angle, delta * rotation_speed)
+		model_holder.rotation.y = lerp_angle(current_angle, target_angle, delta * rotation_speed)
 
 	if state != "attack":
 		if velocity.length() > 0.1:
@@ -221,7 +225,7 @@ func die():
 
 	var coin_scene = preload("res://scenes/coins/coins.tscn").instantiate()
 	var coin = coin_scene.get_node("interact_area")
-	coin.value = randi_range(15, 25)
+	coin.value = randi_range(100,125)
 	coin_scene.transform.origin = position
 	get_tree().current_scene.add_child(coin_scene)
 

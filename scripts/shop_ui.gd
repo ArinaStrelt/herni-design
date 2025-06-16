@@ -19,11 +19,11 @@ extends Control
 @onready var close_button = $panel/close_button
 
 # Parametry upgradů
-var hp_upgrade_amount = 20
-var hp_upgrade_cost = 25
+var hp_upgrade_amount = 30
+var hp_upgrade_cost = 20
 
-var dmg_upgrade_amount = 10
-var dmg_upgrade_cost = 25
+var dmg_upgrade_amount = 15
+var dmg_upgrade_cost = 20
 
 func _ready():
 	close_button.pressed.connect(_on_close_pressed)
@@ -51,7 +51,7 @@ func _on_hp_upgrade():
 		player.current_health += hp_upgrade_amount  # volitelné
 		player.ui.update_health(player.current_health, player.max_health)
 		player.ui.update_gold(player.gold)
-		hp_upgrade_cost += 25
+		hp_upgrade_cost += 20
 		storeBuyAudioStream.play()
 		update_ui()
 
@@ -60,7 +60,7 @@ func _on_dmg_upgrade():
 		player.gold -= dmg_upgrade_cost
 		player.damage += dmg_upgrade_amount
 		player.ui.update_gold(player.gold)
-		dmg_upgrade_cost += 25
+		dmg_upgrade_cost += 20
 		storeBuyAudioStream.play()
 		update_ui()
 

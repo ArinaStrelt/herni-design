@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmabc5n8w0cah"]
+[gd_scene load_steps=11 format=3 uid="uid://dmabc5n8w0cah"]
 
 [ext_resource type="Script" uid="uid://bid05qu2dpe0v" path="res://scripts/ui.gd" id="1_nt7q6"]
 [ext_resource type="PackedScene" uid="uid://k1nkb3i10t7x" path="res://scenes/shop_ui.tscn" id="2_x4jx1"]
 [ext_resource type="PackedScene" uid="uid://clonp0siqednp" path="res://scenes/start_info.tscn" id="3_gdt2y"]
 [ext_resource type="AudioStream" uid="uid://dgcg3wxlc0caa" path="res://audio/SFX/objects/shop_enter.wav" id="3_yev5y"]
 [ext_resource type="PackedScene" uid="uid://duvt50h8kgb0h" path="res://scenes/death_display.tscn" id="4_wm3ai"]
+[ext_resource type="PackedScene" uid="uid://d0qvlu2gpd4nv" path="res://scenes/end_scene.tscn" id="5_8dubc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xlq6p"]
 bg_color = Color(0.0991667, 0.35, 0, 1)
@@ -78,6 +79,9 @@ visible = false
 [node name="start_info" parent="." instance=ExtResource("3_gdt2y")]
 
 [node name="death_display" parent="." instance=ExtResource("4_wm3ai")]
+visible = false
+
+[node name="end_scene" parent="." instance=ExtResource("5_8dubc")]
 visible = false
 
 [node name="AudioStreamPlayer3D_enter" type="AudioStreamPlayer3D" parent="."]

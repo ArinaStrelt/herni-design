@@ -7,7 +7,7 @@ extends CharacterBody3D
 @export var patrol_radius = 4.0
 @export var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var rotation_speed = 5.0
-@export var max_health := 1000
+@export var max_health := 2000
 @export var knockback_duration = 1
 @export var knockback_force = 0
 @export var attack_damage = 110
@@ -285,6 +285,8 @@ func die():
 	get_tree().current_scene.add_child(coin_scene)
 
 	await get_tree().create_timer(2.0).timeout
+	var end_screen = get_node("/root/level_loader/UI/end_scene")
+	end_screen.show_end_screen()
 	queue_free()
 
 func _play_animation(anim_name: String):

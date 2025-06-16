@@ -275,10 +275,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.95109, 0, -10.4653)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.32378, 0, -6.99388)
 
 [node name="spawn_point5" type="Marker3D" parent="enemy_spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.30141, 9.53674e-07, -2.07492)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.30141, 9.53674e-07, -5.86124)
 
 [node name="spawn_point6" type="Marker3D" parent="enemy_spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.35409, 0, -4.02295)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.52823, 0, -5.55798)
 
 [node name="spawn_point7" type="Marker3D" parent="enemy_spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.01906, 0, -11.6273)

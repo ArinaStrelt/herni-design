@@ -2128,9 +2128,9 @@ bones/159/scale = Vector3(1, 1, 1)
 bones/161/position = Vector3(1.43656, 3.26682, 0.805911)
 
 [node name="Arm_left" type="PhysicalBone3D" parent="Armature/Skeleton3D" index="4"]
-transform = Transform3D(4.45676, -1.23273, -2.29224, 2.38464, 3.75528, 2.61689, 1.04282, -3.31889, 3.81239, -0.179675, 1.59839, 1.55936)
-joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.349364, 0.223434, -0.090146)
-body_offset = Transform3D(2.99276, -3.39536, -2.48025, 4.08142, 3.07774, 0.711512, 1.01098, -2.37399, 4.46978, -0.51051, -2.04944, 0.580163)
+transform = Transform3D(4.45676, -1.23273, -2.29224, 2.38465, 3.75528, 2.61689, 1.04282, -3.31889, 3.81239, -0.179686, 1.59838, 1.55936)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.349367, 0.223435, -0.0901461)
+body_offset = Transform3D(2.99276, -3.39536, -2.48025, 4.08142, 3.07775, 0.711512, 1.01098, -2.37399, 4.46978, -0.510513, -2.04945, 0.580163)
 bone_name = "Bone.084"
 
 [node name="hitbox" type="Area3D" parent="Armature/Skeleton3D/Arm_left" index="0"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bmxtnall3w373"]
+[gd_scene load_steps=13 format=3 uid="uid://bmxtnall3w373"]
 
 [ext_resource type="PackedScene" uid="uid://dbpxy6wbs3vxm" path="res://levels/entrance_model/entrance.glb" id="1_6e1lf"]
 [ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_wydwa"]
@@ -130,6 +130,7 @@ bus = &"SFX"
 
 [node name="Seller" parent="NavigationRegion3D/entrance" instance=ExtResource("6_2phd1")]
 transform = Transform3D(0.290937, 0, 0.155742, 0, 0.33, 0, -0.155742, 0, 0.290937, -1.11287, -0.0642229, -13.0035)
+merchant_id = "entrance"
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="NavigationRegion3D/entrance"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2032, 0.454197, -12.0373)
@@ -172,6 +173,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.36772, 0, -4.24443)
 [node name="spawn_point4" type="Marker3D" parent="enemy_spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.09096, 0, -6.25059)
 
+[node name="spawn_point7" type="Marker3D" parent="enemy_spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11052, 0, -7.30175)
+
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
@@ -183,9 +187,6 @@ shape = SubResource("BoxShape3D_jhwv2")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
 transform = Transform3D(3.73844, 0, 0.781901, 0, 2.06815, 0, -4.68893, 0, 0.623402, -6.10089, 0.37465, -9.40034)
 shape = SubResource("BoxShape3D_jhwv2")
-
-[node name="spawn_point7" type="Marker3D" parent="enemy_spawns"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11052, 0, -7.30175)
 
 [node name="boss" parent="." instance=ExtResource("8_2phd1")]
 transform = Transform3D(0.197281, 0, -0.980347, 0, 1, 0, 0.980347, 0, 0.197281, 0.136603, 0.0492994, -9.90117)
