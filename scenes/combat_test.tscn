@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlo3ohfbkdqv0"]
+[gd_scene load_steps=8 format=3 uid="uid://dlo3ohfbkdqv0"]
 
 [ext_resource type="PackedScene" uid="uid://d150g1cwpq5ew" path="res://scenes/enemies/enemy_cage_spider.tscn" id="2_5jbmu"]
 [ext_resource type="PackedScene" uid="uid://byk7wrccha6w" path="res://scenes/enemies/testing_enemy_cube.tscn" id="3_5jbmu"]
+[ext_resource type="PackedScene" uid="uid://y3igs2apyv0g" path="res://scenes/player/player.tscn" id="3_w6gk5"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_w6gk5"]
 vertices = PackedVector3Array(-49.5, 0.5, -49.5, -49.5, 0.5, 49.5, 49.5, 0.5, 49.5, 49.5, 0.5, -49.5)
@@ -43,3 +44,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83024, 0.229456, 0.316986)
 
 [node name="enemy_cage_spider" parent="." instance=ExtResource("2_5jbmu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.28744, -0.0262539, 1.1143)
+
+[node name="Player" parent="." instance=ExtResource("3_w6gk5")]

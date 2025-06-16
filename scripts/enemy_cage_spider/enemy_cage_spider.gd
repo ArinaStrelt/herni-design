@@ -23,7 +23,6 @@ var wait_time = 0.0
 var knockback_direction = Vector3.ZERO
 var knockback_timer = 0.0
 var attack_timer = 0.0
-var attack_animations = ["Attack", "Attack2"]
 var attack_anim_duration = 1
 var has_target := false
 
@@ -36,6 +35,7 @@ var has_target := false
 @onready var enemyDeathAudioStream = $AudioStreamPlayer3D_death
 @onready var enemyAttackAudioStream = $AudioStreamPlayer3D_attack
 @onready var enemyHitAudioStream = $AudioStreamPlayer3D_hit
+
 
 func _ready():
 	spawn_position = global_position
@@ -79,7 +79,7 @@ func _physics_process(delta):
 			if player:
 				chase_player(delta)
 				if distance_to_player <= attack_distance:
-					attack()
+					call_deferred("attack")  # ✅ důležité opravené volání
 
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -102,7 +102,6 @@ func _physics_process(delta):
 		if velocity.length() > 0.1:
 			animation_player.speed_scale = 2.0 if state == "chase" else 1.0
 			_play_animation("Walk")
-			
 			if !enemyWalkAudioStream.playing:
 				enemyWalkAudioStream.play()
 		else:
@@ -152,35 +151,37 @@ func chase_player(_delta):
 		velocity = Vector3.ZERO
 
 
-func attack() -> void:
+func attack():
+	if attack_timer > 0.0 or state == "attack":
+		return
 	await _attack()
 
 
 func _attack() -> void:
 	if attack_timer > 0.0 or state == "attack":
 		return
-	
+
 	attack_timer = attack_cooldown
 	velocity = Vector3.ZERO
 	state = "attack"
 	enemyAttackAudioStream.play()
-	var selected_attack = attack_animations[randi() % attack_animations.size()]
+
 	model_holder.attack_damage = attack_damage
-
-	model_holder.current_attack_anim = selected_attack
-	model_holder.attack_hitbox_on()
-
+	model_holder.current_attack_anim = "Attack2"
 	_play_animation("Attack2")
 
-	await get_tree().create_timer(attack_anim_duration).timeout
-
+	await get_tree().create_timer(0.4).timeout  # čas do dopadu
+	model_holder.attack_hitbox_on()
+	await get_tree().create_timer(0.2).timeout  # jak dlouho je aktivní
 	model_holder.attack_hitbox_off()
+
+	await get_tree().create_timer(attack_anim_duration - 0.8).timeout
 	state = "chase"
+
 
 
 func flash_red():
 	var meshes = find_children("*", "MeshInstance3D", true, false)
-
 	for mesh in meshes:
 		var mat = mesh.get_active_material(0)
 		if mat:
@@ -250,8 +251,5 @@ func _play_animation(anim_name: String):
 
 func scale_difficulty(level: int):
 	if level > 1:
-		max_health = max_health + ((level-1) * 25)
-		attack_damage = attack_damage + ((level-1) * 10)
-
-	else:
-		return
+		max_health = max_health + ((level - 1) * 25)
+		attack_damage = attack_damage + ((level - 1) * 10)

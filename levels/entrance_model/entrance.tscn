@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bmxtnall3w373"]
+[gd_scene load_steps=12 format=3 uid="uid://bmxtnall3w373"]
 
 [ext_resource type="PackedScene" uid="uid://dbpxy6wbs3vxm" path="res://levels/entrance_model/entrance.glb" id="1_6e1lf"]
 [ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_wydwa"]
@@ -184,8 +184,11 @@ shape = SubResource("BoxShape3D_jhwv2")
 transform = Transform3D(3.73844, 0, 0.781901, 0, 2.06815, 0, -4.68893, 0, 0.623402, -6.10089, 0.37465, -9.40034)
 shape = SubResource("BoxShape3D_jhwv2")
 
+[node name="spawn_point7" type="Marker3D" parent="enemy_spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11052, 0, -7.30175)
+
 [node name="boss" parent="." instance=ExtResource("8_2phd1")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.728227, 0, -9.31563)
+transform = Transform3D(0.197281, 0, -0.980347, 0, 1, 0, 0.980347, 0, 0.197281, 0.136603, 0.0492994, -9.90117)
 
 [connection signal="body_entered" from="NavigationRegion3D/entrance/doors/Area3D" to="NavigationRegion3D/entrance/doors" method="_on_player_enter"]
 [connection signal="body_exited" from="NavigationRegion3D/entrance/doors/Area3D" to="NavigationRegion3D/entrance/doors" method="_on_player_leave"]
