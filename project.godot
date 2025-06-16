@@ -23,6 +23,10 @@ buses/default_bus_layout="res://audio/SFX/default_bus_layout.tres"
 
 AudioPlayer="*res://audio/background/atmosphere/forest/audio_player.gd"
 
+[display]
+
+mouse_cursor/custom_image="uid://ddi31qstr7shs"
+
 [global_group]
 
 enemies=""
