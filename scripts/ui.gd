@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var health_bar: ProgressBar = $container_healthbar/player_health_bar
 @onready var health_bar_label = $container_healthbar/player_health_label
 @onready var shop_ui = $shop_ui
+@onready var start_info = $start_info
 @onready var storeEnteringAudioStream = $AudioStreamPlayer3D_enter
 var shop_opened := false
 
@@ -31,7 +32,9 @@ func open_shop():
 	get_tree().paused = true  # pauzne hru, pokud chceš
 	
 func close_shop():
-	
 	shop_ui.visible = false
 	shop_opened = false
 	get_tree().paused = false
+
+func close_start_info():
+	start_info.visible = false

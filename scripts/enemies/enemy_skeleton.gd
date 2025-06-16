@@ -2,7 +2,7 @@ extends CharacterBody3D
 
 @export var speed := 1
 @export var attack_range := 6.5
-@export var detection_range := 6.0
+@export var detection_range := 8
 @export var attack_cd: = 1.0
 @export var magic_ball_scene := preload("res://scenes/enemies/magic_ball.tscn")
 @export var max_health := 150
@@ -44,6 +44,8 @@ func _physics_process(_delta):
 		return
 
 	if dist <= detection_range:
+		if !has_target:
+			health_bar.show_aggro()
 		has_target = true
 
 	if has_target:

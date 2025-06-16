@@ -19,7 +19,7 @@ var state := "patrol"
 var wait_time: float = 0.0
 var spawn_position: Vector3
 
-@onready var model: Node3D = $enemy_knight_model
+@onready var model: Node3D = $enemy_knight_model2
 @onready var anim: AnimationPlayer = model.get_node("AnimationPlayer")
 @onready var nav_agent: NavigationAgent3D = $NavAgent
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
@@ -52,6 +52,8 @@ func _physics_process(_delta):
 		return
 
 	if dist <= detect_range:
+		if !has_target:
+			health_bar.show_aggro()
 		has_target = true
 		state = "chase"
 
@@ -114,6 +116,7 @@ func patrol(delta):
 		look_at(global_position + look_dir, Vector3.UP)
 
 func pick_new_patrol_point():
+	has_target = false
 	if nav_agent == null:
 		return  # Ensure nav_agent is ready before calling
 
@@ -128,7 +131,7 @@ func pick_new_patrol_point():
 	wait_time = randf_range(1.0, 2.5)
 
 func flash_red():
-	var meshes = $enemy_knight_model.find_children("*", "MeshInstance3D", true, false)
+	var meshes = model.find_children("*", "MeshInstance3D", true, false)
 
 	for mesh in meshes:
 		var mat = mesh.get_active_material(0)
@@ -156,6 +159,7 @@ func attack():
 	enemySwordAudioStream.play()
 	enemyWalkAudioStream.stop()
 	await anim.animation_finished
+	model.attack_hitbox_off()
 
 	is_attacking = false
 	await get_tree().create_timer(attack_cd).timeout
@@ -165,6 +169,7 @@ func take_damage(amount:int):
 	if is_dead:
 		return
 	current_health -= amount
+	model.attack_hitbox_off()
 	enemyHitAudioStream.play()
 	enemyVoiceAudioStream.play()
 	anim.play("Impact")
@@ -185,7 +190,7 @@ func die():
 	velocity = Vector3.ZERO
 	move_and_slide()
 	enemyDeathAudioStream.play()
-	anim.play("A-pose")
+	anim.play("Death")
 
 	var coin_scene = preload("res://scenes/coins/coins.tscn").instantiate()
 	var coin = coin_scene.get_node("interact_area")
@@ -193,7 +198,7 @@ func die():
 	coin_scene.transform.origin = death_position
 	get_tree().current_scene.add_child(coin_scene)
 
-	await get_tree().create_timer(2.0).timeout
+	await anim.animation_finished
 	queue_free()
 
 func scale_difficulty(level: int):

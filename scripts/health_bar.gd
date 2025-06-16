@@ -18,3 +18,11 @@ func update_healthbar(current_health: int, max_health: int) -> void:
 		hide()
 	else:
 		show()
+
+func show_aggro():
+	$aggroInfo.visible = true
+	
+	# Spustíme timer na požadovaný čas
+	await get_tree().create_timer(1.5).timeout
+	
+	$aggroInfo.visible = false
