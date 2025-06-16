@@ -7,10 +7,10 @@ extends CharacterBody3D
 @export var patrol_radius = 4.0
 @export var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var rotation_speed = 5.0
-@export var max_health := 500
+@export var max_health := 1000
 @export var knockback_duration = 1
 @export var knockback_force = 0
-@export var attack_damage = 75
+@export var attack_damage = 110
 @export var attack_cooldown = 2
 
 var current_health = max_health

@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://twijcn7qapr1" path="res://scenes/gwyn_boss/gwyn_boss.gd" id="1_v48gb"]
 [ext_resource type="PackedScene" uid="uid://dteo6g3s7xu7f" path="res://scenes/health_bar.tscn" id="2_ikyoj"]
 [ext_resource type="PackedScene" uid="uid://cet1jt7a4pk3s" path="res://scenes/gwyn_boss/gwyn_boss_model.tscn" id="3_xg2mg"]
-[ext_resource type="AudioStream" uid="uid://dv5btlksqavm3" path="res://audio/SFX/enemies/spider/walk.mp3" id="4_sbka2"]
-[ext_resource type="AudioStream" uid="uid://rdcy3a7qyhnq" path="res://audio/SFX/enemies/spider/spider_attack.wav" id="5_shcim"]
+[ext_resource type="AudioStream" uid="uid://whbugaqv4o4w" path="res://audio/SFX/player/walking.wav" id="4_v48gb"]
+[ext_resource type="AudioStream" uid="uid://bhcd2k04xxv3q" path="res://audio/SFX/enemies/knight/enemy_knight_sw.wav" id="5_ikyoj"]
+[ext_resource type="AudioStream" uid="uid://biamjg34ohk60" path="res://audio/SFX/enemies/knight/enemy_knight_death.wav" id="6_xg2mg"]
 [ext_resource type="AudioStream" uid="uid://bh6uex0s7fhbn" path="res://audio/SFX/enemies/spider/death.mp3" id="6_y5g7m"]
-[ext_resource type="AudioStream" uid="uid://btwj3s4cg11hh" path="res://audio/SFX/enemies/hit.wav" id="7_3ltu4"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_d4nsh"]
 viewport_path = NodePath("SubViewport")
@@ -37,23 +37,23 @@ avoidance_enabled = true
 radius = 1.2
 
 [node name="AudioStreamPlayer3D_walk" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_sbka2")
+stream = ExtResource("4_v48gb")
 volume_db = 21.247
 pitch_scale = 0.81
 max_distance = 22.4
 bus = &"SFX"
 
 [node name="AudioStreamPlayer3D_attack" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("5_shcim")
+stream = ExtResource("5_ikyoj")
 volume_db = 22.169
 bus = &"SFX"
 
 [node name="AudioStreamPlayer3D_death" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("6_y5g7m")
+stream = ExtResource("6_xg2mg")
 volume_db = 11.566
 bus = &"SFX"
 
 [node name="AudioStreamPlayer3D_hit" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("7_3ltu4")
+stream = ExtResource("6_y5g7m")
 volume_db = 21.204
 bus = &"SFX"
