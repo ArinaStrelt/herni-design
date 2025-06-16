@@ -3,7 +3,7 @@ extends CharacterBody3D
 @export var speed_patrol = 0.5
 @export var speed_chase = 0.75
 @export var aggro_distance = 5.0
-@export var attack_distance = 2.0
+@export var attack_distance = 1.0
 @export var patrol_radius = 2.0
 @export var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var rotation_speed = 5.0
@@ -61,6 +61,7 @@ func _physics_process(delta):
 		distance_to_player = global_position.distance_to(player.global_position)
 		if distance_to_player <= aggro_distance:
 			state = "chase"
+			health_bar.show_aggro()
 		elif state != "patrol":
 			state = "patrol"
 

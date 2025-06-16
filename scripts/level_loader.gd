@@ -69,8 +69,6 @@ func change_level(path := ""):
 		else:
 			path = room_pool_2.pick_random()
 	print(path)
-
-	
 	
 	load_level(path)
 	clear_level_entities()
@@ -87,6 +85,8 @@ func get_scaled_enemy_pool():
 
 	if room_count < 3:
 		return [tier1, tier3]
+	elif room_count == 4:
+		return [tier2]
 	elif room_count < 5:
 		return [tier1, tier2, tier3]
 	else:
@@ -101,41 +101,32 @@ func spawn_enemies_in_level():
 		return
 
 	var enemy_pool = get_scaled_enemy_pool()
+	var total_spawn_points = spawn_parent.get_child_count()
 
 	var tier3_scene = preload("res://scenes/enemies/enemy_skeleton.tscn")
-	var non_tier3_pool = enemy_pool.duplicate()
-	non_tier3_pool.erase(tier3_scene)
-
 	var max_tier3 = 3
-	var total_spawn_points = spawn_parent.get_child_count()
-	var tier3_to_spawn = min(max_tier3, total_spawn_points)
-	tier3_to_spawn = randi() % (tier3_to_spawn + 1)  # náhodný počet tier3 mezi 0 a limit
+	var tier3_count = 0
 
-	# Připrav seznam všech nepřátel, které budeme spawnovat
-	var spawn_list = []
+	var i = 0
+	while i < total_spawn_points:
+		var candidate = enemy_pool.pick_random()
 
-	# Nejprve přidáme požadovaný počet tier3
-	for i in range(tier3_to_spawn):
-		spawn_list.append(tier3_scene)
+		if candidate == tier3_scene and tier3_count >= max_tier3:
+			continue
+		else:
+			if candidate == tier3_scene:
+				tier3_count += 1
 
-	# Zbytek doplníme náhodně z ostatních nepřátel
-	for i in range(total_spawn_points - tier3_to_spawn):
-		spawn_list.append(non_tier3_pool.pick_random())
+			var point = spawn_parent.get_child(i)
+			var enemy_instance = candidate.instantiate()
+			enemy_instance.transform.origin = point.global_transform.origin
 
-	# Zamícháme pořadí, aby spawnování bylo náhodné
-	spawn_list.shuffle()
+			if enemy_instance.has_method("scale_difficulty"):
+				enemy_instance.scale_difficulty(room_count)
 
-	# Provedeme samotný spawn
-	for i in range(total_spawn_points):
-		var point = spawn_parent.get_child(i)
-		var enemy_instance = spawn_list[i].instantiate()
-		enemy_instance.transform.origin = point.global_transform.origin
+			current_level.add_child(enemy_instance)
 
-		if enemy_instance.has_method("scale_difficulty"):
-			enemy_instance.scale_difficulty(room_count)
-
-		current_level.add_child(enemy_instance)
-
+			i += 1
 
 
 func reset_run():

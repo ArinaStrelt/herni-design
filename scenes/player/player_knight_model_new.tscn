@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c1admtun26tw7" path="res://scripts/player/player_knight_model.gd" id="2_gj2u1"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_8sj2l"]
-height = 1.46511
+height = 1.36146
 radius = 0.173828
 
 [sub_resource type="Animation" id="Animation_gj2u1"]
@@ -5868,13 +5868,13 @@ bones/65/rotation = Quaternion(0.00515025, 0.0284661, 0.0870218, 0.995786)
 bones/66/rotation = Quaternion(0.00639244, 0.0282132, -0.054821, 0.998077)
 
 [node name="K30_W01_REF_001" parent="Knight/Skeleton3D" index="0"]
-transform = Transform3D(-0.0620656, -0.880176, 0.470573, -0.0277733, 0.472822, 0.88072, -0.997685, 0.0415931, -0.0537916, 0.998728, 0.588409, -0.749616)
+transform = Transform3D(-0.0620656, -0.880176, 0.470573, -0.0277734, 0.472822, 0.88072, -0.997685, 0.0415929, -0.0537917, 0.998728, 0.588409, -0.749616)
 
 [node name="sword_hitbox" type="Area3D" parent="Knight/Skeleton3D/K30_W01_REF_001" index="1"]
 monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Knight/Skeleton3D/K30_W01_REF_001/sword_hitbox" index="0"]
-transform = Transform3D(0.705032, -0.528369, 0.473054, 0.548926, -0.0158012, -0.835732, 0.449077, 0.84887, 0.27889, -1.47349, 1.64657, 0.742191)
+transform = Transform3D(0.705032, -0.528369, 0.473054, 0.548926, -0.0158013, -0.835733, 0.449077, 0.84887, 0.27889, -1.44611, 1.64739, 0.698199)
 shape = SubResource("CylinderShape3D_8sj2l")
 
 [node name="AnimationPlayer" parent="." index="1"]

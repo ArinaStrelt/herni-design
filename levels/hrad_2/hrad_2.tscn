@@ -6,7 +6,6 @@
 [ext_resource type="AudioStream" uid="uid://bmapkwb35gif6" path="res://audio/SFX/objects/dooropen.wav" id="5_tx34c"]
 [ext_resource type="PackedScene" uid="uid://8np8ds706ft2" path="res://levels/entrance_model/doors.glb" id="6_tx34c"]
 [ext_resource type="Script" uid="uid://bs0jpfy1oclj3" path="res://scripts/doors.gd" id="7_ouefy"]
-[ext_resource type="PackedScene" uid="uid://dfs76jfbgmbjp" path="res://scenes/seller/seller.tscn" id="7_tx34c"]
 
 [sub_resource type="Environment" id="Environment_426s5"]
 background_mode = 2
@@ -39,7 +38,7 @@ size = Vector3(0.0441589, 0.0515747, 0.473877)
 size = Vector3(0.0474243, 0.0473633, 0.140823)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ouefy"]
-size = Vector3(116.78, 59.2559, 80.1893)
+size = Vector3(227.031, 59.2559, 179.391)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k7fv6"]
 size = Vector3(110.703, 50.3594, 73.5581)
@@ -50,16 +49,16 @@ size = Vector3(128.437, 62.2031, 78.9925)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ldoqb"]
 size = Vector3(124.094, 43.6206, 79.5908)
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lqud3"]
+data = PackedVector3Array(-1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, 1, 1, 1, -1, 1, 1)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_426s5")
 
 [node name="exit_zone" parent="." instance=ExtResource("5_pua7d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92026, 0.479679, -11.6276)
-
-[node name="Seller" parent="." instance=ExtResource("7_tx34c")]
-transform = Transform3D(0.258261, 0, 0.20543, 0, 0.33, 0, -0.20543, 0, 0.258261, -5.05542, -0.069, -9.152)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.92026, 0.479679, -11.3792)
 
 [node name="Camera3D2" type="Camera3D" parent="."]
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 11.003, 16.517, 8.548)
@@ -141,7 +140,7 @@ navigation_mesh = SubResource("NavigationMesh_tx34c")
 
 [node name="hrad_2" parent="NavigationRegion3D" instance=ExtResource("1_hwuwg")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/hrad_2/Object_4_001" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/hrad_2/Object_4_001" index="0" groups=["barrier"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/hrad_2/Object_4_001/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1.00001, 2.2311e-11, 0, -2.2311e-11, 1.00001, 0.000289917, -0.0019836, -0.061645)
@@ -150,7 +149,7 @@ shape = SubResource("BoxShape3D_sh6fr")
 [node name="Object_4_002" parent="NavigationRegion3D/hrad_2" index="6"]
 transform = Transform3D(28.05, 0, 0, 0, -1.00315e-05, 28.05, 0, -28.05, -1.00315e-05, -4.19172, -0.02202, 4.55174)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/hrad_2/Object_4_002" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/hrad_2/Object_4_002" index="0" groups=["barrier"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/hrad_2/Object_4_002/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1.00001, 3.06102e-11, 0, -3.06102e-11, 1.00001, 0.000316128, -0.00141488, 0.0445892)
@@ -162,11 +161,17 @@ shape = SubResource("BoxShape3D_tx34c")
 transform = Transform3D(1, -5.18696e-12, 5.68434e-14, -1.42109e-14, 0.999999, 2.68221e-07, 4.9738e-14, 1.49012e-07, 1, -29.6182, 1.52271, 36.4154)
 shape = SubResource("BoxShape3D_ouefy")
 
+[node name="Barrel-col_004" parent="NavigationRegion3D/hrad_2" index="35"]
+transform = Transform3D(0.421036, 0, 0, 0, -2.00765e-07, 0.421036, 0, -0.421036, -2.00765e-07, -6.66581, -0.062077, -5.51434)
+
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/hrad_2/barricade" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/hrad_2/barricade/StaticBody3D"]
 transform = Transform3D(1, 7.28718e-09, 7.51283e-10, -7.26177e-09, 0.999556, -0.0298058, -9.68349e-10, 0.0298058, 0.999556, -29.7816, -2.35925, 37.4613)
 shape = SubResource("BoxShape3D_k7fv6")
+
+[node name="Cube4_001" parent="NavigationRegion3D/hrad_2" index="67"]
+transform = Transform3D(-2.27088, 0, -0.175911, 0, 0.832179, 0, 0.965747, 0, -0.413642, -5.39287, 0.701809, -8.46186)
 
 [node name="barricade_003" parent="NavigationRegion3D/hrad_2" index="68"]
 transform = Transform3D(3.76862e-09, -0.00880874, 0.0150157, -0.0174088, -1.22831e-09, 3.64866e-09, -7.86741e-10, -0.0150157, -0.00880874, 0.230694, 0.402554, -0.903514)
@@ -182,6 +187,26 @@ shape = SubResource("BoxShape3D_lnbbx")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/hrad_2/barricade_005/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 0.999998, -3.27826e-06, 0, 0, 0.999998, -37.3961, -0.360168, 44.1419)
 shape = SubResource("BoxShape3D_ldoqb")
+
+[node name="Cube4_012" type="StaticBody3D" parent="NavigationRegion3D/hrad_2"]
+transform = Transform3D(-1.62901, 0, 9.43279, 0, 2.19097, 0, -1.6192, 0, -9.48998, 10.7307, -0.190455, 3.97285)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/hrad_2/Cube4_012"]
+shape = SubResource("ConcavePolygonShape3D_lqud3")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="NavigationRegion3D/hrad_2"]
+transform = Transform3D(0, 4.03766e-05, -0.0174087, -0.0174088, -2.5941e-09, -6.01652e-12, -2.59411e-09, 0.0174087, 4.0377e-05, 7.53196, 0.376452, -9.49494)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/hrad_2/StaticBody3D2"]
+transform = Transform3D(1, -5.20117e-12, 5.68434e-14, -1.42109e-14, 0.999999, 2.68221e-07, 4.9738e-14, 1.49477e-07, 1, -84.7438, 1.52271, 36.4154)
+shape = SubResource("BoxShape3D_ouefy")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="NavigationRegion3D/hrad_2"]
+transform = Transform3D(0, 4.03766e-05, -0.0174087, -0.0174088, -2.5941e-09, -6.01652e-12, -2.59411e-09, 0.0174087, 4.0377e-05, -2.09897, 0.376452, -9.4726)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/hrad_2/StaticBody3D3"]
+transform = Transform3D(1, -5.20117e-12, 5.68434e-14, -1.42109e-14, 0.999999, 2.68221e-07, 4.9738e-14, 1.49477e-07, 1, -84.7438, 1.52271, 36.4154)
+shape = SubResource("BoxShape3D_ouefy")
 
 [node name="Fire" parent="NavigationRegion3D/hrad_2" instance=ExtResource("2_426s5")]
 transform = Transform3D(0.880571, -0.183152, 0.437091, 0.169554, 0.983009, 0.070317, -0.442543, 0.0121916, 0.896664, 3.73982, 1.16708, -8.80877)

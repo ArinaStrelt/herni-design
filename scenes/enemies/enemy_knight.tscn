@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://bl8hue868b2ug"]
 
 [ext_resource type="Script" uid="uid://bl3f5ybqgeb1i" path="res://scripts/enemies/enemy_knight.gd" id="2_63k4b"]
-[ext_resource type="PackedScene" uid="uid://w2xr1womxdvi" path="res://scenes/enemies/enemy_knight_model.tscn" id="2_lhjrl"]
+[ext_resource type="PackedScene" uid="uid://cv4tivtpxp7qa" path="res://scenes/enemies/enemy_knight_model_2.tscn" id="3_1ay8v"]
 [ext_resource type="PackedScene" uid="uid://dteo6g3s7xu7f" path="res://scenes/health_bar.tscn" id="3_lhjrl"]
 [ext_resource type="AudioStream" uid="uid://btwj3s4cg11hh" path="res://audio/SFX/enemies/hit.wav" id="4_vsul1"]
 [ext_resource type="AudioStream" uid="uid://dcbgg7fej4n55" path="res://audio/SFX/enemies/knight/walk_knight.mp3" id="5_78xam"]
@@ -23,8 +23,8 @@ script = ExtResource("2_63k4b")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.377899, 0)
 shape = SubResource("CylinderShape3D_63k4b")
 
-[node name="enemy_knight_model" parent="." instance=ExtResource("2_lhjrl")]
-transform = Transform3D(-0.47, 0, -4.10887e-08, 0, 0.47, 0, 4.10887e-08, 0, -0.47, 0, 0, 0)
+[node name="enemy_knight_model2" parent="." instance=ExtResource("3_1ay8v")]
+transform = Transform3D(-0.47, 0, 4.10887e-08, 0, 0.47, 0, -4.10887e-08, 0, -0.47, 0, 0, 0)
 
 [node name="health_bar" parent="." instance=ExtResource("3_lhjrl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.917716, 0)
