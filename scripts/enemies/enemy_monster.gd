@@ -212,6 +212,7 @@ func take_damage(amount: int):
 func die():
 	is_dead = true
 	print("Enemy died.")
+	animation_player.play("death")
 	enemyDeathAudioStream.play()
 	
 	collision_shape.set_deferred("disabled", true)
