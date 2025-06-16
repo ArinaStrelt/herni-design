@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dteo6g3s7xu7f" path="res://scenes/health_bar.tscn" id="3_awoe7"]
 [ext_resource type="AudioStream" uid="uid://rdcy3a7qyhnq" path="res://audio/SFX/enemies/spider/spider_attack.wav" id="4_1qii8"]
 [ext_resource type="AudioStream" uid="uid://dv5btlksqavm3" path="res://audio/SFX/enemies/spider/walk.mp3" id="4_f6t7v"]
-[ext_resource type="PackedScene" uid="uid://dx64dtbyugdvo" path="res://scenes/enemy_cage_spider/cage_spider_animated_v_3_model.tscn" id="4_vasbb"]
+[ext_resource type="PackedScene" uid="uid://dx64dtbyugdvo" path="res://scenes/enemy_cage_spider/cage_spider_animated_v3.tscn" id="4_vasbb"]
 [ext_resource type="AudioStream" uid="uid://bh6uex0s7fhbn" path="res://audio/SFX/enemies/spider/death.mp3" id="5_855pf"]
 [ext_resource type="AudioStream" uid="uid://btwj3s4cg11hh" path="res://audio/SFX/enemies/hit.wav" id="6_d3ich"]
 
@@ -35,6 +35,9 @@ radius = 1.2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.370885, 0)
 radius = 0.5
 
+[node name="cage_spider_animated_v3" parent="." instance=ExtResource("4_vasbb")]
+transform = Transform3D(0.299304, 0, 0, 0, 0.299304, 0, 0, 0, 0.299304, -0.060167, 0, 0.0192872)
+
 [node name="AudioStreamPlayer3D_walk" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_f6t7v")
 volume_db = 21.247
@@ -56,6 +59,3 @@ bus = &"SFX"
 stream = ExtResource("6_d3ich")
 volume_db = 21.204
 bus = &"SFX"
-
-[node name="cage_spider_animated_v3" parent="." instance=ExtResource("4_vasbb")]
-transform = Transform3D(0.299304, 0, 0, 0, 0.299304, 0, 0, 0, 0.299304, -0.060167, 0, 0.0192872)

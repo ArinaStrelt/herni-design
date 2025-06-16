@@ -1,11 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://w0ntym617oic"]
+[gd_scene load_steps=7 format=3 uid="uid://w0ntym617oic"]
 
 [ext_resource type="PackedScene" uid="uid://rnhgp7lia1nx" path="res://levels/Base_model/base.glb" id="1_ck4x4"]
 [ext_resource type="Script" uid="uid://buq7p3e6k8sjm" path="res://scripts/levels/forest_levels.gd" id="1_n03nx"]
 [ext_resource type="PackedScene" uid="uid://dc4jc2sdqocqg" path="res://VFX/fire/Fire.tscn" id="2_vp66m"]
-[ext_resource type="PackedScene" uid="uid://byk7wrccha6w" path="res://scenes/enemies/testing_enemy_cube.tscn" id="4_scqal"]
 [ext_resource type="PackedScene" uid="uid://dt45p04n7o85i" path="res://scenes/exit_zone.tscn" id="5_pbrmj"]
-[ext_resource type="PackedScene" uid="uid://bubwl3ccfklpp" path="res://scenes/coins/coins.tscn" id="7_n03nx"]
 [ext_resource type="PackedScene" uid="uid://dfs76jfbgmbjp" path="res://scenes/seller/seller.tscn" id="7_p0mht"]
 
 [sub_resource type="Environment" id="Environment_shhy1"]
@@ -123,17 +121,8 @@ omni_attenuation = 1.305
 [node name="Fire" parent="base" instance=ExtResource("2_vp66m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.34201, 0.108906, -4.49484)
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("4_scqal")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.527488, -9.71048)
-
-[node name="enemy_cube" parent="." instance=ExtResource("4_scqal")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02752, 0.511969, -9.73192)
-
 [node name="exit_zone" parent="." instance=ExtResource("5_pbrmj")]
 transform = Transform3D(0.897019, 0, -0.441991, 0, 1, 0, 0.441991, 0, 0.897019, 2.01787, 0.61348, -12.6014)
-
-[node name="Coins" parent="." instance=ExtResource("7_n03nx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.18126, 0.161691, -11.1289)
 
 [node name="Seller" parent="." instance=ExtResource("7_p0mht")]
 transform = Transform3D(0.015246, 0, 0.329648, 0, 0.33, 0, -0.329648, 0, 0.015246, -3.874, 0.02, -6.08)

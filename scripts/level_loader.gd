@@ -153,3 +153,8 @@ func reset_run():
 
 	# Přesunout do základny
 	change_level("res://levels/Base_model/base.tscn")
+	
+func _unhandled_input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("teleport_to_boss"):
+			print("Teleportuji do boss levelu...")
+			change_level(boss_room)

@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://dg8q72qqibf2c"]
+
+[ext_resource type="Script" uid="uid://twijcn7qapr1" path="res://scenes/gwyn_boss/gwyn_boss.gd" id="1_v48gb"]
+[ext_resource type="PackedScene" uid="uid://dteo6g3s7xu7f" path="res://scenes/health_bar.tscn" id="2_ikyoj"]
+[ext_resource type="PackedScene" uid="uid://cet1jt7a4pk3s" path="res://scenes/gwyn_boss/gwyn_boss_model.tscn" id="3_xg2mg"]
+[ext_resource type="AudioStream" uid="uid://dv5btlksqavm3" path="res://audio/SFX/enemies/spider/walk.mp3" id="4_sbka2"]
+[ext_resource type="AudioStream" uid="uid://rdcy3a7qyhnq" path="res://audio/SFX/enemies/spider/spider_attack.wav" id="5_shcim"]
+[ext_resource type="AudioStream" uid="uid://bh6uex0s7fhbn" path="res://audio/SFX/enemies/spider/death.mp3" id="6_y5g7m"]
+[ext_resource type="AudioStream" uid="uid://btwj3s4cg11hh" path="res://audio/SFX/enemies/hit.wav" id="7_3ltu4"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_d4nsh"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_er2ta"]
+height = 2.59912
+radius = 0.771973
+
+[node name="Node3D" type="CharacterBody3D" groups=["enemies"]]
+script = ExtResource("1_v48gb")
+
+[node name="health_bar" parent="." instance=ExtResource("2_ikyoj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.327705, 2.2221, -0.309657)
+pixel_size = 0.05
+texture = SubResource("ViewportTexture_d4nsh")
+
+[node name="gwyn_boss" parent="." instance=ExtResource("3_xg2mg")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.29956, 0)
+shape = SubResource("CylinderShape3D_er2ta")
+
+[node name="NavAgent" type="NavigationAgent3D" parent="."]
+path_desired_distance = 2.0
+target_desired_distance = 0.5
+avoidance_enabled = true
+radius = 1.2
+
+[node name="AudioStreamPlayer3D_walk" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_sbka2")
+volume_db = 21.247
+pitch_scale = 0.81
+max_distance = 22.4
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D_attack" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("5_shcim")
+volume_db = 22.169
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D_death" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_y5g7m")
+volume_db = 11.566
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3D_hit" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_3ltu4")
+volume_db = 21.204
+bus = &"SFX"
