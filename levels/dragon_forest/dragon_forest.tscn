@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dkkobqc6s8lqf"]
+[gd_scene load_steps=17 format=3 uid="uid://dkkobqc6s8lqf"]
 
 [ext_resource type="Script" uid="uid://buq7p3e6k8sjm" path="res://scripts/levels/forest_levels.gd" id="1_4cloy"]
 [ext_resource type="PackedScene" uid="uid://coj0pe6heuwgv" path="res://levels/dragon_forest/dragon_forest.glb" id="1_mpywe"]
@@ -32,6 +32,9 @@ size = Vector3(3.8075, 3.14849, 1.67621)
 [sub_resource type="BoxShape3D" id="BoxShape3D_o3110"]
 size = Vector3(7.17827, 5.34125, 2.50597)
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_in6vy"]
+data = PackedVector3Array(-1, -1, 1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, -1, 1, -1, -1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, 1, 1, 1, -1, 1, -1, 1, 1, 1, 1, 1, 1, -1, 1, -1, -1, 1, -1, 1, 1, -1, -1, -1, 1, -1, 1, 1, -1, -1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 1, 1, -1, -1, 1, 1, -1, 1, -1, 1, 1, -1, 1, 1, 1, -1, 1, 1)
+
 [sub_resource type="Environment" id="Environment_22kkf"]
 background_mode = 2
 tonemap_mode = 2
@@ -41,7 +44,7 @@ glow_enabled = true
 script = ExtResource("1_4cloy")
 
 [node name="exit_zone" parent="." instance=ExtResource("2_lnjim")]
-transform = Transform3D(1.825, 0, 0, 0, 1.825, 0, 0, 0, 1.825, 1.33146, 0, -19.9556)
+transform = Transform3D(1.825, 0, 0, 0, 1.825, 0, 0, 0, 1.825, 1.33146, 0.594336, -18.1933)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 11.003, 13.732, 2.838)
@@ -50,8 +53,26 @@ navigation_mesh = SubResource("NavigationMesh_lnjim")
 [node name="dragon_forest" parent="NavigationRegion3D" instance=ExtResource("1_mpywe")]
 transform = Transform3D(0.707107, 0, -0.707107, -0.5, 0.707107, -0.5, 0.5, 0.707107, 0.5, -5.77948, -2.78987, -16.6301)
 
+[node name="tree3_tree3_0_003" parent="NavigationRegion3D/dragon_forest" index="12"]
+transform = Transform3D(-0.0017186, 0, 0.00360233, 0, 0.00399128, 0, -0.00360232, 0, -0.0017186, 10.1303, 0.0339956, -11.6999)
+
+[node name="tree2_tree2_0_014" parent="NavigationRegion3D/dragon_forest" index="15"]
+transform = Transform3D(0.00188337, 0, 0, 0, 0.00188337, 0, 0, 0, 0.00188337, -7.75539, -0.0637826, -3.16517)
+
+[node name="Cube4" parent="NavigationRegion3D/dragon_forest" index="28"]
+transform = Transform3D(2.3214, 0, 0.804951, 0, 1.23348, 0, -0.150805, 0, 12.3909, 10.3308, 1.06399, -5.66423)
+
+[node name="CollisionShape3D" parent="NavigationRegion3D/dragon_forest/Cube4" index="0"]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, 0, 0, 1, -0.525849, 0, 0.00470814)
+
+[node name="CollisionShape3D" parent="NavigationRegion3D/dragon_forest/Cube" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0147079, 0, -1.45519e-11)
+
 [node name="Object_3_049" parent="NavigationRegion3D/dragon_forest" index="33"]
 transform = Transform3D(0.0147458, -0.00121592, 0.0236902, 0.00597835, -0.0268034, -0.00509691, 0.0229556, 0.00776149, -0.0138902, 4.37264, -0.0403757, -14.2836)
+
+[node name="Cube4_001" parent="NavigationRegion3D/dragon_forest" index="36"]
+transform = Transform3D(0.0865389, 0, 18.5715, 0, 1.86428, 0, -2.30219, 0, 0.698097, 1.30131, 1.78878, 7.29779)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/dragon_forest/Object_4_007" index="0"]
 
@@ -70,6 +91,9 @@ shape = SubResource("BoxShape3D_4cloy")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/dragon_forest/Object_4_009/StaticBody3D"]
 transform = Transform3D(0.954135, 0.134603, -0.267399, -0.124799, 0.990684, 0.0534399, 0.272116, -0.0176172, 0.962103, -0.0126323, -5.84623, -0.203782)
 shape = SubResource("BoxShape3D_gjpvt")
+
+[node name="Object_4_010" parent="NavigationRegion3D/dragon_forest" index="46"]
+transform = Transform3D(0.21503, -0.155352, -0.058933, 0.0339345, -0.0532917, 0.264298, -0.162652, -0.216498, -0.0227697, 4.10432, -0.250918, -8.49135)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/dragon_forest/Object_4_010" index="0"]
 
@@ -95,11 +119,26 @@ shape = SubResource("BoxShape3D_jib62")
 [node name="Object_4_013" parent="NavigationRegion3D/dragon_forest" index="49"]
 transform = Transform3D(-0.0482565, -0.10659, -0.584876, -0.574093, 0.17012, 0.0161304, 0.164186, 0.563512, -0.115501, -1.74545, 0.346045, -6.36702)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/dragon_forest/Object_4_013" index="0"]
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/dragon_forest/Object_4_013" index="0" groups=["barrier"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/dragon_forest/Object_4_013/StaticBody3D"]
 transform = Transform3D(0.968705, 0.224735, -0.105291, -0.246192, 0.923697, -0.29353, 0.0312922, 0.310271, 0.950133, -0.565509, 0.698922, 0.349219)
 shape = SubResource("BoxShape3D_o3110")
+
+[node name="tree2_tree2_0_002" parent="NavigationRegion3D/dragon_forest" index="52"]
+transform = Transform3D(0.00182898, 0, 0.000449343, 0, 0.00188337, 0, -0.000449343, 0, 0.00182898, 10.3286, -0.0637826, -7.08381)
+
+[node name="tree2_tree2_0_004" parent="NavigationRegion3D/dragon_forest" index="53"]
+transform = Transform3D(0.00292322, 0, 0.00151945, 0, 0.00329453, 0, -0.00151945, 0, 0.00292322, 10.4648, -0.0637826, -2.26036)
+
+[node name="tree3_tree3_0_007" parent="NavigationRegion3D/dragon_forest" index="56"]
+transform = Transform3D(-0.00229542, 0, 0.00510047, 0, 0.00559319, 0, -0.00510047, 0, -0.00229542, 10.8026, -0.111873, -16.1075)
+
+[node name="Cube4_002" type="StaticBody3D" parent="NavigationRegion3D/dragon_forest"]
+transform = Transform3D(-1.79168, 0, 4.14798, 0, 1.85353, 0, -1.42704, 0, -5.20787, 6.60054, 1.78878, 5.34394)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/dragon_forest/Cube4_002"]
+shape = SubResource("ConcavePolygonShape3D_in6vy")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="NavigationRegion3D/dragon_forest"]
 transform = Transform3D(-1, 8.74228e-08, 3.82137e-15, -4.25741e-08, -0.486991, 0.873407, 7.63557e-08, 0.873407, 0.486991, -14.8361, 5.68989, -9.83818)

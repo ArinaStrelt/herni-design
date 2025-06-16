@@ -24,6 +24,7 @@ var knockback_direction = Vector3.ZERO
 var knockback_timer = 0.0
 var attack_timer = 0.0
 var attack_anim_duration = 1
+var has_target := false
 
 @onready var model_holder = $cage_spider_animated_v3
 @onready var animation_player: AnimationPlayer = model_holder.get_node("AnimationPlayer")
@@ -62,8 +63,12 @@ func _physics_process(delta):
 		distance_to_player = global_position.distance_to(player.global_position)
 		if distance_to_player <= aggro_distance and state != "attack":
 			state = "chase"
+			if !has_target:
+				health_bar.show_aggro()
+			has_target = true
 		elif distance_to_player > aggro_distance * 1.2 and state != "attack":
 			state = "patrol"
+			has_target = false
 	else:
 		state = "patrol"
 

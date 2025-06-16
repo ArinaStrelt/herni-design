@@ -13,12 +13,14 @@ extends CharacterBody3D
 @onready var playerOuchAudioStream = $AudioStreamPlayer3D_ouch
 @onready var playerDeathAudioStream = $AudioStreamPlayer3D_death
 
+
 var SPEED := 2.5
 var GRAVITY : float = ProjectSettings.get_setting("physics/3d/default_gravity")
+var you_died_scene = preload("res://scenes/death_display.tscn") # uprav podle své cesty
 var attacking = false
 var is_dead = false
 var is_flinching = false
-var max_health = 100000
+var max_health = 10000
 var current_health = max_health
 var interactables = []
 var gold = 0
@@ -26,7 +28,7 @@ var damage = 100
 var is_rolling: bool = false
 var roll_speed := 2
 var roll_duration := 1.5
-var can_move = true
+var can_move = false
 
 func _ready():
 	$interact_area.connect("area_entered", _on_area_entered)
@@ -275,6 +277,10 @@ func die():
 	ui.update_health(current_health, max_health)
 	animation_player.play("Death_2")
 	velocity = Vector3.ZERO
+	
+	var you_died_instance = you_died_scene.instantiate()
+	get_node("/root/level_loader/UI").add_child(you_died_instance)
+	
 	await animation_player.animation_finished
 	loader.reset_run()
 

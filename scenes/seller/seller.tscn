@@ -16,3 +16,10 @@ script = ExtResource("1_jbauy")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="interact_area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.56959)
 shape = SubResource("CylinderShape3D_3kttf")
+
+[node name="seller_visited" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.24101, 0)
+billboard = 1
+text = "!"
+font_size = 250
+outline_size = 35
